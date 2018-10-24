@@ -1,0 +1,211 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" current-data="@getbootstrap">Edit Business</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">List Your Business</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="owner-name" class="col-form-label">Full Name:</label>
+            <input type="text" class="form-control" id="owner-name">
+          </div>
+          <div class="form-group">
+            <label for="business-name" class="col-form-label">Name of Business:</label>
+            <textarea class="form-control" id="business-name"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="business-city" class="col-form-label">City:</label>
+            <textarea class="form-control" id="business-city"></textarea>
+          </div>
+
+			<div class="dropdown">
+ 				 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">State</button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <a class="dropdown-item" href="#">AL</a>
+				    <a class="dropdown-item" href="#">AK</a>
+				    <a class="dropdown-item" href="#">AZ</a>
+				    <a class="dropdown-item" href="#">AR</a>
+				    <a class="dropdown-item" href="#">CA</a>
+				    <a class="dropdown-item" href="#">CO</a>
+				    <a class="dropdown-item" href="#">CT</a>
+				    <a class="dropdown-item" href="#">DE</a>
+				    <a class="dropdown-item" href="#">FL</a>
+				    <a class="dropdown-item" href="#">GA</a>
+				    <a class="dropdown-item" href="#">HI</a>
+				    <a class="dropdown-item" href="#">ID</a>
+				    <a class="dropdown-item" href="#">IL</a>
+				    <a class="dropdown-item" href="#">IN</a>
+				    <a class="dropdown-item" href="#">IA</a>
+				    <a class="dropdown-item" href="#">KS</a>
+				    <a class="dropdown-item" href="#">KY</a>
+				    <a class="dropdown-item" href="#">LA</a>
+				    <a class="dropdown-item" href="#">ME</a>
+				    <a class="dropdown-item" href="#">MD</a>
+				    <a class="dropdown-item" href="#">MA</a>
+				    <a class="dropdown-item" href="#">MI</a>
+				    <a class="dropdown-item" href="#">MN</a>
+				    <a class="dropdown-item" href="#">MS</a>
+				    <a class="dropdown-item" href="#">MO</a>
+				    <a class="dropdown-item" href="#">MT</a>
+				    <a class="dropdown-item" href="#">NE</a>
+				    <a class="dropdown-item" href="#">NV</a>
+				    <a class="dropdown-item" href="#">NH</a>
+				    <a class="dropdown-item" href="#">NJ</a>
+				    <a class="dropdown-item" href="#">NM</a>
+				    <a class="dropdown-item" href="#">NY</a>
+				    <a class="dropdown-item" href="#">NC</a>
+				    <a class="dropdown-item" href="#">ND</a>
+				    <a class="dropdown-item" href="#">OH</a>
+				    <a class="dropdown-item" href="#">OK</a>
+				    <a class="dropdown-item" href="#">OR</a>
+				    <a class="dropdown-item" href="#">PA</a>
+				    <a class="dropdown-item" href="#">RI</a>
+				    <a class="dropdown-item" href="#">SC</a>
+				    <a class="dropdown-item" href="#">SD</a>
+				    <a class="dropdown-item" href="#">TN</a>
+				    <a class="dropdown-item" href="#">TX</a>
+				    <a class="dropdown-item" href="#">UT</a>
+				    <a class="dropdown-item" href="#">VT</a>
+				    <a class="dropdown-item" href="#">VA</a>
+				    <a class="dropdown-item" href="#">WA</a>
+				    <a class="dropdown-item" href="#">WV</a>
+				    <a class="dropdown-item" href="#">WI</a>
+				    <a class="dropdown-item" href="#">WY</a>
+				    <a class="dropdown-item" href="#">AS</a>
+				    <a class="dropdown-item" href="#">DC</a>
+				    <a class="dropdown-item" href="#">FM</a>
+				    <a class="dropdown-item" href="#">GU</a>
+				    <a class="dropdown-item" href="#">MH</a>
+				    <a class="dropdown-item" href="#">MP</a>
+				    <a class="dropdown-item" href="#">PW</a>
+				    <a class="dropdown-item" href="#">PR</a>
+				    <a class="dropdown-item" href="#">VI</a>
+				</div>
+			</div>
+		<!-Turn below field into dropdown menu->
+          <div class="form-group">
+            <label for="business-country" class="col-form-label">Country:</label>
+            <textarea class="form-control" id="business-country"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="business-zip" class="col-form-label">Zip / Postal Code:</label>
+            <textarea class="form-control" id="business-zip"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="business-email" class="col-form-label">Business Email:</label>
+            <textarea class="form-control" id="business-email"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="business-area-phone" class="col-form-label">Area Code:</label>
+            <textarea class="form-control" id="business-area-phone"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="business-phone" class="col-form-label">Business Phone Number:</label>
+            <textarea class="form-control" id="business-phone"></textarea>
+          </div>
+		<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Graduation Year</button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				    <a class="dropdown-item" href="#">2025</a>
+				    <a class="dropdown-item" href="#">2024</a>
+				    <a class="dropdown-item" href="#">2023</a>
+				    <a class="dropdown-item" href="#">2022</a>
+				    <a class="dropdown-item" href="#">2021</a>
+				    <a class="dropdown-item" href="#">2020</a>
+				    <a class="dropdown-item" href="#">2019</a>
+				    <a class="dropdown-item" href="#">2018</a>
+				    <a class="dropdown-item" href="#">2017</a>
+				    <a class="dropdown-item" href="#">2016</a>
+				    <a class="dropdown-item" href="#">2015</a>
+				    <a class="dropdown-item" href="#">2014</a>
+				    <a class="dropdown-item" href="#">2013</a>
+				    <a class="dropdown-item" href="#">2012</a>
+				    <a class="dropdown-item" href="#">2011</a>
+				    <a class="dropdown-item" href="#">2010</a>
+				    <a class="dropdown-item" href="#">2009</a>
+				    <a class="dropdown-item" href="#">2008</a>
+				    <a class="dropdown-item" href="#">2007</a>
+				    <a class="dropdown-item" href="#">2006</a>
+				    <a class="dropdown-item" href="#">2005</a>
+				    <a class="dropdown-item" href="#">2004</a>
+				    <a class="dropdown-item" href="#">2003</a>
+				    <a class="dropdown-item" href="#">2002</a>
+				    <a class="dropdown-item" href="#">2001</a>
+				    <a class="dropdown-item" href="#">2000</a>
+				    <a class="dropdown-item" href="#">1999</a>
+				    <a class="dropdown-item" href="#">1998</a>
+				    <a class="dropdown-item" href="#">1997</a>
+				    <a class="dropdown-item" href="#">1996</a>
+				    <a class="dropdown-item" href="#">1995</a>
+				    <a class="dropdown-item" href="#">1994</a>
+				    <a class="dropdown-item" href="#">1993</a>
+				    <a class="dropdown-item" href="#">1992</a>
+				    <a class="dropdown-item" href="#">1991</a>
+				    <a class="dropdown-item" href="#">1990</a>
+				    <a class="dropdown-item" href="#">1989</a>
+				    <a class="dropdown-item" href="#">1988</a>
+				    <a class="dropdown-item" href="#">1987</a>
+				    <a class="dropdown-item" href="#">1986</a>
+				    <a class="dropdown-item" href="#">1985</a>
+				    <a class="dropdown-item" href="#">1984</a>
+				    <a class="dropdown-item" href="#">1983</a>
+				    <a class="dropdown-item" href="#">1982</a>
+				    <a class="dropdown-item" href="#">1981</a>
+				    <a class="dropdown-item" href="#">1980</a>
+				    <a class="dropdown-item" href="#">1979</a>
+				    <a class="dropdown-item" href="#">1978</a>
+				    <a class="dropdown-item" href="#">1977</a>
+				    <a class="dropdown-item" href="#">1976</a>
+				    <a class="dropdown-item" href="#">1975</a>
+				    <a class="dropdown-item" href="#">1974</a>
+				    <a class="dropdown-item" href="#">1973</a>
+				    <a class="dropdown-item" href="#">1972</a>
+				    <a class="dropdown-item" href="#">1971</a>
+				    <a class="dropdown-item" href="#">1970</a>
+				    <a class="dropdown-item" href="#">1969</a>
+				    <a class="dropdown-item" href="#">1968</a>
+				    <a class="dropdown-item" href="#">1967</a>
+				    <a class="dropdown-item" href="#">1966</a>
+				    <a class="dropdown-item" href="#">1965</a>
+				    <a class="dropdown-item" href="#">1964</a>
+				    <a class="dropdown-item" href="#">1963</a>
+				    <a class="dropdown-item" href="#">1962</a>
+				    <a class="dropdown-item" href="#">1961</a>
+				    <a class="dropdown-item" href="#">1960</a>
+				    <a class="dropdown-item" href="#">1959</a>
+				    <a class="dropdown-item" href="#">1958</a>
+				    <a class="dropdown-item" href="#">1957</a>
+				    <a class="dropdown-item" href="#">1956</a>
+				    <a class="dropdown-item" href="#">1955</a>
+				    <a class="dropdown-item" href="#">1954</a>
+				    <a class="dropdown-item" href="#">1953</a>
+				    <a class="dropdown-item" href="#">1952</a>
+				    <a class="dropdown-item" href="#">1951</a>
+				    <a class="dropdown-item" href="#">1950</a>
+				    <a class="dropdown-item" href="#">1949</a>
+				    <a class="dropdown-item" href="#">1948</a>
+				    <a class="dropdown-item" href="#">1947</a>
+				    <a class="dropdown-item" href="#">1946</a>
+				    <a class="dropdown-item" href="#">1945</a>
+				    <a class="dropdown-item" href="#">1944</a>
+				    <a class="dropdown-item" href="#">1943</a>
+				    <a class="dropdown-item" href="#">1942</a>
+				    <a class="dropdown-item" href="#">1941</a>
+				    <a class="dropdown-item" href="#">1940</a>
+				</div>
+			</div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit Changes</button>
+      </div>
+    </div>
+  </div>
+</div>

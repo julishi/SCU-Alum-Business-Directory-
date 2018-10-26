@@ -35,3 +35,4 @@ function searchFilters() {
 } //searchFilters();
 
 document.getElementById("search_btn").onclick = searchFilters;
+

@@ -27,7 +27,8 @@ function getCardData() {
 		exit;
 	}
 
-	$query = oci_parse($conn, "SELECT name, type1, type2 FROM BusinessInfo WHERE verified = 1");
+	$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
+	$query = oci_parse($conn, $queryString);
 
 	$res = oci_execute($query);
 	if(!$res) {
@@ -67,3 +68,4 @@ function getSearchData($text, $type1, $type2, $loc) {
 }
 
 ?>
+

@@ -55,13 +55,13 @@ Insert into Business_Addresses values('B10', 'A10', 'Santa Clara', 'CA', 'Z10', 
 
 --Insert values into Business_Tags
 --(business name, tag)
-Insert into Business_Tags values('B01', 'Tag01');
-Insert into Business_Tags values('B02', 'Tag02');
-Insert into Business_Tags values('B03', 'Tag03');
-Insert into Business_Tags values('B04', 'Tag04');
-Insert into Business_Tags values('B05', 'Tag05');
-Insert into Business_Tags values('B06', 'Tag06');
-Insert into Business_Tags values('B07', 'Tag07');
-Insert into Business_Tags values('B08', 'Tag08');
-Insert into Business_Tags values('B09', 'Tag09');
-Insert into Business_Tags values('B10', 'Tag10');
+Insert into Business_Tags values('B01', 'Clothing');
+Insert into Business_Tags values('B02', 'Cosmetics');
+Insert into Business_Tags values('B03', 'Entertainment');
+Insert into Business_Tags values('B04', 'Food');
+Insert into Business_Tags values('B05', 'Health');
+Insert into Business_Tags values('B06', 'Manufacturing');
+Insert into Business_Tags values('B07', 'Shopping');
+Insert into Business_Tags values('B08', 'Tech');
+Insert into Business_Tags values('B09', 'Clothing');
+Insert into Business_Tags values('B10', 'Food');

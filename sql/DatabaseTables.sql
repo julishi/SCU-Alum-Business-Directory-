@@ -8,6 +8,7 @@ CREATE TABLE SCU_ALUM(
         firstname varchar(30),
         lastname varchar(30),
         grad_year int,
+        approved varchar(30),
         PRIMARY KEY (firstname, lastname, grad_year)
 );
 

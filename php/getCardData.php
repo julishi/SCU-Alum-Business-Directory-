@@ -8,11 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		getCardData();
 	} else {
 		$text = $obj->text;
-		$type1 = $obj->type1;
-		$type2 = $obj->type2;
+		$tag = $obj->tag;
 		$loc = $obj->loc;
 
-		getSearchData($text, $type1, $type2, $loc);
+		getSearchData($text, $tag, $loc);
 	}
 
 }
@@ -44,12 +43,10 @@ function getCardData() {
 	OCILogoff($conn);
 }
 
-function getSearchData($text, $type1, $type2, $loc) {
+function getSearchData($text, $tag, $loc) {
 
 	$conn = oci_connect('mcai', 'magstar816', 'dbserver.engr.scu.edu/db11g');
-	if($conn) {
-		print "getSearchData: connection successful";
-	} else {
+	if(!$conn) {
 		$e = oci_error();
 		print "getSearchData: connection failed:";
 		print htmlentities($e['message']);
@@ -57,7 +54,27 @@ function getSearchData($text, $type1, $type2, $loc) {
 	}
 
 	//different search combinations: no text, no type1/2, no loc; combinations of them
-	$query = oci_parse($conn, "Select name, type1, type2 From BusinessInfo Where verified = 1");
+	if($text == null && $tag == null && $loc == null) {
+		$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
+		$query = oci_parse($conn, $queryString);
+
+	} else if($text == null && $tag != null && $loc == null) {
+		$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1) and tag = :tag";
+		$query = oci_parse($conn, $queryString);
+		oci_bind_by_name($query, ':tag', $tag);
+
+	} else if($text == null && $tag == null && $loc != null) {
+		$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Business_Addresses WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1) and city = :loc)";
+		$query = oci_parse($conn, $queryString);
+		oci_bind_by_name($query, ':loc', $loc);
+
+	} else if($text == null && $tag != null && $loc != null) {
+		$queryString = "SELECT * FROM Business_Tags WHERE tag = :tag and businessname in (SELECT businessname FROM Business_Addresses WHERE city = :loc and businessname in (SELECT businessname FROM Listers WHERE approved = 1))";
+		$query = oci_parse($conn, $queryString);
+		oci_bind_by_name($query, ':tag', $tag);
+		oci_bind_by_name($query, ':loc', $loc);
+
+	}
 
 	$res = oci_execute($query);
 	if(!$res) {
@@ -65,7 +82,13 @@ function getSearchData($text, $type1, $type2, $loc) {
 		echo $e['message'];
 		exit;
 	}
+
+	$nrows = oci_fetch_all($query, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
+
+	$out = array('count' => $nrows, 'res' => $res);
+	echo json_encode($out);
+
+	OCILogoff($conn);
 }
 
 ?>
-

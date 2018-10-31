@@ -18,11 +18,16 @@ function createCard(count = 0, res) {
 		container.id = "con" + i;
 		container.className = "col-3";
 		document.getElementById("deck" + deck_index).appendChild(container);
-
-		var obj = JSON.parse(res[i]);
-		var card_img = "<img class=card-img-top src=../avatar.png alt=image style=width:100%>"
-		var card_title = "<div class=card-body><h4 class=card-title>" + obj.title + "</h4>"
-		var card_descrip = "<p class=card-text>" + obj.descrip + "</p></div>"
+		
+		var obj = res[i];
+		var card_img = "<img class=card-img-top src=../avatar.png alt=image style=width:100%>";
+		var card_title = "<div class=card-body><h4 class=card-title>" + obj.NAME + "</h4>";
+		if(obj.TYPE2 == null) {
+			var descrip = obj.TYPE1;
+		} else {
+			var descrip = obj.TYPE1 + ", " + obj.TYPE2;
+		}
+		var card_descrip = "<p class=card-text>" + descrip + "</p></div>";
 		var card_html = card_img + card_title + card_descrip
 
 		card = document.createElement("DIV");
@@ -38,26 +43,24 @@ function createCard(count = 0, res) {
 	}
 }
 
-test = ['{"title":"A", "descrip":"Description for A"}', '{"title":"B", "descrip":"Description for B"}', '{"title":"C", "descrip":"Description for C"}', '{"title":"D", "descrip":"Description for D"}', '{"title":"E", "descrip":"Description for E"}'];
-window.onload = createCard(5, test);
+/* Sends the XMLHttpRequest to get data from database */
+function display() {
+	var obj = { "res": "all" };
+	var dbParam = JSON.stringify(obj);
 
-// function display() {
-// 	var obj = { 'res': '*' };
-// 	var dbParam = JSON.stringify(obj);
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
 
-// 	xmlhttp.onreadystatechange = function() {
-// 	    if (this.readyState == 4 && this.status == 200) {
+	    	//Response format: {count: #, res: []}i
+	        obj = JSON.parse(xmlhttp.responseText);
+	        createCard(obj.count, obj.res);	
+	    }
+	};
 
-// 	    	//Response format: {count: #, res: []}
-// 	        obj = JSON.parse(this.responseText);
-// 	        createCard(obj.count, obj.res);	
-// 	    }
-// 	};
+	xmlhttp.open("POST", "../php/getCardData.php", true);
+	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send("x=" + dbParam);
+}
 
-// 	xmlhttp.open("POST", "php file", true);
-// 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-// 	xmlhttp.send("x=" + dbParam);
-// }
-
-// window.onload = display();
-
+window.onload = display();

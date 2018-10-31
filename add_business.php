@@ -60,7 +60,7 @@ function prepareInput($inputData){
 
 insertListers($firstname, $lastname, $gradyear, $businessname){
         //connect to your database. Type in your username, password and the DB path
-$conn=oci_connect('jshihade','jSalem1115', '//dbserver.engr.scu.edu/db11g');
+$conn=oci_connect('','', '//dbserver.engr.scu.edu/db11g');
         if(!$conn) {
              print "<br> connection failed:";
         exit;
@@ -85,7 +85,7 @@ $conn=oci_connect('jshihade','jSalem1115', '//dbserver.engr.scu.edu/db11g');
 
 insertBusiness_Number_Email($businessname, $phonenumber, $email){
         //connect to your database. Type in your username, password and the DB path
-$conn=oci_connect('jshihade','jSalem1115', '//dbserver.engr.scu.edu/db11g');
+$conn=oci_connect('','', '//dbserver.engr.scu.edu/db11g');
         if(!$conn) {
              print "<br> connection failed:";
         exit;
@@ -109,8 +109,8 @@ $conn=oci_connect('jshihade','jSalem1115', '//dbserver.engr.scu.edu/db11g');
 
 insertBusiness_Addresses($businessname, $address, $city, $state, $zipcode, $country){
         //connect to your database. Type in your username, password and the DB path
-$conn=oci_connect('jshihade','jSalem1115', '//dbserver.engr.scu.edu/db11g');
-        if(!$conn) {
+$conn=oci_connect('','', '//dbserver.engr.scu.edu/db11g');        
+if(!$conn) {
              print "<br> connection failed:";
         exit;
         }

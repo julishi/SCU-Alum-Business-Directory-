@@ -11,26 +11,26 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Edit Business</title>
+    <title>List Business</title>
   </head>
 
   <body>
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" current-data="@getbootstrap">Edit Business</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" current-data="@getbootstrap">List Business</button>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   	<div class="modal-dialog" role="document">
     	<div class="modal-content">
       		<div class="modal-header">
-        		<h5 class="modal-title" id="exampleModalLabel">Edit Your Business</h5>
+        		<h5 class="modal-title" id="exampleModalLabel">List Your Business</h5>
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           			<span aria-hidden="true">&times;</span>
         		</button>
       		</div>
       		<div class="modal-body">
       			<div class="modal-body text-center">
-            		<p>To edit your business's information, please change the data below and hit submit.
-            		The changes will become visible after approval by the SCU Alumni Office.</p>
+            		<p>To add your business to the database, please enter the information below and hit submit.
+            		Your business will become visible after approval by the SCU Alumni Office.</p>
         		</div>
         		<form>
           			<div class="form-group">
@@ -139,6 +139,8 @@
             			<label for="business-city" class="col-form-label">City:</label>
             			<input type="text" class="form-control" id="business-city"></textarea>
           			</div>
+
+
           			<label class="my-1 mr-2" for="inlineFormCustomSelectPref">State:</label>
             		<select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
 				    		<option selected>Choose...</option>

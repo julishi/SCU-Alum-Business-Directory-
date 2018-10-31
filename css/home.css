@@ -5,11 +5,12 @@ body {
 }
 
 form {
-	width: 95%;
-	border: 3px solid #F1F1F1;
-	text-align: center;
 	background-color: white;
 	z-index: 1;
+}
+
+.col-form-label.text-left {
+	text-align: left;
 }
 
 nav a, li a {
@@ -33,12 +34,12 @@ input[type=text] {
 	font-size: 14px;
 }
 
-button {
+#search_btn {
 	width: 100px;
 	font-size: 16px;
 }
 
-button:hover {
+#search_btn:hover {
 	background-color: #EDEDED;
 }
 

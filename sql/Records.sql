@@ -3,16 +3,16 @@
 
 --Insert values into SCU_ALUM
 --(firstname, lastname, grad year)
-Insert into SCU_ALUM values('John', 'Doe', 1985);
-Insert into SCU_ALUM values('Jane', 'Doe', 1997);
-Insert into SCU_ALUM values('Santa', 'Clara', 1950);
-Insert into SCU_ALUM values('William', 'Smith', 1999);
-Insert into SCU_ALUM values('Anne', 'Green', 2012);
-Insert into SCU_ALUM values('Harry', 'Potter', 2015);
-Insert into SCU_ALUM values('Sponge', 'Bob', 2009);
-Insert into SCU_ALUM values('Captain', 'America', 2012);
-Insert into SCU_ALUM values('Tony', 'Stark', 1993);
-Insert into SCU_ALUM values('Jane', 'Eyre', 2018);
+Insert into SCU_ALUM values('John', 'Doe', 1985, 1);
+Insert into SCU_ALUM values('Jane', 'Doe', 1997, 1);
+Insert into SCU_ALUM values('Santa', 'Clara', 1950, 1);
+Insert into SCU_ALUM values('William', 'Smith', 1999, 1);
+Insert into SCU_ALUM values('Anne', 'Green', 2012, 1);
+Insert into SCU_ALUM values('Harry', 'Potter', 2015, 1);
+Insert into SCU_ALUM values('Sponge', 'Bob', 2009, 0);
+Insert into SCU_ALUM values('Captain', 'America', 2012, 0);
+Insert into SCU_ALUM values('Tony', 'Stark', 1993, 0);
+Insert into SCU_ALUM values('Jane', 'Eyre', 2018, 0);
 
 --Insert values into Listers 
 --(firstname, lastname, grad year, business name, approved)

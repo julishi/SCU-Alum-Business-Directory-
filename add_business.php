@@ -16,35 +16,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
      if (!empty($firstname)){
-                $firstname = prepareInput($title);
+                $firstname = prepareInput($firstname);
      }
      if (!empty($lastname)){
-                $lastname = prepareInput($author);
+                $lastname = prepareInput($lastname);
      }
      if (!empty($gradyear)){
-                $comments = prepareInput($comments);
+                $gradyear = prepareInput($gradyear);
      }
 
      if (!empty($businessname)){
-                $comments = prepareInput($comments);
+                $businesname = prepareInput($businessname);
      }
      if (!empty($city)){
-                $comments = prepareInput($comments);
+                $city = prepareInput($city);
      }
      if (!empty($state)){
-                $comments = prepareInput($comments);
+                $state = prepareInput($state);
      }
      if (!empty($country)){
-                $comments = prepareInput($comments);
+                $country = prepareInput($country);
      }
      if (!empty($zipcode)){
-                $comments = prepareInput($comments);
+                $zipcode = prepareInput($zipcode);
      }
      if (!empty($businessemail)){
-                $comments = prepareInput($comments);
+                $businessemail = prepareInput($businessemail);
      }
      if (!empty($businessphone)){
-                $comments = prepareInput($comments);
+                $businessphone = prepareInput($businessphone);
      }
 
       // Call the functions to insert the data

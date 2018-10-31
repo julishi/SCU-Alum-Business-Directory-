@@ -21,13 +21,9 @@ function createCard(count = 0, res) {
 		
 		var obj = res[i];
 		var card_img = "<img class=card-img-top src=../avatar.png alt=image style=width:100%>";
-		var card_title = "<div class=card-body><h4 class=card-title>" + obj.NAME + "</h4>";
-		if(obj.TYPE2 == null) {
-			var descrip = obj.TYPE1;
-		} else {
-			var descrip = obj.TYPE1 + ", " + obj.TYPE2;
-		}
-		var card_descrip = "<p class=card-text>" + descrip + "</p></div>";
+		var card_title = "<div class=card-body><h4 class=card-title>" + obj.BUSINESSNAME + "</h4>";
+		
+		var card_descrip = "<p class=card-text>" + obj.TAG + "</p></div>";
 		var card_html = card_img + card_title + card_descrip
 
 		card = document.createElement("DIV");
@@ -52,8 +48,9 @@ function display() {
 	xmlhttp.onreadystatechange = function() {
 	    if (this.readyState == 4 && this.status == 200) {
 
-	    	//Response format: {count: #, res: []}i
+	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
+		console.log(obj);
 	        createCard(obj.count, obj.res);	
 	    }
 	};
@@ -64,3 +61,8 @@ function display() {
 }
 
 window.onload = display();
+
+
+
+
+

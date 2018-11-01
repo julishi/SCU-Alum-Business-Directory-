@@ -11,6 +11,15 @@ function getFormData() {
 	var phone = document.getElementById("business-phone").value;
 	var tag = document.getElementById("select-tag").value;
 
+	if(firstname == "" || lastname == "" || grad_year == "" || business == "" || address == "" || 
+		city == "" || state == "" || zip == "" || email == "" || phone == "" || tag == "") {
+
+		window.alert("Please fill out all fields.");
+		exit();
+	} else {
+		$('#exampleModal').modal('hide');
+	}
+
 	var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": business, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag};
 	var dbParam = JSON.stringify(obj);
 
@@ -19,6 +28,8 @@ function getFormData() {
 	    if (this.readyState == 4 && this.status == 200) {
 
 	    	obj = xmlhttp.responseText;
+	    	window.alert("You have successfully submitted a business!");
+	    	window.location.href = "home.html";
 	    }
 	};
 	xmlhttp.open("POST", "../php/add_business.php", true);

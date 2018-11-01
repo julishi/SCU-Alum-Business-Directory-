@@ -126,7 +126,11 @@
 								</div>
 								<div class="form-group col-md-12">
 									<label for="business-name" class="col-form-label">Name of Business</label>
-									<input type="text" class="form-control" id="business-name"></textarea>
+									<input type="text" class="form-control" id="business-name">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="business-address" class="col-form-label">Address</label>
+									<input type="text" class="form-control" id="business-address">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="business-city" class="col-form-label">City</label>
@@ -141,22 +145,28 @@
 								</div>
 								<div class="form-group col-md-4">
 									<label for="business-zip" class="col-form-label">Zip / Postal Code</label>
-									<input type="text" class="form-control" id="business-zip"></textarea>
+									<input type="text" class="form-control" id="business-zip">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-email" class="col-form-label">Business Email</label>
-									<input type="text" class="form-control" id="business-email"></textarea>
+									<input type="text" class="form-control" id="business-email">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-phone" class="col-form-label">Business Phone Number</label>
-									<input type="text" class="form-control" id="business-phone"></textarea>
+									<input type="text" class="form-control" id="business-phone">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="select-tag" class="col-form-label">Select Business Tag</label>
+									<select class="form-control" id="select-tag">
+										<option></option>
+									</select>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary">Close</button>
-						<button type="button" class="btn btn-primary" id="submit-changes">Submit Changes</button>
+						<a href="home.html" class="btn btn-secondary">Close</a>
+						<button type="button" class="btn btn-primary" id="submit-changes" data-dismiss="modal">Submit Changes</button>
 					</div>
 				</div>
 			</div>
@@ -168,7 +178,7 @@
 	<script type="text/javascript" src="../js/getFormData.js"></script>
 
 	<script type="text/javascript">
-		for(var i = 1940; i < 2026; i++) {
+		for(var i = 2025; i > 1939; i--) {
 			var year = document.createElement("OPTION");
 			year.text = i;
 			document.getElementById("grad_year-select").appendChild(year);
@@ -181,6 +191,15 @@
 			var state = document.createElement("OPTION");
 			state.text = states[i];
 			document.getElementById("state-select").appendChild(state);
+		}
+	</script>
+
+	<script type="text/javascript">
+		var tags = ["Clothing", "Cosmetics", "Entertainment", "Food", "Health", "Manufacturing", "Shopping", "Tech"];
+		for(var i = 0; i < tags.length; i++) {
+			var tag = document.createElement("OPTION");
+			tag.text = tags[i];
+			document.getElementById("select-tag").appendChild(tag);
 		}
 	</script>
 

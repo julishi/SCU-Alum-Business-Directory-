@@ -9,12 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $lastname = $obj->lastname;
     $gradyear = $obj->year;
     $businessname = $obj->business;
+    $address = $obj->address;
     $city = $obj->city;
     $state = $obj->state;
-    $country = null;
     $zipcode = $obj->zip;
-    $businessemail = $obj->email;
-    $businessphone = $obj->phone;
+    $email = $obj->email;
+    $phone = $obj->phone;
+    $tag = $obj->tag;
 
 
     if (!empty($firstname)){
@@ -29,29 +30,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($businessname)){
         $businesname = prepareInput($businessname);
     }
+    if (!empty($address)){
+        $address = prepareInput($address);
+    }
     if (!empty($city)){
         $city = prepareInput($city);
     }
     if (!empty($state)){
         $state = prepareInput($state);
     }
-    if (!empty($country)){
-        $country = prepareInput($country);
-    }
     if (!empty($zipcode)){
         $zipcode = prepareInput($zipcode);
     }
-    if (!empty($businessemail)){
-        $businessemail = prepareInput($businessemail);
+    if (!empty($email)){
+        $email = prepareInput($email);
     }
-    if (!empty($businessphone)){
-        $businessphone = prepareInput($businessphone);
+    if (!empty($phone)){
+        $phone = prepareInput($phone);
     }
 
       // Call the functions to insert the data
     insertListers($firstname, $lastname, $gradyear, $businessname);
-    insertBusiness_Number_Email($businessname, $phonenumber, $email);
-    insertBusiness_Addresses($businessname, $address, $city, $state, $zipcode, $country);
+    insertBusiness_Number_Email($businessname, $phone, $email);
+    insertBusiness_Addresses($businessname, $address, $city, $state, $zipcode);
+    insertBusiness_Tags($businessname, $tag);
 }
 
 function prepareInput($inputData){
@@ -76,9 +78,7 @@ function insertListers($firstname, $lastname, $gradyear, $businessname){
 
     // Execute the query
     $res = oci_execute($query);
-    if ($res)
-        echo '<br><br> <p style="color:green;font-size:20px">Data successfully inserted</p>';
-    else{
+    if (!$res) {
         $e = oci_error($query);
         echo $e['message'];
     }
@@ -96,14 +96,12 @@ function insertBusiness_Number_Email($businessname, $phonenumber, $email){
     $query = oci_parse($conn, "Insert Into Business_Number_Email values(:businessname, :phonenumber, :email)");
 
     oci_bind_by_name($query, ':businessname', $businessname);
-    oci_bind_by_name($query, ':phonenumber', $phonenumber);
+    oci_bind_by_name($query, ':phonenumber', $phone);
     oci_bind_by_name($query, ':email', $email);
 
     // Execute the query
     $res = oci_execute($query);
-    if ($res)
-        echo '<br><br> <p style="color:green;font-size:20px">Data successfully inserted</p>';
-    else{
+    if (!$res) {
         $e = oci_error($query);
         echo $e['message'];
     }
@@ -118,24 +116,44 @@ function insertBusiness_Addresses($businessname, $address, $city, $state, $zipco
         exit;
     }
 
-    $query = oci_parse($conn, "Insert Into Business_Addresses values(:businessname, :address, :city, :state, :zipcode, :country)");
+    $query = oci_parse($conn, "Insert Into Business_Addresses values(:businessname, :address, :city, :state, :zipcode)");
 
     oci_bind_by_name($query, ':businessname', $businessname);
     oci_bind_by_name($query, ':address', $address);
     oci_bind_by_name($query, ':city', $city);
     oci_bind_by_name($query, ':state', $state);
     oci_bind_by_name($query, ':zipcode', $zipcode);
-    oci_bind_by_name($query, ':country', $country);
 
     // Execute the query
     $res = oci_execute($query);
-    if ($res)
-        echo '<br><br> <p style="color:green;font-size:20px">Data successfully inserted</p>';
-    else{
+    if (!$res) {
         $e = oci_error($query);
         echo $e['message'];
     }
     OCILogoff($conn);
+}
+
+function insertBusiness_Tags($businessname, $tag) {
+
+    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');        
+    if(!$conn) {
+        print "<br> connection failed:";
+        exit;
+    }
+
+    $query = oci_parse($conn, "Insert Into Business_Tags values(:businessname, :tag)");
+
+    oci_bind_by_name($query, ':businessname', $businessname);
+    oci_bind_by_name($query, ':tag', $tag);
+
+    // Execute the query
+    $res = oci_execute($query);
+    if (!$res) {
+        $e = oci_error($query);
+        echo $e['message'];
+    }
+    OCILogoff($conn);
+
 }
 
 ?>

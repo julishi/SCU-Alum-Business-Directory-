@@ -37,7 +37,6 @@ CREATE TABLE Business_Addresses(
         city varchar(30),
         state char(3),
         zipcode varchar(30),
-        country varchar(30),
         FOREIGN KEY (businessname) references Listers(businessname)
 );
 

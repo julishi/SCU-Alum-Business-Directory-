@@ -111,52 +111,62 @@
 							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="first-name" class="col-form-label">First Name</label>
-									<input type="text" class="form-control" id="first-name">
+									<input type="text" class="form-control" id="first-name" required="true">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="last-name" class="col-form-label">Last Name</label>
-									<input type="text" class="form-control" id="last-name">
+									<input type="text" class="form-control" id="last-name" required="true">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="grad_year-select" class="col-form-label">Graduation Year</label>
-									<select class="form-control" id="grad_year-select">
+									<select class="form-control" id="grad_year-select" required="true">
 								    <!-- JS used to generate select !-->
 								    	<option></option>
 									</select>
 								</div>
 								<div class="form-group col-md-12">
 									<label for="business-name" class="col-form-label">Name of Business</label>
-									<input type="text" class="form-control" id="business-name"></textarea>
+									<input type="text" class="form-control" id="business-name" required="true">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="business-address" class="col-form-label">Address</label>
+									<input type="text" class="form-control" id="business-address" required="true">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="business-city" class="col-form-label">City</label>
-									<input type="text" class="form-control" id="business-city"></textarea>
+									<input type="text" class="form-control" id="business-city" required="true">
 								</div>
 
 								<div class="form-group col-md-4">
 									<label for="state-select" class="col-form-label">State</label>
-									<select class="form-control" id="state-select">
+									<select class="form-control" id="state-select" required="true">
 										<option></option>
 									</select>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="business-zip" class="col-form-label">Zip / Postal Code</label>
-									<input type="text" class="form-control" id="business-zip"></textarea>
+									<input type="text" class="form-control" id="business-zip" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-email" class="col-form-label">Business Email</label>
-									<input type="text" class="form-control" id="business-email"></textarea>
+									<input type="text" class="form-control" id="business-email" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-phone" class="col-form-label">Business Phone Number</label>
-									<input type="text" class="form-control" id="business-phone"></textarea>
+									<input type="text" class="form-control" id="business-phone" required="true">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="select-tag" class="col-form-label">Select Business Tag</label>
+									<select class="form-control" id="select-tag" required="true">
+										<option></option>
+									</select>
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
-						<a class="btn btn-secondary" href="home.html">Close</a>
-						<a class="btn btn-primary" href="home.html">Submit Changes</a>
+						<a href="home.html" class="btn btn-secondary">Close</a>
+						<button type="button" class="btn btn-primary" id="submit-changes">Submit Changes</button>
 					</div>
 				</div>
 			</div>
@@ -167,7 +177,7 @@
 	<script type="text/javascript" src="../js/createCard.js"></script>
 
 	<script type="text/javascript">
-		for(var i = 1940; i < 2026; i++) {
+		for(var i = 2025; i > 1939; i--) {
 			var year = document.createElement("OPTION");
 			year.text = i;
 			document.getElementById("grad_year-select").appendChild(year);
@@ -183,6 +193,15 @@
 		}
 	</script>
 
+	<script type="text/javascript">
+		var tags = ["Clothing", "Cosmetics", "Entertainment", "Food", "Health", "Manufacturing", "Shopping", "Tech"];
+		for(var i = 0; i < tags.length; i++) {
+			var tag = document.createElement("OPTION");
+			tag.text = tags[i];
+			document.getElementById("select-tag").appendChild(tag);
+		}
+	</script>
+
 	<!-- Bootstrap JS !-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -193,6 +212,8 @@
 			$('#exampleModal').modal('show')
 		});
 	</script>
+
+	<script type="text/javascript" src="../js/getFormData.js"></script>
 </body>
 
 </html>

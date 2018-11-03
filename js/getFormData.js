@@ -10,16 +10,19 @@ function getFormData() {
 	var email = document.getElementById("business-email").value;
 	var phone = document.getElementById("business-phone").value;
 	var tag = document.getElementById("select-tag").value;
+	var img = document.getElementById("business-img").value;
+	var descrip = document.getElementById("business-descrip").value;
 
 	if(firstname == "" || lastname == "" || grad_year == "" || business == "" || address == "" || 
-		city == "" || state == "" || zip == "" || email == "" || phone == "" || tag == "") {
+		city == "" || state == "" || zip == "" || email == "" || phone == "" || tag == "" || descrip == "") {
 
 		window.alert("Please fill out all fields.");
 		exit();
 	} else {
-		$('#exampleModal').modal('hide');
+		$('#addModal').modal('hide');
 	}
 
+	//Add img and descrip into json obj
 	var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": business, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag};
 	var dbParam = JSON.stringify(obj);
 

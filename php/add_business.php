@@ -5,6 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $obj = json_decode($_POST["x"]);
 
     // collect input data
+    // add a place for img and decription
     $firstname = $obj->firstname;
     $lastname = $obj->lastname;
     $gradyear = $obj->year;

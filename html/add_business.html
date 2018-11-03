@@ -23,7 +23,7 @@
 			<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
 			    <ul class="navbar-nav">
 			      	<li class="nav-item">
-			        	<a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Add Business</a>
+			        	<a class="nav-link" href="#" data-toggle="modal" data-target="#addModal">Add Business</a>
 			      	</li>
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="#">Edit Business</a>
@@ -97,11 +97,11 @@
 
 	<div id="modal_area">
 		<!-- Modal display area !-->
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
 	  		<div class="modal-dialog modal-lg" role="document">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<h5 class="modal-title" id="exampleModalLabel">List Your Business</h5>
+	        			<h5 class="modal-title" id="addModalLabel">List Your Business</h5>
 	        			<a class="close" href="home.html" aria-label="Close">
 	          				<span aria-hidden="true">&times;</span>
 	        			</a>
@@ -149,7 +149,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-email" class="col-form-label">Business Email</label>
-									<input type="text" class="form-control" id="business-email" required="true">
+									<input type="email" class="form-control" id="business-email" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-phone" class="col-form-label">Business Phone Number</label>
@@ -160,6 +160,16 @@
 									<select class="form-control" id="select-tag" required="true">
 										<option></option>
 									</select>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="business-img" class="col-form-label">Add Business Image</label>
+									<input type="file" accept=".jpg,.png" class="form-control-file" id="business-img">
+									<small id="imgHelp" class="form-text text-muted">Optional. A generic image will be used instead.</small>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="business-descrip" class="col-form-label">Additional Comments</label>
+									<textarea maxlength="150" class="form-control" id="business-descrip" rows="3"></textarea>
+									<small id="descripHelp" class="form-text text-muted">Limit 150 characters.</small>
 								</div>
 							</div>
 						</form>
@@ -172,7 +182,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- My JS !-->
 	<script type="text/javascript" src="../js/createCard.js"></script>
 
@@ -209,7 +219,13 @@
 
 	<script type="text/javascript">
 		$(window).on('load', function(){
-			$('#exampleModal').modal('show')
+			$('#addModal').modal('show')
+		});
+	</script>
+
+	<script type="text/javascript">
+		$('#addModal').modal({
+			backdrop: 'static'
 		});
 	</script>
 

@@ -12,8 +12,8 @@ CREATE TABLE Listers(
         lastname varchar(30),
         grad_year int,
         businessname varchar(30),
-        --at first approved should be false, then set to true once office approves--
-        approved BOOLEAN,
+        --at first approved should be 0, then set to 1 once office approves--
+        approved int
         PRIMARY KEY (firstname, lastname, grad_year),
         UNIQUE (businessname)
 );
@@ -35,10 +35,10 @@ CREATE TABLE Business_Edits(
         tag varchar(30),
         comments varchar(150),
         image BLOB,
-        --at first approved should be false, then set to true once office approves--
-        --Do search in the table, for every TRUE in here, take the information and copy it--
+        --at first approved should be 0, then set to 1 once office approves--
+        --Do search in the table, for every 1 in here, take the information and copy it--
         --into the Listers table, then delete it from here--
-        approved BOOLEAN,
+        approved int,
         FOREIGN KEY (businessname) references Listers(businessname)
 );
 

@@ -2,7 +2,7 @@
 @DatabaseTables
 
 --Insert values into SCU_ALUM
---(firstname, lastname, grad year)
+--(firstname, lastname, grad year, approved)
 Insert into SCU_ALUM values('John', 'Doe', 1985, 1);
 Insert into SCU_ALUM values('Jane', 'Doe', 1997, 1);
 Insert into SCU_ALUM values('Santa', 'Clara', 1950, 1);
@@ -53,15 +53,15 @@ Insert into Business_Addresses values('B08', 'A08', 'Santa Clara', 'CA', 'Z08');
 Insert into Business_Addresses values('B09', 'A09', 'Santa Clara', 'CA', 'Z09');
 Insert into Business_Addresses values('B10', 'A10', 'Santa Clara', 'CA', 'Z10');
 
---Insert values into Business_Tags
+--Insert values into Business_Descriptions
 --(business name, tag)
-Insert into Business_Tags values('B01', 'Clothing');
-Insert into Business_Tags values('B02', 'Cosmetics');
-Insert into Business_Tags values('B03', 'Entertainment');
-Insert into Business_Tags values('B04', 'Food');
-Insert into Business_Tags values('B05', 'Health');
-Insert into Business_Tags values('B06', 'Manufacturing');
-Insert into Business_Tags values('B07', 'Shopping');
-Insert into Business_Tags values('B08', 'Tech');
-Insert into Business_Tags values('B09', 'Clothing');
-Insert into Business_Tags values('B10', 'Food');
+Insert into Business_Descriptions values('B01', 'Clothing', 'Sells clothing');
+Insert into Business_Descriptions values('B02', 'Cosmetics', 'Sells cosmetics');
+Insert into Business_Descriptions values('B03', 'Entertainment', 'Sells entertainment');
+Insert into Business_Descriptions values('B04', 'Food', 'Sells food');
+Insert into Business_Descriptions values('B05', 'Health', 'Sells health stuff');
+Insert into Business_Descriptions values('B06', 'Manufacturing', 'Sells manufacturing stuff');
+Insert into Business_Descriptions values('B07', 'Shopping', 'Sells stuff');
+Insert into Business_Descriptions values('B08', 'Tech', 'Sells tech');
+Insert into Business_Descriptions values('B09', 'Clothing', 'Sells clothing');
+Insert into Business_Descriptions values('B10', 'Food', 'Sells food');

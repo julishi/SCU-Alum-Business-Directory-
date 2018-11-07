@@ -22,8 +22,7 @@ function getFormData() {
 		$('#addModal').modal('hide');
 	}
 
-	//Add img and descrip into json obj
-	var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": business, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag};
+	var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": business, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag, "img": img, "descrip": descrip};
 	var dbParam = JSON.stringify(obj);
 
 	var xmlhttp = new XMLHttpRequest();
@@ -39,4 +38,4 @@ function getFormData() {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }
-document.getElementById("submit-changes").onclick = getFormData;
+document.getElementById("submit-btn").onclick = getFormData;

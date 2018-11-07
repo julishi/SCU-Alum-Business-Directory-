@@ -8,7 +8,7 @@ Create or Replace Type search_table as Table of search_rec;
 /
 Create or Replace Function searchFilters(s_txt in VARCHAR, s_tag in VARCHAR, s_loc in VARCHAR) return search_table
 AS
-Cursor Search_cur is Select * from Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1);
+Cursor Search_cur is Select * from Business_Descriptions WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1);
 Cursor Loc_cur is SELECT * FROM Business_Addresses WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1);
 
 v_search search_table;

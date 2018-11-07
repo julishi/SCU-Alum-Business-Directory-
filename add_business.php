@@ -143,7 +143,10 @@ function insertBusiness_Addresses($businessname, $address, $city, $state, $zipco
 }
 
 ?>
-<-- Old Code -->
+
+---------------------------------------------
+ Old Code 
+---------------------------------------------
     $firstname = $_POST['first-name'];
     $lastname = $_POST['last-name'];
     $gradyear = $_POST['grad_year_select'];

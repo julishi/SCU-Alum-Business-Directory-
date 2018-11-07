@@ -4,14 +4,14 @@ function createModal(e) {
 	var modalId = modalName + "-modal";
 	var modalTitle = modalName + "-title";
 
-	var modal = document.createElement("DIV");
-	modal.id = modalId;
-	modal.className = "modal fade";
-	modal.tabIndex = "-1";
-	modal.setAttribute("role", "dialog");
-	modal.setAttribute("aria-labelledby", modalTitle);
-	modal.setAttribute("aria-hidden", "true");
-	modal.setAttribute("data-show", "true");
+	var bsnModal = document.createElement("DIV");
+	bsnModal.id = modalId;
+	bsnModal.className = "modal fade";
+	bsnModal.tabIndex = "-1";
+	bsnModal.setAttribute("role", "dialog");
+	bsnModal.setAttribute("aria-labelledby", modalTitle);
+	bsnModal.setAttribute("aria-hidden", "true");
+	bsnModal.setAttribute("data-show", "true");
 
 	var dialog = document.createElement("DIV");
 	dialog.className = "modal-dialog";
@@ -35,12 +35,8 @@ function createModal(e) {
 	header.appendChild(title);
 	header.appendChild(x_btn);
 
-	//TODO: add modal body
 	var body = document.createElement("DIV");
 	body.className = "modal-body";
-	// var descrip = document.createElement("P");	Replaced by data from database below
-	// descrip.textContent = "This is a test.";
-	// body.appendChild(descrip);
 
 	var footer = document.createElement("DIV");
 	footer.className = "modal-footer";
@@ -57,9 +53,9 @@ function createModal(e) {
 
 	dialog.appendChild(content);
 
-	modal.appendChild(dialog);
+	bsnModal.appendChild(dialog);
 
-	document.getElementById("modal_area").appendChild(modal);
+	document.getElementById("modal_area").appendChild(bsnModal);
 
 	//Request for data then show
 	var obj = { "businessname": modalName.replace(/-/g, ' ') };
@@ -70,54 +66,71 @@ function createModal(e) {
 		if (this.readyState == 4 && this.status == 200) {
 
 			obj = JSON.parse(xmlhttp.responseText);
+			console.log(obj);
 
-			var br = createElement("BR");
+			var lbr = document.createElement("BR");
 
-			var address = createElement("P");
-			var address_head = createElement("B");
-			address_head.textContent = "Address:";
-			var address_txt1 = createTextNode(obj.ADDRESS);
-			var address_txt2 = createTextNode(obj.CITY + ", " + obj.STATE + " " + obj.ZIPCODE);
+			var address = document.createElement("P");
+			var address_head = document.createElement("B");
+			address_head.textContent = "Address: ";
+			var address_txt2 = document.createTextNode(obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE']);
+			var address_txt1 = document.createElement("SPAN");
+			address_txt1.textContent = obj.address['ADDRESS'];
+			var address_txt2 = document.createElement("SPAN");
+			address_txt2.textContent = obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE'];
 			address.appendChild(address_head);
-			address.appendChild(br);
 			address.appendChild(address_txt1);
-			address.appendChild(br);
 			address.appendChild(address_txt2);
 
-			var phone = createElement("P");
-			var phone_head = createElement("B");
+			var spans = address.getElementsByTagName("SPAN");
+
+			for (var i = 0; i < spans.length; i++)
+			{
+				var lbr = document.createElement("BR");
+				address.insertBefore(lbr, spans[i]);
+			}
+
+			for (var i = 1; i < spans.length; i++)
+			{
+				var lbr = document.createElement("BR");
+				address.insertBefore(lbr, spans[1]);
+			}
+
+
+			var phone = document.createElement("P");
+			var phone_head = document.createElement("B");
 			phone_head.textContent = "Phone: ";
-			var phone_num = createTextNode(obj.PHONENUMBER);
+			var phone_num = document.createTextNode(obj.contact['PHONENUMBER']);
 			phone.appendChild(phone_head);
 			phone.appendChild(phone_num);
 
-			var email = createElement("P");
-			var email_head = createElement("B");
+			var email = document.createElement("P");
+			var email_head = document.createElement("B");
 			email_head.textContent = "Email: ";
-			var email_addr = createTextNode(obj.EMAIL);
+			var email_addr = document.createTextNode(obj.contact['EMAIL']);
 			email.appendChild(email_head);
 			email.appendChild(email_addr);
 
-			var owner = createElement("P");
-			var owner_head = createElement("B");
+			var owner = document.createElement("P");
+			var owner_head = document.createElement("B");
 			owner_head.textContent = "Owner: ";
-			var owner_name = createTextNode(obj.FIRSTNAME + " " + obj.LASTNAME);
+			var owner_name = document.createTextNode(obj.owner['FIRSTNAME'] + " " + obj.owner['LASTNAME']);
 			owner.appendChild(owner_head);
 			owner.appendChild(owner_name);
 
-			var tags = createElement("P");
-			var tags_head = createElement("B");
+			var tags = document.createElement("P");
+			var tags_head = document.createElement("B");
 			tags_head.textContent = "Tags: ";
-			var tags_text = createTextNode(obj.TAG);
+			var tags_text = document.createTextNode(obj.description['TAG']);
 			tags.appendChild(tags_head);
 			tags.appendChild(tags_text);
 
-			var descrip = createElement("P");
-			var descrip_head = createElement("B");
+			var descrip = document.createElement("P");
+			var descrip_head = document.createElement("B");
 			descrip_head.textContent = "Description: ";
-			var descrip_text = createTextNode(obj.DESCRIPTION);
+			var descrip_text = document.createTextNode(obj.description['COMMENTS']);
 			descrip.appendChild(descrip_head);
-			descrip.appendChild(br);
+			descrip.appendChild(lbr);
 			descrip.appendChild(descrip_text);
 
 			body.appendChild(address);
@@ -131,7 +144,7 @@ function createModal(e) {
 		}
 	}
 	
-	xmlhttp.open("POST", "../php file", true);
+	xmlhttp.open("POST", "../php/getBusinessData.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }

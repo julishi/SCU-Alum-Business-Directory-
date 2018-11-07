@@ -26,7 +26,7 @@ function getCardData() {
 		exit;
 	}
 
-	$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
+	$queryString = "SELECT * FROM Business_Descriptions WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
 	$query = oci_parse($conn, $queryString);
 
 	$res = oci_execute($query);

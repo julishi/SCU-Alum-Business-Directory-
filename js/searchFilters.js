@@ -7,7 +7,6 @@ function searchFilters() {
 
 	var tagList = document.getElementById("type1");
 	var sel_tag = tagList.options[tagList.selectedIndex].text;
-	console.log(sel_tag);
 	if(sel_tag == "Select Type 1") {
 		sel_tag = null;
 	}
@@ -33,6 +32,7 @@ function searchFilters() {
 
 	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
+	        console.log(obj);
 	        if(obj == null) {
 	        	document.getElementById("card_area").innerHTML = "<p class=text-muted>No matching results</p>";
 	        } else {

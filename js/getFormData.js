@@ -10,17 +10,19 @@ function getFormData() {
 	var email = document.getElementById("business-email").value;
 	var phone = document.getElementById("business-phone").value;
 	var tag = document.getElementById("select-tag").value;
+	var img = document.getElementById("business-img").value;
+	var descrip = document.getElementById("business-descrip").value;
 
 	if(firstname == "" || lastname == "" || grad_year == "" || business == "" || address == "" || 
-		city == "" || state == "" || zip == "" || email == "" || phone == "" || tag == "") {
+		city == "" || state == "" || zip == "" || email == "" || phone == "" || tag == "" || descrip == "") {
 
 		window.alert("Please fill out all fields.");
 		exit();
 	} else {
-		$('#exampleModal').modal('hide');
+		$('#addModal').modal('hide');
 	}
 
-	var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": business, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag};
+	var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": business, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag, "img": img, "descrip": descrip};
 	var dbParam = JSON.stringify(obj);
 
 	var xmlhttp = new XMLHttpRequest();
@@ -36,4 +38,4 @@ function getFormData() {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }
-document.getElementById("submit-changes").onclick = getFormData;
+document.getElementById("submit-btn").onclick = getFormData;

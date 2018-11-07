@@ -1,4 +1,4 @@
-Drop table Business_Tags;
+Drop table Business_Descriptions;
 Drop table Business_Addresses;
 Drop table Business_Number_Email;
 Drop table Listers;
@@ -18,7 +18,7 @@ CREATE TABLE Listers(
         lastname varchar(30),
         grad_year int,
         businessname varchar(30),
-        approved varchar(30),
+        approved int,
         PRIMARY KEY (firstname, lastname, grad_year),
         UNIQUE (businessname)
 );
@@ -40,8 +40,9 @@ CREATE TABLE Business_Addresses(
         FOREIGN KEY (businessname) references Listers(businessname)
 );
 
-CREATE TABLE Business_Tags(
+CREATE TABLE Business_Descriptions(
         businessname varchar(30),
         tag varchar(30),
+        comments varchar(150),
         FOREIGN KEY (businessname) references Listers(businessname)
 );

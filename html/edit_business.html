@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<title>Edit Business - SCU Alumni Business Directory System</title>
+
+<head>
+	<!-- Meta tags !-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- My CSS !-->
+	<link rel="stylesheet" type="text/css" href="../css/home.css">
+
+	<!-- Bootstrap CSS !-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar fixed-top navbar-expand-xl" style="background-color:#B22222">
+
+			<a class="navbar-brand" href="home.html">SCU Alumni Business Directory</a>
+
+			<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+			    <ul class="navbar-nav">
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="#">Add Business</a>
+			      	</li>
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="#">Edit Business</a>
+			      	</li>
+			      	<li class="nav-item">
+			        	<a class="nav-link" href="staff_login.html">Staff Login</a>
+			      </li>
+			    </ul>
+			 </div>
+		</nav>
+	</div>
+
+	<div style="padding:20px 40px;margin-top:45px;">
+		<form action="" style="position:fixed;border:3px solid #F1F1F1;text-align: center;width: 95%;">
+			<div class="form_container">
+				<div class="form-inline">
+					<div class="col">
+						<input type="text" class="form-control" id="search_txt" placeholder="Search..">
+					</div>
+
+					<div class="col">
+						<select class="custom-select" id="type1">
+							<option value="0">Select Type 1</option>
+							<option value="1">Clothing</option>
+							<option value="2">Cosmetics</option>
+							<option value="3">Entertainment</option>
+							<option value="4">Food</option>
+							<option value="5">Health</option>
+							<option value="6">Manufacturing</option>
+							<option value="7">Shopping</option>
+							<option value="8">Tech</option>
+						</select>
+					</div>
+
+					<div class="col">
+						<select class="custom-select" id="type2">
+							<option value="0">Select Type 2</option>
+							<option value="1">Clothing</option>
+							<option value="2">Cosmetics</option>
+							<option value="3">Entertainment</option>
+							<option value="4">Food</option>
+							<option value="5">Health</option>
+							<option value="6">Manufacturing</option>
+							<option value="7">Shopping</option>
+							<option value="8">Tech</option>
+						</select>
+					</div>
+
+					<div class="col">
+						<select class="custom-select" id="location">
+							<option value="0">Location</option>
+							<option value="1">Los Angeles</option>
+							<option value="2">New York</option>
+							<option value="3">San Francisco</option>
+							<option value="4">San Jose</option>
+							<option value="5">Santa Clara</option>
+						</select>
+					</div>
+
+					<div class="col">
+						<button type="button" class="btn btn-outline-secondary" id="search_btn">Search</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<div id="card_area" style="margin-top:150px">
+			<!-- Card display area -->
+		</div>
+	</div>
+
+	<div id="modal_area">
+		<!-- Modal display area !-->
+		<div class="modal fade" id="verifyModal" tabindex="-1" role="dialog" aria-labelledby="verifyModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog modal-lg" role="document">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+	        			<h5 class="modal-title" id="verifyModalLabel">Verify Your Business</h5>
+	        			<a class="close" href="home.html" aria-label="Close">
+	          				<span aria-hidden="true">&times;</span>
+	        			</a>
+					</div>
+					<div class="modal-body">
+					    <form>
+							<div class="form-row align-items-center">
+								<div class="form-group col-md-6">
+									<label for="verify-bsn-name" class="col-form-label">Business Name</label>
+									<input type="text" class="form-control mb-2 mr-sm-2" id="verify-bsn-name" required="true">
+									<small id="verifyHelp" class="form-text text-muted">Enter your business name to verify it.</small>
+								</div>
+								<div class="col-auto mx-2">
+									<button type="button" class="btn btn-primary mb-2" id="verify-business">Verify Business</button>
+								</div>
+								<div class ="col-auto mx-2 mt-2" id="message">
+									<p></p>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="home.html" class="btn btn-secondary">Close</a>
+						<button type="button" class="btn btn-primary disabled" id="continue">Continue</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- When continue is pressed, hide previous modal, display edit modal -->
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+	  		<div class="modal-dialog modal-lg" role="document">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+	        			<h5 class="modal-title" id="editModalLabel">Edit Your Business</h5>
+	        			<a class="close" href="home.html" aria-label="Close">
+	          				<span aria-hidden="true">&times;</span>
+	        			</a>
+					</div>
+					<div class="modal-body">
+					    <form>
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="first-name" class="col-form-label">First Name</label>
+									<input type="text" class="form-control" id="first-name" required="true">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="last-name" class="col-form-label">Last Name</label>
+									<input type="text" class="form-control" id="last-name" required="true">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="grad_year-select" class="col-form-label">Graduation Year</label>
+									<select class="form-control" id="grad_year-select" required="true">
+								    <!-- JS used to generate select !-->
+								    	<option></option>
+									</select>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="business-name" class="col-form-label">Name of Business</label>
+									<input type="text" class="form-control" id="business-name" required="true">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="business-address" class="col-form-label">Address</label>
+									<input type="text" class="form-control" id="business-address" required="true">
+								</div>
+								<div class="form-group col-md-4">
+									<label for="business-city" class="col-form-label">City</label>
+									<input type="text" class="form-control" id="business-city" required="true">
+								</div>
+
+								<div class="form-group col-md-4">
+									<label for="state-select" class="col-form-label">State</label>
+									<select class="form-control" id="state-select" required="true">
+										<option></option>
+									</select>
+								</div>
+								<div class="form-group col-md-4">
+									<label for="business-zip" class="col-form-label">Zip / Postal Code</label>
+									<input type="text" class="form-control" id="business-zip" required="true">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="business-email" class="col-form-label">Business Email</label>
+									<input type="email" class="form-control" id="business-email" required="true">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="business-phone" class="col-form-label">Business Phone Number</label>
+									<input type="text" class="form-control" id="business-phone" required="true">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="select-tag" class="col-form-label">Select Business Tag</label>
+									<select class="form-control" id="select-tag" required="true">
+										<option></option>
+									</select>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="business-img" class="col-form-label">Edit Business Image</label>
+									<input type="file" accept=".jpg,.png" class="form-control-file" id="business-img">
+									<small id="imgHelp" class="form-text text-muted">Optional. Previous image will be used.</small>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="business-descrip" class="col-form-label">Additional Comments</label>
+									<textarea maxlength="150" class="form-control" id="business-descrip" rows="3"></textarea>
+									<small id="descripHelp" class="form-text text-muted">Limit 150 characters.</small>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="home.html" class="btn btn-secondary">Close</a>
+						<button type="button" class="btn btn-primary" id="submit-changes">Submit Changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- My JS !-->
+	<script type="text/javascript" src="../js/createCard.js"></script>
+
+	<script type="text/javascript">
+		for(var i = 2025; i > 1939; i--) {
+			var year = document.createElement("OPTION");
+			year.text = i;
+			document.getElementById("grad_year-select").appendChild(year);
+		}
+	</script>
+
+	<script type="text/javascript">
+		var states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "DC", "FM", "GU", "MH", "MP", "PW", "PR", "VI"];
+		for(var i = 0; i < states.length; i++) {
+			var state = document.createElement("OPTION");
+			state.text = states[i];
+			document.getElementById("state-select").appendChild(state);
+		}
+	</script>
+
+	<script type="text/javascript">
+		var tags = ["Clothing", "Cosmetics", "Entertainment", "Food", "Health", "Manufacturing", "Shopping", "Tech"];
+		for(var i = 0; i < tags.length; i++) {
+			var tag = document.createElement("OPTION");
+			tag.text = tags[i];
+			document.getElementById("select-tag").appendChild(tag);
+		}
+	</script>
+
+	<!-- Bootstrap JS !-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(window).on('load', function(){
+			$('#verifyModal').modal('show')
+			$('#editModal').modal('hide');
+		});
+	</script>
+
+	<script type="text/javascript">
+		$('#verifyModal').modal({
+			backdrop: 'static'
+		});
+	</script>
+
+	<script type="text/javascript">
+		$('#verifyModal').on('hidden.bs.modal', function (e) {
+			$('#editModal').modal('show');
+		});
+	</script>
+
+	<script type="text/javascript">
+		$('#editModal').on('shown.bs.modal', function (e) {
+			$('#editModal').modal({
+				backdrop: 'static'
+			});
+		})
+	</script>
+
+	<script type="text/javascript" src="../js/verifyBusiness.js"></script>
+</body>
+
+</html>

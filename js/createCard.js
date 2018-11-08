@@ -20,18 +20,43 @@ function createCard(count = 0, res) {
 		document.getElementById("deck" + deck_index).appendChild(container);
 		
 		var obj = res[i];
-		var card_img = "<img class=card-img-top src=../avatar.png alt=image style=width:100%>";
-		var card_title = "<div class=card-body><h4 class=card-title>" + obj.BUSINESSNAME + "</h4>";
-		
-		var card_descrip = "<p class=card-text>" + obj.TAG + "</p></div>";
-		var card_html = card_img + card_title + card_descrip
+		var card_img = document.createElement("IMG");
+		card_img.className = "card-img-top";
+		card_img.setAttribute("src", "../avatar.png"); //change to image from the database
+		card_img.setAttribute("alt", "image");
+		card_img.setAttribute("style", "width:100%");
+
+		var card_body = document.createElement("DIV");
+		card_body.className = "card-body";
+
+
+		var card_title = document.createElement("H4");
+		card_title.className = "card-title";
+		card_title.textContent =  obj.BUSINESSNAME;
+
+		var card_descrip = document.createElement("P");
+		card_descrip.className = "card-text";
+		card_descrip.textContent =  obj.TAG;
+		//Add business description
+
+		var card_btn = document.createElement("A");
+		card_btn.setAttribute("href", "javascript:;");
+		card_btn.className = "btn btn-outline-primary";
+		card_btn.id = obj.BUSINESSNAME.replace(/\s/g, '-');
+		card_btn.setAttribute("onclick", "createModal(event)");
+		card_btn.textContent = "See more";
 
 		card = document.createElement("DIV");
 		card.id = "card" + i;
 		card.className = "card";
 		card.setAttribute("style", "width:16rem");
-		document.getElementById("con" + i).appendChild(card);
-		document.getElementById(card.id).innerHTML = card_html;
+
+		container.appendChild(card);
+		card.appendChild(card_img);
+		card.appendChild(card_body);
+		card_body.appendChild(card_title);
+		card_body.appendChild(card_descrip);
+		card_body.appendChild(card_btn);
 
 		if(i % 4 == 3) {
 			deck_index++;
@@ -39,7 +64,6 @@ function createCard(count = 0, res) {
 	}
 }
 
-/* Sends the XMLHttpRequest to get data from database */
 function display() {
 	var obj = { "res": "all" };
 	var dbParam = JSON.stringify(obj);
@@ -50,7 +74,6 @@ function display() {
 
 	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
-		console.log(obj);
 	        createCard(obj.count, obj.res);	
 	    }
 	};
@@ -61,6 +84,7 @@ function display() {
 }
 
 window.onload = display();
+
 
 
 

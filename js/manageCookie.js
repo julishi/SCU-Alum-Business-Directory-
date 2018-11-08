@@ -2,7 +2,7 @@ window.addEventListener("load",nameFieldInit,false);
 
 var firstName = "";
 var lastName = "";
-var gradYear = "1980";
+var gradYear = "";
 
 function nameFieldInit() {
 	if (document.cookie != "") {
@@ -18,8 +18,8 @@ function nameFieldInit() {
 	document.getElementById("last-name").onblur = setCookie();
 
 	//NEED TO UPDATE ELEMENT ID FOR GRADYEAR
-	//document.getElementById("grad-year").value = gradYear;
-	//document.getElementById("grad-year").onblur = setCookie;
+	document.getElementById("grad-year").value = gradYear;
+	document.getElementById("grad-year").onblur = setCookie;
 
 	document.getElementById("cookieForm").onsubmit = setCookie();
 }
@@ -30,7 +30,7 @@ function setCookie() {
 
 	firstName = document.getElementById("first-name").value;
 	lastName = document.getElementById("last-name").value;
-	//gradYear = document.getElementById("grad-year").value;
+	gradYear = document.getElementById("grad-year").value;
 	document.cookie = "firstName=" + firstName;
 	document.cookie = "lastName=" + lastName;
 	document.cookie = "gradYear=" + gradYear;
@@ -39,6 +39,20 @@ function setCookie() {
 	return false;
 }
 
+function setCookieFlag() {
+	document.cookie = "cookieFlag=True";
+	return;
+}
+
 function alertCookie() {
   alert(document.cookie);
+}
+
+function checkCookie() {
+	if (document.cookie != "") {
+		var cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	}
+	if(cookieFlag != "True")
+		return false;
+	return true;
 }

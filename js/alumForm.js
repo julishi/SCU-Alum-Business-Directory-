@@ -8,6 +8,8 @@ function getAlumFormData() {
 		window.alert("Please fill out all fields.");
 		exit();
 	} else {
+		setCookie();
+		setCookieFlag();
 		$('#alumFormModal').modal('hide');
 	}
 

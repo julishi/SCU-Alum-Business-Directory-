@@ -99,15 +99,125 @@
 	<div id="modal_area">
 	</div>
 
+	<div class="modal fade" id="areYouAnAlumModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title title-center" id="ModalLabel">SCU Alum Business Directory</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="No">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p> Welcome! Are you an SCU Alumni? </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+					<!--<button type="button2" class="btn btn-primary">Yes</button>-->
+					<!--enter file name below-->
+					<button type="button" class="btn btn-primary" onclick="openAlumForm()">Yes</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="alumFormModal" tabindex="-1" role="dialog" aria-labelledby="alumFormModalLabel" aria-hidden="true" data-backdrop="static">
+    	<div class="modal-dialog" role="document">
+      		<div class="modal-content">
+        		<div class="modal-header">
+          			<h5 class="modal-title" id="alumFormLabel">SCU Alum Form</h5>
+          			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            			<span aria-hidden="true">&times;</span>
+          			</button>
+        		</div>
+	        	<div class="modal-body">
+	          		<div class="modal-body text-center">
+	            		<p>Glad to have an SCU Alumni on board! We'd love it
+	              			if you could fill out the following information.</p>
+	          		</div>
+	          		<form>
+			            <div class="form-group">
+			              	<label for="first-name" class="col-form-label">First Name</label>
+			              	<input type="text" class="form-control" id="first-name" placeholder="First name">
+			            </div>
+			            <div class="form-group">
+			              	<label for="last-name" class="col-form-label">Last Name</label>
+			              	<input type="text" class="form-control" id="last-name" placeholder="Last name">
+			            </div>
+
+			            <!--Add in the year here-->
+			            <div class="form-group">
+			            	<label class="col-form-label" for="grad-year">Graduation Year</label>
+			            	<select class="form-control" id="grad-year">
+			            		<option></option>
+			            	</select>
+			            </div>  
+	          		</form>
+	       		</div>
+        		<div class="modal-footer">
+          			<button type="button" class="btn btn-secondary" data-dismiss="modal">Already Submitted</button>
+          			<button type="button" class="btn btn-primary" id="submit-alum">Submit</button>
+        		</div>
+      		</div>
+    	</div>
+    </div>
+
+	<div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel" aria-hidden="true" data-backdrop="static">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title title-center" id="thankYouModalLabel">SCU Alum Business Directory</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="No">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p> Thank You! </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- My JS !-->
 	<script type="text/javascript" src="../js/createBusinessModal.js"></script>
 	<script type="text/javascript" src="../js/createCard.js"></script>
 	<script type="text/javascript" src="../js/searchFilters.js"></script>
+	<script type="text/javascript" src="../js/alumForm.js"></script>
 
 	<!-- Bootstrap JS !-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		for(var i = 2025; i > 1939; i--) {
+			var year = document.createElement("OPTION");
+			year.text = i;
+			document.getElementById("grad-year").appendChild(year);
+		}
+	</script>
+
+	<script type="text/javascript">
+		$('#areYouAnAlumModal').modal('show');
+	</script>
+
+	<script type="text/javascript">
+		function openAlumForm() {
+			$('#areYouAnAlumModal').modal('hide');
+			$('#areYouAnAlumModal').on('hidden.bs.modal', function (e) {
+				$('#alumFormModal').modal('show');
+			});
+		}
+	</script>
+
+	<script type="text/javascript">
+		$('#alumFormModal').on('hidden.bs.modal', function (e) {
+			$('#thankYouModal').modal('show');
+		});
+	</script>
 </body>
 
 </html>

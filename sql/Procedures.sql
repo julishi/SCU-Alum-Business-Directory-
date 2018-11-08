@@ -1,7 +1,11 @@
+Drop type search_table;
+Drop type search_rec FORCE;
+
 --Select data based on search filters
 Create or Replace Type search_rec as object (
 	businessname VARCHAR(30),
-	tag VARCHAR(30)
+	tag VARCHAR(30),
+	comments VARCHAR(150)
 );
 /
 Create or Replace Type search_table as Table of search_rec;
@@ -16,6 +20,7 @@ l_rec Search_cur%rowtype;
 l_loc Loc_cur%rowtype;
 bsn_cnt INTEGER;
 tag_cnt INTEGER;
+cmt_cnt INTEGER;
 loc_cnt INTEGER;
 
 BEGIN
@@ -26,7 +31,7 @@ BEGIN
 		For l_rec in Search_cur
 		loop
 			v_search.extend;
-			v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+			v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 		END LOOP;
 
 	ELSIF s_txt is NULL AND s_tag is NOT NULL AND s_loc is NULL THEN
@@ -34,7 +39,7 @@ BEGIN
 		loop
 			IF l_rec.tag = s_tag THEN
 				v_search.extend;
-				v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+				v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 			END IF;
 		END LOOP;
 
@@ -45,7 +50,7 @@ BEGIN
 			loop
 				IF l_rec.businessname = l_loc.businessname AND l_loc.city = s_loc THEN
 					v_search.extend;
-					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 				END IF;
 			END LOOP;
 		END LOOP;
@@ -57,7 +62,7 @@ BEGIN
 			loop
 				IF l_rec.businessname = l_loc.businessname AND l_rec.tag = s_tag AND l_loc.city = s_loc THEN
 					v_search.extend;
-					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 				END IF;
 			END LOOP;
 		END LOOP;
@@ -68,10 +73,11 @@ BEGIN
 			loop
 				SELECT INSTR(upper(l_rec.businessname), upper(s_txt)) into bsn_cnt FROM DUAL;
 				SELECT INSTR(upper(l_rec.tag), upper(s_txt)) into tag_cnt FROM DUAL;
+				SELECT INSTR(upper(l_rec.comments), upper(s_txt)) into cmt_cnt FROM DUAL;
 				SELECT INSTR(upper(l_loc.city), upper(s_txt)) into loc_cnt FROM DUAL;
-				IF l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR loc_cnt > 0) THEN
+				IF l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR cmt_cnt > 0 OR loc_cnt > 0) THEN
 					v_search.extend;
-					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 				END IF;
 			END LOOP;
 		END LOOP;
@@ -83,10 +89,11 @@ BEGIN
 			loop
 				SELECT INSTR(upper(l_rec.businessname), upper(s_txt)) into bsn_cnt FROM DUAL;
 				SELECT INSTR(upper(l_rec.tag), upper(s_txt)) into tag_cnt FROM DUAL;
+				SELECT INSTR(upper(l_rec.comments), upper(s_txt)) into cmt_cnt FROM DUAL;
 				SELECT INSTR(upper(l_loc.city), upper(s_txt)) into loc_cnt FROM DUAL;
-				IF l_rec.tag = s_tag AND l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR loc_cnt > 0) THEN
+				IF l_rec.tag = s_tag AND l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR cmt_cnt > 0 OR loc_cnt > 0) THEN
 					v_search.extend;
-					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 				END IF;
 			END LOOP;
 		END LOOP;
@@ -98,10 +105,11 @@ BEGIN
 			loop
 				SELECT INSTR(upper(l_rec.businessname), upper(s_txt)) into bsn_cnt FROM DUAL;
 				SELECT INSTR(upper(l_rec.tag), upper(s_txt)) into tag_cnt FROM DUAL;
+				SELECT INSTR(upper(l_rec.comments), upper(s_txt)) into cmt_cnt FROM DUAL;
 				SELECT INSTR(upper(l_loc.city), upper(s_txt)) into loc_cnt FROM DUAL;
-				IF l_loc.city = s_loc AND l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR loc_cnt > 0) THEN
+				IF l_loc.city = s_loc AND l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR cmt_cnt > 0 OR loc_cnt > 0) THEN
 					v_search.extend;
-					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 				END IF;
 			END LOOP;
 		END LOOP;
@@ -113,10 +121,11 @@ BEGIN
 			loop
 				SELECT INSTR(upper(l_rec.businessname), upper(s_txt)) into bsn_cnt FROM DUAL;
 				SELECT INSTR(upper(l_rec.tag), upper(s_txt)) into tag_cnt FROM DUAL;
+				SELECT INSTR(upper(l_rec.comments), upper(s_txt)) into cmt_cnt FROM DUAL;
 				SELECT INSTR(upper(l_loc.city), upper(s_txt)) into loc_cnt FROM DUAL;
-				IF l_rec.tag = s_tag AND l_loc.city = s_loc AND l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR loc_cnt > 0) THEN
+				IF l_rec.tag = s_tag AND l_loc.city = s_loc AND l_rec.businessname = l_loc.businessname AND (bsn_cnt > 0 OR tag_cnt > 0 OR cmt_cnt > 0 OR loc_cnt > 0) THEN
 					v_search.extend;
-					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag);
+					v_search(v_search.count) := search_rec(l_rec.businessname, l_rec.tag, l_rec.comments);
 				END IF;
 			END LOOP;
 		END LOOP;

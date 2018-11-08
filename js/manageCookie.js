@@ -24,6 +24,36 @@ function nameFieldInit() {
 	document.getElementById("cookieForm").onsubmit = setCookie();
 }
 
+function getFirstName(){
+	if (checkCookie()==false)
+		return false;
+	else{
+		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		return firstName;
+	}
+	return false;
+}
+
+function getLastName(){
+	if (checkCookie()==false)
+		return false;
+	else{
+		lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		return lastName;
+	}
+	return false;
+}
+
+function getGradYear(){
+	if (checkCookie()==false)
+		return false;
+	else{
+		gradYear = document.cookie.replace(/(?:(?:^|.*;\s*)gradYear\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		return gradYear;
+	}
+	return false;
+}
+
 function setCookie() {
 	var expireDate = new Date();
 	expireDate.setMonth(expireDate.getMonth()+6);
@@ -52,7 +82,7 @@ function checkCookie() {
 	if (document.cookie != "") {
 		var cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	}
-	if(cookieFlag != "True")
-		return false;
-	return true;
+	if(cookieFlag == "True")
+		return true;
+	return false;
 }

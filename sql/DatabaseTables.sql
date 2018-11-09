@@ -45,6 +45,7 @@ CREATE TABLE Business_Descriptions(
         businessname varchar(30),
         tag varchar(30),
         comments varchar(150),
+        image BLOB,
         FOREIGN KEY (businessname) references Listers(businessname)
 );
 
@@ -62,6 +63,8 @@ CREATE TABLE Business_Edits(
         zipcode varchar(30),
         tag varchar(30),
         comments varchar(150),
+        image BLOB,
         approved int,
         FOREIGN KEY (businessname) references Listers(businessname)
 );
+

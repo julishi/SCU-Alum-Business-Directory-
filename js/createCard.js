@@ -22,22 +22,28 @@ function createCard(count = 0, res) {
 		var obj = res[i];
 		var card_img = document.createElement("IMG");
 		card_img.className = "card-img-top";
-		card_img.setAttribute("src", "../avatar.png"); //change to image from the database
+		if(obj.IMAGE == null) {
+			card_img.setAttribute("src", "../avatar.png");
+		} else {
+			card_img.setAttribute("src", "data:image/png;base64," + obj.IMAGE);
+		}
 		card_img.setAttribute("alt", "image");
 		card_img.setAttribute("style", "width:100%");
 
 		var card_body = document.createElement("DIV");
 		card_body.className = "card-body";
 
-
 		var card_title = document.createElement("H4");
 		card_title.className = "card-title";
 		card_title.textContent =  obj.BUSINESSNAME;
 
+		var card_tag = document.createElement("H6");
+		card_tag.className = "card-subtitle mb-2 text-muted"
+		card_tag.textContent = obj.TAG;
+
 		var card_descrip = document.createElement("P");
 		card_descrip.className = "card-text";
-		card_descrip.textContent =  obj.TAG;
-		//Add business description
+		card_descrip.textContent =  obj.COMMENTS;
 
 		var card_btn = document.createElement("A");
 		card_btn.setAttribute("href", "javascript:;");
@@ -55,6 +61,7 @@ function createCard(count = 0, res) {
 		card.appendChild(card_img);
 		card.appendChild(card_body);
 		card_body.appendChild(card_title);
+		card_body.appendChild(card_tag);
 		card_body.appendChild(card_descrip);
 		card_body.appendChild(card_btn);
 
@@ -74,7 +81,7 @@ function display() {
 
 	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
-	        createCard(obj.count, obj.res);	
+	        createCard(obj.count, obj.res);
 	    }
 	};
 

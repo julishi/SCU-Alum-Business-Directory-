@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $obj->firstname;
     $lastname = $obj->lastname;
     $gradyear = $obj->year;
-    
+
     if (!empty($firstname)){
         $firstname = prepareInput($firstname);
     }
@@ -28,6 +28,7 @@ function prepareInput($inputData){
 
 function insertSCUAlum($firstname, $lastname, $gradyear){
     //connect to your database. Type in your username, password and the DB path
+
     $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
@@ -35,6 +36,7 @@ function insertSCUAlum($firstname, $lastname, $gradyear){
     }
 
     $query = oci_parse($conn, "Insert Into SCU_ALUM values(:firstname, :lastname, :grad_year, 1)");
+
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);
     oci_bind_by_name($query, ':grad_year', $gradyear);
@@ -46,4 +48,5 @@ function insertSCUAlum($firstname, $lastname, $gradyear){
     }
     OCILogoff($conn);
 }
+
 ?>

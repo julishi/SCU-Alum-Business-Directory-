@@ -37,7 +37,7 @@
 	</div>
 
 	<div style="padding:20px 40px;margin-top:45px;">
-		<form action="" style="position:fixed;border:3px solid #F1F1F1;text-align: center;width: 95%;">
+		<form style="position:fixed;border:3px solid #F1F1F1;text-align: center;width: 95%;">
 			<div class="form_container">
 				<div class="form-inline">
 					<div class="col">
@@ -107,68 +107,69 @@
 	        			</a>
 					</div>
 					<div class="modal-body">
-					    <form>
+					    <form enctype="multipart/form-data" name="addForm">
 							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="first-name" class="col-form-label">First Name</label>
-									<input type="text" class="form-control" id="first-name" required="true">
+									<input type="text" class="form-control" id="first-name" name="first-name" required="true">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="last-name" class="col-form-label">Last Name</label>
-									<input type="text" class="form-control" id="last-name" required="true">
+									<input type="text" class="form-control" id="last-name" name="last-name" required="true">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="grad_year-select" class="col-form-label">Graduation Year</label>
-									<select class="form-control" id="grad_year-select" required="true">
+									<select class="form-control" id="grad_year-select" name="grad_year-select" required="true">
 								    <!-- JS used to generate select !-->
 								    	<option></option>
 									</select>
 								</div>
 								<div class="form-group col-md-12">
 									<label for="business-name" class="col-form-label">Name of Business</label>
-									<input type="text" class="form-control" id="business-name" required="true">
+									<input type="text" class="form-control" id="business-name" name="business-name" required="true">
 								</div>
 								<div class="form-group col-md-12">
 									<label for="business-address" class="col-form-label">Address</label>
-									<input type="text" class="form-control" id="business-address" required="true">
+									<input type="text" class="form-control" id="business-address" name="business-address" required="true">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="business-city" class="col-form-label">City</label>
-									<input type="text" class="form-control" id="business-city" required="true">
+									<input type="text" class="form-control" id="business-city" name="business-city" required="true">
 								</div>
 
 								<div class="form-group col-md-4">
 									<label for="state-select" class="col-form-label">State</label>
-									<select class="form-control" id="state-select" required="true">
+									<select class="form-control" id="state-select" name="state-select" required="true">
 										<option></option>
 									</select>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="business-zip" class="col-form-label">Zip / Postal Code</label>
-									<input type="text" class="form-control" id="business-zip" required="true">
+									<input type="text" class="form-control" id="business-zip" name="business-zip" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-email" class="col-form-label">Business Email</label>
-									<input type="email" class="form-control" id="business-email" required="true">
+									<input type="email" class="form-control" id="business-email" name="business-email" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-phone" class="col-form-label">Business Phone Number</label>
-									<input type="text" class="form-control" id="business-phone" required="true">
+									<input type="text" class="form-control" id="business-phone" name="business-phone" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="select-tag" class="col-form-label">Select Business Tag</label>
-									<select class="form-control" id="select-tag" required="true">
+									<select class="form-control" id="select-tag" name="select-tag" required="true">
 										<option></option>
 									</select>
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-img" class="col-form-label">Add Business Image</label>
-									<input type="file" accept=".jpg,.png" class="form-control-file" id="business-img">
+									<input type="hidden" name="MAX_FILE_SIZE" value="100000">
+									<input type="file" accept=".jpg,.png" class="form-control-file" id="business-img" name="business-img">
 									<small id="imgHelp" class="form-text text-muted">Optional. A generic image will be used instead.</small>
 								</div>
 								<div class="form-group col-md-12">
 									<label for="business-descrip" class="col-form-label">Additional Comments</label>
-									<textarea maxlength="150" class="form-control" id="business-descrip" rows="3"></textarea>
+									<textarea maxlength="150" class="form-control" id="business-descrip" name="business-descrip" rows="3"></textarea>
 									<small id="descripHelp" class="form-text text-muted">Limit 150 characters.</small>
 								</div>
 							</div>

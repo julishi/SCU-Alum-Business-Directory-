@@ -7,18 +7,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if($obj->res == "all") {
 		getCardData();
 	} else {
-		$text = $obj->text;
+		$txt = $obj->text;
 		$tag = $obj->tag;
 		$loc = $obj->loc;
 
-		getSearchData($text, $tag, $loc);
+		getSearchData($txt, $tag, $loc);
 	}
 
 }
 
+function console_log($data) {
+    echo '<script>';
+    echo 'console.log('. var_dump($data) .')';
+    echo '</script>';
+}
+
 function getCardData() {
 
-	$conn = oci_connect('mcai', 'magstar816', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getCardDate: connection failed:";
@@ -26,7 +32,7 @@ function getCardData() {
 		exit;
 	}
 
-	$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
+	$queryString = "SELECT * FROM Business_Descriptions WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
 	$query = oci_parse($conn, $queryString);
 
 	$res = oci_execute($query);
@@ -36,16 +42,21 @@ function getCardData() {
 		exit;
 	}
 	$nrows = oci_fetch_all($query, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
-	
+	for($i = 0; $i < $nrows; $i++) {
+		if($res[$i]["IMAGE"] != null) {
+			$res[$i]["IMAGE"] = base64_encode($res[$i]["IMAGE"]);
+		}
+	}
+
 	$out = array('count' => $nrows, 'res' => $res);
 	echo json_encode($out);
 
 	OCILogoff($conn);
 }
 
-function getSearchData($text, $tag, $loc) {
+function getSearchData($txt, $tag, $loc) {
 
-	$conn = oci_connect('mcai', 'magstar816', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getSearchData: connection failed:";
@@ -54,27 +65,12 @@ function getSearchData($text, $tag, $loc) {
 	}
 
 	//different search combinations: no text, no type1/2, no loc; combinations of them
-	if($text == null && $tag == null && $loc == null) {
-		$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1)";
-		$query = oci_parse($conn, $queryString);
+	$queryString = "SELECT * FROM table(searchFilters(:txt, :tag, :loc))";
 
-	} else if($text == null && $tag != null && $loc == null) {
-		$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1) and tag = :tag";
-		$query = oci_parse($conn, $queryString);
-		oci_bind_by_name($query, ':tag', $tag);
-
-	} else if($text == null && $tag == null && $loc != null) {
-		$queryString = "SELECT * FROM Business_Tags WHERE businessname in (SELECT businessname FROM Business_Addresses WHERE businessname in (SELECT businessname FROM Listers WHERE approved = 1) and city = :loc)";
-		$query = oci_parse($conn, $queryString);
-		oci_bind_by_name($query, ':loc', $loc);
-
-	} else if($text == null && $tag != null && $loc != null) {
-		$queryString = "SELECT * FROM Business_Tags WHERE tag = :tag and businessname in (SELECT businessname FROM Business_Addresses WHERE city = :loc and businessname in (SELECT businessname FROM Listers WHERE approved = 1))";
-		$query = oci_parse($conn, $queryString);
-		oci_bind_by_name($query, ':tag', $tag);
-		oci_bind_by_name($query, ':loc', $loc);
-
-	}
+	$query = oci_parse($conn, $queryString);
+	oci_bind_by_name($query, ':txt', $txt);
+	oci_bind_by_name($query, ':tag', $tag);
+	oci_bind_by_name($query, ':loc', $loc);
 
 	$res = oci_execute($query);
 	if(!$res) {

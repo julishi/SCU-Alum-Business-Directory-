@@ -1,24 +1,44 @@
 <?php
-header("Content-Type: application/json; charset=UTF-8");
+//header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $obj = json_decode($_POST["x"]);
+    //$obj = json_decode($_POST["x"]);
 
     // collect input data
-    $firstname = $obj->firstname;
-    $lastname = $obj->lastname;
-    $gradyear = $obj->year;
-    $businessname = $obj->business;
-    $new_businessname = $obj->new_businessname;
-    $address = $obj->address;
-    $city = $obj->city;
-    $state = $obj->state;
-    $zipcode = $obj->zip;
-    $email = $obj->email;
-    $phone = $obj->phone;
-    $tag = $obj->tag;
-    $img = $obj->img;
-    $descrip = $obj->descrip;
+    // $firstname = $obj->firstname;
+    // $lastname = $obj->lastname;
+    // $gradyear = $obj->year;
+    // $old_name = $obj->business;
+    // $new_name = $obj->new_name;
+    // $address = $obj->address;
+    // $city = $obj->city;
+    // $state = $obj->state;
+    // $zipcode = $obj->zip;
+    // $email = $obj->email;
+    // $phone = $obj->phone;
+    // $tag = $obj->tag;
+    // $img = $obj->img;
+    // $descrip = $obj->descrip;
+
+    $data = $_POST;
+
+    $firstname = $data["first-name"];
+    $lastname = $data["last-name"];
+    $gradyear = $data["grad_year-select"];
+    $new_name = $data["business-name"];
+    $address = $data["business-address"];
+    $city = $data["business-city"];
+    $state = $data["state-select"];
+    $zipcode = $data["business-zip"];
+    $email = $data["business-email"];
+    $phone = $data["business-phone"];
+    $tag = $data["select-tag"];
+    $descrip = $data["business-descrip"];
+    $old_name = $data["old-name"];
+
+    $img = $_FILES;
+    $img = file_get_contents($_FILES["business-img"]["tmp_name"]);
+
 
     if (!empty($firstname)){
         $firstname = prepareInput($firstname);
@@ -29,11 +49,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($gradyear)){
         $gradyear = prepareInput($gradyear);
     }
-    if (!empty($businessname)){
-        $businesname = prepareInput($businessname);
+    if (!empty($old_name)){
+        $old_name = prepareInput($old_name);
     }
-    if (!empty($new_businessname)) {
-        $new_businessname = prepareInput($new_businessname);
+    if (!empty($new_name)) {
+        $new_name = prepareInput($new_name);
     }
     if (!empty($address)){
         $address = prepareInput($address);
@@ -58,7 +78,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Call the function to insert the data
-    storeBusinessEdits($firstname, $lastname, $gradyear, $businessname, $new_businessname, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img);
+    storeBusinessEdits($firstname, $lastname, $gradyear, $old_name, $new_name, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img);
+}
+
+function console_log($data) {
+    echo '<script>';
+    echo 'console.log('. var_dump($data) .')';
+    echo '</script>';
 }
 
 function prepareInput($inputData){
@@ -67,7 +93,7 @@ function prepareInput($inputData){
     return $inputData;
 }
 
-function storeBusinessEdits($firstname, $lastname, $gradyear, $businessname, $new_businessname, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img) {
+function storeBusinessEdits($firstname, $lastname, $gradyear, $old_name, $new_name, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img) {
     //connect to your database. Type in your username, password and the DB path
     $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
     if(!$conn) {
@@ -75,13 +101,15 @@ function storeBusinessEdits($firstname, $lastname, $gradyear, $businessname, $ne
         exit;
     }
 
-    $query = oci_parse($conn, "INSERT Into Business_Edits values(:firstname, :lastname, :gradyear, :businessname, :new_businessname, :phone, :email, :address, :city, :state, :zipcode, :tag, :descrip, 0)");
+    $query = oci_parse($conn, "INSERT Into Business_Edits (firstname, lastname, grad_year, businessname, new_businessname, phonenumber, email, address, city, state, zipcode, tag, comments, image, approved) values(:firstname, :lastname, :gradyear, :old_name, :new_name, :phone, :email, :address, :city, :state, :zipcode, :tag, :descrip, empty_blob(), 0) RETURNING image INTO :img");
+
+    $blob = oci_new_descriptor($conn, OCI_D_LOB);
 
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);
     oci_bind_by_name($query, ':gradyear', $gradyear);
-    oci_bind_by_name($query, ':businessname', $businessname);
-    oci_bind_by_name($query, ':new_businessname', $new_businessname);
+    oci_bind_by_name($query, ':old_name', $old_name);
+    oci_bind_by_name($query, ':new_name', $new_name);
     oci_bind_by_name($query, ':phone', $phone);
     oci_bind_by_name($query, ':email', $email);
     oci_bind_by_name($query, ':address', $address);
@@ -90,19 +118,26 @@ function storeBusinessEdits($firstname, $lastname, $gradyear, $businessname, $ne
     oci_bind_by_name($query, ':zipcode', $zipcode);
     oci_bind_by_name($query, ':tag', $tag);
     oci_bind_by_name($query, ':descrip', $descrip);
-    //oci_bind_by_name($query, ':img', $img)
+    oci_bind_by_name($query, ':img', $blob, -1, OCI_B_BLOB);
 
     // Execute the query
-    $res = oci_execute($query);
+    $res = oci_execute($query, OCI_DEFAULT);
     if (!$res) {
         $e = oci_error($query);
         echo $e['message'];
     }
 
-    $out = array('res' => $res);
+    if($blob->save($img)) {
+        oci_commit($conn);
+        echo "Upload successful";
+    } else {
+        echo "Couldn't upload image";
+    }
 
-    echo json_encode($out);
+    console_log($res);
 
+    $blob->free();
+    oci_free_statement($query);
     OCILogoff($conn);
 }
 

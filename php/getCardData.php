@@ -16,6 +16,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
+function console_log($data) {
+    echo '<script>';
+    echo 'console.log('. var_dump($data) .')';
+    echo '</script>';
+}
+
 function getCardData() {
 
 	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
@@ -36,7 +42,12 @@ function getCardData() {
 		exit;
 	}
 	$nrows = oci_fetch_all($query, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
-	
+	for($i = 0; $i < $nrows; $i++) {
+		if($res[$i]["IMAGE"] != null) {
+			$res[$i]["IMAGE"] = base64_encode($res[$i]["IMAGE"]);
+		}
+	}
+
 	$out = array('count' => $nrows, 'res' => $res);
 	echo json_encode($out);
 

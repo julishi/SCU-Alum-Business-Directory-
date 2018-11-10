@@ -26,9 +26,7 @@ function cookieAutofill() {
 }
 
 function getFirstName(){
-	if (checkCookie()==false)
-		return false;
-	else{
+	if (checkCookie()==1){
 		var firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return firstName;
 	}
@@ -36,9 +34,7 @@ function getFirstName(){
 }
 
 function getLastName(){
-	if (checkCookie()==false)
-		return false;
-	else{
+	if (checkCookie()==1){
 		var lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return lastName;
 	}
@@ -46,9 +42,7 @@ function getLastName(){
 }
 
 function getGradYear(){
-	if (checkCookie()==false)
-		return false;
-	else{
+	if (checkCookie()==1){
 		var gradYear = document.cookie.replace(/(?:(?:^|.*;\s*)gradYear\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return gradYear;
 	}
@@ -86,12 +80,15 @@ function alertCookie() {
   alert(document.cookie);
 }
 
-//Returns true if the client is recognized as a returning user, false if unidentified
+//Returns a nonzero value if the client is recognized as a returning user, zero if unidentified
 function checkCookie() {
+	var cookieFlag = "";
 	if (document.cookie != "") {
-		var cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	}
-	if(cookieFlag == "Alum" || cookieFlag == "Guest")
-		return true;
-	return false;
+	if (cookieFlag == "Alum")
+		return 1
+	if (cookieFlag == "Guest")
+		return 2;
+	return 0;
 }

@@ -12,16 +12,16 @@ function nameFieldInit() {
 	}
 
 	document.getElementById("first-name").value = firstName;
-	document.getElementById("first-name").onblur = setCookie();
+	//document.getElementById("first-name").onblur = setCookie();
 
 	document.getElementById("last-name").value = lastName;
-	document.getElementById("last-name").onblur = setCookie();
+	//document.getElementById("last-name").onblur = setCookie();
 
 	//NEED TO UPDATE ELEMENT ID FOR GRADYEAR
 	document.getElementById("grad-year").value = gradYear;
-	document.getElementById("grad-year").onblur = setCookie;
+	//document.getElementById("grad-year").onblur = setCookie;
 
-	document.getElementById("cookieForm").onsubmit = setCookie();
+	//document.getElementById("cookieForm").onsubmit = setCookie();
 }
 
 function getFirstName(){

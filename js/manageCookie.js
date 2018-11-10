@@ -69,8 +69,13 @@ function setCookie() {
 	return false;
 }
 
-function setCookieFlag() {
-	document.cookie = "cookieFlag=True";
+function setFlagAlum() {
+	document.cookie = "cookieFlag=Alum";
+	return;
+}
+
+function setFlagGuest() {
+	document.cookie = "cookieFlag=Guest";
 	return;
 }
 
@@ -82,7 +87,7 @@ function checkCookie() {
 	if (document.cookie != "") {
 		var cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	}
-	if(cookieFlag == "True")
+	if(cookieFlag == "Alum" || cookieFlag == "Guest")
 		return true;
 	return false;
 }

@@ -1,10 +1,12 @@
-window.addEventListener("load",nameFieldInit,false);
+//window.addEventListener("load",cookieAutofill,false);
 
-var firstName = "";
-var lastName = "";
-var gradYear = "";
+//Reads saved cookie data into text forms, activated by pageload event listener
+//Can also autosave data when text forms lose focus, but unreliable
+function cookieAutofill() {
+	var firstName = "";
+	var lastName = "";
+	var gradYear = "";
 
-function nameFieldInit() {
 	if (document.cookie != "") {
 		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -17,7 +19,6 @@ function nameFieldInit() {
 	document.getElementById("last-name").value = lastName;
 	//document.getElementById("last-name").onblur = setCookie();
 
-	//NEED TO UPDATE ELEMENT ID FOR GRADYEAR
 	document.getElementById("grad-year").value = gradYear;
 	//document.getElementById("grad-year").onblur = setCookie;
 
@@ -28,7 +29,7 @@ function getFirstName(){
 	if (checkCookie()==false)
 		return false;
 	else{
-		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		var firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return firstName;
 	}
 	return false;
@@ -38,7 +39,7 @@ function getLastName(){
 	if (checkCookie()==false)
 		return false;
 	else{
-		lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		var lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return lastName;
 	}
 	return false;
@@ -48,19 +49,20 @@ function getGradYear(){
 	if (checkCookie()==false)
 		return false;
 	else{
-		gradYear = document.cookie.replace(/(?:(?:^|.*;\s*)gradYear\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		var gradYear = document.cookie.replace(/(?:(?:^|.*;\s*)gradYear\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return gradYear;
 	}
 	return false;
 }
 
+//Reads data in text forms at time of execution and saves them into cookies
 function setCookie() {
-	var expireDate = new Date();
-	expireDate.setMonth(expireDate.getMonth()+6);
+	//var expireDate = new Date();
+	//expireDate.setMonth(expireDate.getMonth()+6);
 
-	firstName = document.getElementById("first-name").value;
-	lastName = document.getElementById("last-name").value;
-	gradYear = document.getElementById("grad-year").value;
+	var firstName = document.getElementById("first-name").value;
+	var lastName = document.getElementById("last-name").value;
+	var gradYear = document.getElementById("grad-year").value;
 	document.cookie = "firstName=" + firstName;
 	document.cookie = "lastName=" + lastName;
 	document.cookie = "gradYear=" + gradYear;
@@ -79,10 +81,12 @@ function setFlagGuest() {
 	return;
 }
 
+//Lists all stored cookies for debugging
 function alertCookie() {
   alert(document.cookie);
 }
 
+//Returns true if the client is recognized as a returning user, false if unidentified
 function checkCookie() {
 	if (document.cookie != "") {
 		var cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");

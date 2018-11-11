@@ -136,3 +136,46 @@ BEGIN
 END;
 /
 Show errors;
+
+--Check if business is already in database
+Create or Replace Function businessNameCount(var_businessname in VARCHAR) return INTEGER
+AS
+cnt INTEGER := 0;
+found INTEGER := 0;
+Begin
+  select count(*) into cnt
+  FROM Listers
+  where businessname = var_businessname;
+
+  IF cnt > 0 THEN
+    found := 1;
+  ELSE
+    found := 0;
+	END IF;
+
+  return found;
+End;
+/
+Show errors;
+
+--Check if alum is alreayd in database
+Create or Replace Function alumNameCount(var_firstname in VARCHAR, var_lastname in VARCHAR, var_gradyear in int) return INTEGER
+AS
+found INTEGER := 0;
+cnt INTEGER := 0;
+Begin
+  select count(*) into cnt
+  FROM SCU_ALUM
+  where firstname = var_firstname AND lastname = var_lastname AND grad_year = var_gradyear;
+
+  IF cnt > 0 THEN
+    found := 1;
+  ELSE
+    found := 0;
+	END IF;
+
+  return found;
+
+End;
+/
+Show errors;

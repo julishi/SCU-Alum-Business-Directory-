@@ -4,18 +4,16 @@ header("Content-Type: application/json; charset=UTF-8");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$obj = json_decode($_POST["x"]);
 
-  $businesname = $obj->businessname;
+  $businessname = $obj->businessname;
 
-	getbusinessCount();
-
+	getbusinessCount($businessname);
 }
 
 function getbusinessCount($businessname) {
-
 	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
-		print "getAlumCount: connection failed:";
+		print "getBusinessCount: connection failed:";
 		print htmlentities($e['message']);
 		exit;
 	}
@@ -32,12 +30,11 @@ function getbusinessCount($businessname) {
 		exit;
 	}
 
-
 	$out = array('count' => $count);
 	echo json_encode($out);
 
 	OCILogoff($conn);
-
+  
 }
 
 ?>

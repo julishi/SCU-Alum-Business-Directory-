@@ -2,7 +2,7 @@ Create or Replace Function businessNameCount(var_businessname in VARCHAR) return
 AS
 found INTEGER := 0;
 Begin
-  select count(*) into found
+  select count(*) into count
   FROM Listers
   where businessname = var_businessname;
 
@@ -19,7 +19,7 @@ Create or Replace Function alumNameCount(var_firstname in VARCHAR, var_lastname 
 AS
 found INTEGER := 0;
 Begin
-  select count(*) into found
+  select count(*) into count
   FROM SCU_ALUM
   where firstname = var_firstname AND where lastname = var_lastname AND where grad_year = var_gradyear;
 

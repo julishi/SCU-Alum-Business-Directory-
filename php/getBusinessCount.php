@@ -34,5 +34,7 @@ function getbusinessCount($businessname) {
 	echo json_encode($out);
 
 	OCILogoff($conn);
+  
 }
+
 ?>

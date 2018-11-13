@@ -25,7 +25,7 @@ function createModal(e) {
 	var title = document.createElement("H5");
 	title.className = "modal-title";
 	title.id = modalTitle;
-	title.textContent = modalName.replace(/-/g, ' ');
+	title.textContent = modalName.replace(/_/g, ' ');
 	var x_btn = document.createElement("BUTTON");
 	x_btn.setAttribute("type", "button");
 	x_btn.className = "close";
@@ -58,7 +58,7 @@ function createModal(e) {
 	document.getElementById("modal_area").appendChild(bsnModal);
 
 	//Request for data then show
-	var obj = { "businessname": modalName.replace(/-/g, ' ') };
+	var obj = { "businessname": modalName.replace(/_/g, ' ') };
 	var dbParam = JSON.stringify(obj);
 
 	var xmlhttp = new XMLHttpRequest();
@@ -73,7 +73,6 @@ function createModal(e) {
 			var address = document.createElement("P");
 			var address_head = document.createElement("B");
 			address_head.textContent = "Address: ";
-			var address_txt2 = document.createTextNode(obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE']);
 			var address_txt1 = document.createElement("SPAN");
 			address_txt1.textContent = obj.address['ADDRESS'];
 			var address_txt2 = document.createElement("SPAN");

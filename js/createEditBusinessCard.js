@@ -50,7 +50,7 @@ function createEditBusinessCard(count = 0, res) {
 		card_btn.className = "btn btn-outline-primary";
 		card_btn.id = obj.BUSINESSNAME.replace(/\s/g, '_');
 		card_btn.setAttribute("onclick", "createEditBusinessModal(event)");
-		card_btn.textContent = "See more";
+		card_btn.textContent = "Review";
 
 		card = document.createElement("DIV");
 		card.id = "card_edit" + i;

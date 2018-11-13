@@ -27,7 +27,7 @@ function getCardData() {
 	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
-		print "getCardDate: connection failed:";
+		print "getCardData: connection failed:";
 		print htmlentities($e['message']);
 		exit;
 	}

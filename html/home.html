@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<nav class="navbar fixed-top navbar-expand-xl" style="background-color:#B22222">
+		<nav class="navbar fixed-top navbar-expand-md" style="background-color:#B22222">
 
 			<a class="navbar-brand" href="home.html">SCU Alumni Business Directory</a>
 
@@ -112,9 +112,7 @@
 					<p> Welcome! Are you an SCU Alumni? </p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-					<!--<button type="button2" class="btn btn-primary">Yes</button>-->
-					<!--enter file name below-->
+					<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="setFlagGuest()">No</button>
 					<button type="button" class="btn btn-primary" onclick="openAlumForm()">Yes</a>
 				</div>
 			</div>
@@ -149,7 +147,6 @@
 			            <div class="form-group">
 			            	<label class="col-form-label" for="grad-year">Graduation Year</label>
 			            	<select class="form-control" id="grad-year">
-			            		<option></option>
 			            		<option selected>Choose...</option>
 								<option value="2025">2025</option>
 								<option value="2024">2024</option>
@@ -238,7 +235,7 @@
 								<option value="1941">1941</option>
 								<option value="1940">1940</option>
 			            	</select>
-			            </div>  
+			            </div>
 	          		</form>
 	       		</div>
         		<div class="modal-footer">

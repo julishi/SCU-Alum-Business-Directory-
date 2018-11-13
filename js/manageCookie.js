@@ -1,10 +1,10 @@
-window.addEventListener("load",nameFieldInit,false);
-
-var firstName = "";
-var lastName = "";
-var gradYear = "";
+//window.addEventListener("load",nameFieldInit,false);
 
 function nameFieldInit() {
+	var firstName = "";
+	var lastName = "";
+	var gradYear = "";
+
 	if (document.cookie != "") {
 		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -23,10 +23,7 @@ function nameFieldInit() {
 }
 
 function getFirstName(){
-	if (checkCookie()==false) {
-		return false;
-	}
-	else{
+	if (checkCookie() == 1) {
 		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return firstName;
 	}
@@ -34,10 +31,7 @@ function getFirstName(){
 }
 
 function getLastName(){
-	if (checkCookie()==false) {
-		return false;
-	}
-	else{
+	if (checkCookie() == 1) {
 		lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return lastName;
 	}
@@ -45,23 +39,21 @@ function getLastName(){
 }
 
 function getGradYear(){
-	if (checkCookie()==false) {
-		return false;
-	}
-	else{
+	if (checkCookie() == 1) {
 		gradYear = document.cookie.replace(/(?:(?:^|.*;\s*)gradYear\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		return gradYear;
 	}
 	return false;
 }
 
+//Reads data in text forms at time of execution and saves them into cookies
 function setCookie() {
-	var expireDate = new Date();
-	expireDate.setMonth(expireDate.getMonth()+6);
+	// var expireDate = new Date();
+	// expireDate.setMonth(expireDate.getMonth()+6);
 
-	firstName = document.getElementById("first-name").value;
-	lastName = document.getElementById("last-name").value;
-	gradYear = document.getElementById("grad-year").value;
+	var firstName = document.getElementById("first-name").value;
+	var lastName = document.getElementById("last-name").value;
+	var gradYear = document.getElementById("grad-year").value;
 	document.cookie = "firstName=" + firstName;
 	document.cookie = "lastName=" + lastName;
 	document.cookie = "gradYear=" + gradYear;
@@ -70,8 +62,12 @@ function setCookie() {
 	return false;
 }
 
-function setCookieFlag() {
-	document.cookie = "cookieFlag=True";
+function setFlagAlum() {
+	document.cookie = "cookieFlag=Alum";
+}
+
+function setFlagGuest() {
+	document.cookie = "cookieFlag=Guest";
 }
 
 function alertCookie() {
@@ -79,9 +75,16 @@ function alertCookie() {
 }
 
 function checkCookie() {
+	var cookieFlag = "";
 	if (document.cookie != "") {
-		var cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		cookieFlag = document.cookie.replace(/(?:(?:^|.*;\s*)cookieFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	}
-	console.log(cookieFlag == "True");
-	return cookieFlag == "True";
+
+	if (cookieFlag == "Alum") {
+		return 1
+	} else if (cookieFlag == "Guest") {
+		return 2;
+	}
+
+	return 0;
 }

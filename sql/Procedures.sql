@@ -154,7 +154,7 @@ Begin
 	END IF;
 
   return found;
-End;
+END;
 /
 Show errors;
 
@@ -176,6 +176,102 @@ Begin
 
   return found;
 
-End;
+END;
+/
+Show errors;
+
+Create or Replace Procedure updateApproval(v_status in VARCHAR, v_name in VARCHAR, v_type in VARCHAR)
+AS
+
+BEGIN
+	IF v_status = 'approve' THEN
+		IF v_type = 'new' THEN
+			Update Listers
+			Set approved = 1
+			Where businessname = v_name;
+		ELSIF v_type = 'edit' THEN
+			Update Business_Edits
+			Set approved = 1
+			Where businessname = v_name;
+		END IF;
+	ELSIF v_status = 'reject' THEN
+		IF v_type = 'new' THEN
+			Delete From Listers
+			Where businessname = v_name;
+		ELSIF v_type = 'edit' THEN
+			Delete From Business_Edits
+			Where businessname = v_name;
+		END IF;
+	END IF;
+
+	commit;
+
+END;
+/
+Show errors;
+
+Create or Replace Trigger update_businessname
+AFTER UPDATE of businessname ON Listers FOR EACH ROW
+BEGIN
+	Update Business_Number_Email
+	Set businessname = :new.businessname
+	Where businessname = :old.businessname;
+END;
+/
+Show errors;
+
+Create or Replace Trigger approved_edit_trig
+For Update on Business_Edits
+COMPOUND TRIGGER
+
+v_approved Business_Edits.approved%type;
+v_name Business_Edits.businessname%type;
+
+-- BEFORE STATEMENT IS
+-- BEGIN
+-- 	ALTER TABLE Business_Number_Email DISABLE CONSTRAINT fk_number_email;
+-- 	ALTER TABLE Business_Addresses DISABLE CONSTRAINT fk_addresses;
+-- 	ALTER TABLE Business_Descriptions DISABLE CONSTRAINT fk_descriptions;
+-- END BEFORE STATEMENT;
+
+BEFORE EACH ROW IS
+BEGIN
+	v_name := :new.businessname;
+END BEFORE EACH ROW;
+
+AFTER EACH ROW IS
+BEGIN
+	v_approved := :new.approved;
+	IF v_approved = 1 THEN
+		Update Listers
+		Set firstname = :new.firstname, lastname = :new.lastname, grad_year = :new.grad_year,
+			businessname = :new.new_businessname
+		Where businessname = v_name;
+
+		Update Business_Number_Email
+		Set businessname = :new.new_businessname, phonenumber = :new.phonenumber, email = :new.email
+		Where businessname = v_name;
+
+		Update Business_Addresses
+		Set businessname = :new.new_businessname, address = :new.address, city = :new.city,
+			state = :new.state, zipcode = :new.zipcode
+		Where businessname = v_name;
+
+		Update Business_Descriptions
+		Set businessname = :new.new_businessname, tag = :new.tag, comments = :new.comments, image = :new.image
+		Where businessname = v_name;
+	END IF;
+END AFTER EACH ROW;
+
+AFTER STATEMENT IS
+BEGIN
+	Delete From Business_Edits
+	Where businessname = v_name;
+
+	-- ALTER TABLE Business_Number_Email ENABLE CONSTRAINT fk_number_email;
+	-- ALTER TABLE Business_Addresses ENABLE CONSTRAINT fk_addresses;
+	-- ALTER TABLE Business_Descriptions ENABLE CONSTRAINT fk_descriptions;
+END AFTER STATEMENT;
+END;
 /
 Show errors;

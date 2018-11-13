@@ -1,8 +1,9 @@
-/* Create business information modals */
-function createModal(e) {
+/* Create business information modals for new business listings */
+function createNewBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";
 	var modalTitle = modalName + "-title";
+	console.log(modalName);
 
 	var bsnModal = document.createElement("DIV");
 	bsnModal.id = modalId;
@@ -40,12 +41,24 @@ function createModal(e) {
 
 	var footer = document.createElement("DIV");
 	footer.className = "modal-footer";
-	var close_btn = document.createElement("BUTTON");
-	close_btn.className = "btn btn-secondary";
-	close_btn.setAttribute("type", "button");
-	close_btn.setAttribute("data-dismiss", "modal");
-	close_btn.textContent = "Close";
-	footer.appendChild(close_btn);
+	var reject_btn = document.createElement("BUTTON");
+	reject_btn.className = "btn btn-danger";
+	reject_btn.id = "reject";
+	reject_btn.setAttribute("type", "button");
+	reject_btn.addEventListener("click", function() {
+		updateApproval("reject", modalName, "new");
+	});
+	reject_btn.textContent = "Reject";
+	var approve_btn = document.createElement("BUTTON");
+	approve_btn.className = "btn btn-success";
+	approve_btn.id = "approve"
+	approve_btn.setAttribute("type", "button");
+	approve_btn.addEventListener('click', function() {
+		updateApproval("approve", modalName, "new");
+	});
+	approve_btn.textContent = "Approve";
+	footer.appendChild(reject_btn);
+	footer.appendChild(approve_btn);
 
 	content.appendChild(header);
 	content.appendChild(body);
@@ -55,7 +68,7 @@ function createModal(e) {
 
 	bsnModal.appendChild(dialog);
 
-	document.getElementById("modal_area").appendChild(bsnModal);
+	document.getElementById("new_modal_area").appendChild(bsnModal);
 
 	//Request for data then show
 	var obj = { "businessname": modalName.replace(/_/g, ' ') };
@@ -73,6 +86,7 @@ function createModal(e) {
 			var address = document.createElement("P");
 			var address_head = document.createElement("B");
 			address_head.textContent = "Address: ";
+			var address_txt2 = document.createTextNode(obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE']);
 			var address_txt1 = document.createElement("SPAN");
 			address_txt1.textContent = obj.address['ADDRESS'];
 			var address_txt2 = document.createElement("SPAN");
@@ -142,7 +156,7 @@ function createModal(e) {
 			$('#' + modalId).modal('show');
 		}
 	}
-	
+
 	xmlhttp.open("POST", "../php/getBusinessData.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);

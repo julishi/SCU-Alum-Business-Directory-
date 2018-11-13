@@ -1,24 +1,6 @@
 <?php
-//header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //$obj = json_decode($_POST["x"]);
-
-    // collect input data
-    // $firstname = $obj->firstname;
-    // $lastname = $obj->lastname;
-    // $gradyear = $obj->year;
-    // $old_name = $obj->business;
-    // $new_name = $obj->new_name;
-    // $address = $obj->address;
-    // $city = $obj->city;
-    // $state = $obj->state;
-    // $zipcode = $obj->zip;
-    // $email = $obj->email;
-    // $phone = $obj->phone;
-    // $tag = $obj->tag;
-    // $img = $obj->img;
-    // $descrip = $obj->descrip;
 
     $data = $_POST;
 
@@ -133,8 +115,6 @@ function storeBusinessEdits($firstname, $lastname, $gradyear, $old_name, $new_na
     } else {
         echo "Couldn't upload image";
     }
-
-    console_log($res);
 
     $blob->free();
     oci_free_statement($query);

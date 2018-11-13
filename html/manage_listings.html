@@ -1,50 +1,102 @@
 <!DOCTYPE html>
 <html>
-<title>SCU Alumni Business Directory System</title>
-<meta charset="UTF-8">
+<title>Manage Listings - SCU Alumni Business Directory System</title>
+
 <head>
+	<!-- Meta tags !-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- My CSS !-->
 	<link rel="stylesheet" type="text/css" href="../css/manage_listings.css">
+
+	<!-- Bootstrap CSS !-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-	<ul>
-		<li style="float:left"><a href="home.html">SCU Alumni Business Directory System</a></li>
-		<li><a href="logout.html">Logout</a></li>
-		<li><a href="edit_business.html">Edit Business</a></li>
-		<li><a href="add_business.html">Add Business</a></li>
-		<li><a href="view_alumni.html">View Alumni</a></li>
-		<li><a href="manage_listings.html">Manage Listings</a></li>
-	</ul>
+	<div class="container">
+		<nav class="navbar fixed-top navbar-expand-md" style="background-color:#B22222">
 
-	<div style="padding:20px 40px;margin-top:45px;">
-		<form action="" style="position:fixed;">
-			<div class="container">
-				<input type="text" name="search" placeholder="Search..">
+			<a class="navbar-brand" href="home.html">SCU Alumni Business Directory</a>
 
-				<div class="custom-select" style="width:150px;">
-					<select>
-						<option value="0">Select Type 1</option>
-						<option value="1">Restuarant</option>
-					</select>
-				</div>
-
-				<div class="custom-select" style="width:150px;">
-					<select>
-						<option value="0">Select Type 2</option>
-						<option value="1">Restuarant</option>
-					</select>
-				</div>
-
-				<div class="custom-select" style="width:150px;">
-					<select>
-						<option value="0">Location</option>
-						<option value="1">Santa Clara</option>
-					</select>
-				</div>
-
-				<button type="submit">Search</button>
-			</div>
-		</form>
+			<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+			    <ul class="navbar-nav">
+			    	<li class="nav-item">
+			    		<a class="nav-link" href="manage_listings.html">Manage Listings</a>
+			    	</li>
+			    	<li class="nav-item">
+			    		<a class="nav-link" href="view_alumni.html">View Alumni</a>
+			    	</li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Logout</a>
+			      </li>
+			    </ul>
+			 </div>
+		</nav>
 	</div>
+
+	<div style="padding:20px 40px;margin-top:75px;">
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true">New Listings</a>
+				<a class="nav-item nav-link" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false">Edits Requested</a>
+				<a class="nav-item nav-link" id="nav-approved-tab" data-toggle="tab" href="#nav-approved" role="tab" aria-controls="nav-approved" aria-selected="false">All Approved Listings</a>
+			</div>
+		</nav>
+		<div class="tab-content" id="nav-tabContent">
+			<div class="tab-pane fade show active" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
+				<div id="new_modal_area"></div>
+			</div>
+			<div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
+				<div id="edit_modal_area"></div>
+			</div>
+			<div class="tab-pane fade" id="nav-approved" role="tabpanel" aria-labelledby="nav-approved-tab">
+
+			</div>
+		</div>
+	</div>
+
+	<!-- My JS !-->
+	<script type="text/javascript" src="../js/createNewBusinessCard.js"></script>
+	<script type="text/javascript" src="../js/createNewBusinessModal.js"></script>
+	<script type="text/javascript" src="../js/createEditBusinessCard.js"></script>
+	<script type="text/javascript" src="../js/createEditBusinessModal.js"></script>
+	<script type="text/javascript" src="../js/updateApproval.js"></script>
+
+	<!-- Bootstrap JS !-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+				localStorage.setItem('activeTab', $(e.target).attr('href'));
+			});
+			var activeTab = localStorage.getItem('activeTab');
+			if(activeTab){
+				$('#nav-tab a[href="' + activeTab + '"]').tab('show');
+			}
+		});
+	</script>
+
+	<script type="text/javascript">
+		document.getElementById("nav-new-tab").onclick = function() {
+			window.location.reload(true);
+		};
+	</script>
+
+	<script type="text/javascript">
+		document.getElementById("nav-edit-tab").onclick = function() {
+			window.location.reload(true);
+		};
+	</script>
+
+	<script type="text/javascript">
+		document.getElementById("nav-approved-tab").onclick = function() {
+			window.location.reload(true);
+		};
+	</script>
 
 </body>
 

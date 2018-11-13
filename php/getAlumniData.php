@@ -3,7 +3,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$obj = json_decode($_POST["x"]);
-	
+
 	if($obj->res == "all") {
 		getAlumniData();
 	}
@@ -30,7 +30,7 @@ function getAlumniData() {
 		exit;
 	}
 	$nrows = oci_fetch_all($query, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
-	
+
 	$out = array('count' => $nrows, 'res' => $res);
 	echo json_encode($out);
 

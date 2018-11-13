@@ -1,5 +1,5 @@
 /* Creates the specified number of cards with data from res */
-function createCard(count = 0, res) {
+function createNewBusinessCard(count = 0, res) {
 
 	var card, deck, container;
 	var deck_index = 0;
@@ -7,17 +7,17 @@ function createCard(count = 0, res) {
 	for(var i = 0; i < count; i++) {
 		if(i % 4 == 0) {
 			deck = document.createElement("DIV");
-			deck.id = "deck" + deck_index;
+			deck.id = "deck_new" + deck_index;
 			deck.className = "card-deck";
-			deck.setAttribute("style", "margin-top:75px;");
+			deck.setAttribute("style", "margin-top:50px;");
 
-			document.getElementById("card_area").appendChild(deck);
+			document.getElementById("nav-new").appendChild(deck);
 		}
 
 		container = document.createElement("DIV");
-		container.id = "con" + i;
+		container.id = "con_new" + i;
 		container.className = "col-3";
-		document.getElementById("deck" + deck_index).appendChild(container);
+		document.getElementById("deck_new" + deck_index).appendChild(container);
 
 		var obj = res[i];
 		var card_img = document.createElement("IMG");
@@ -49,11 +49,11 @@ function createCard(count = 0, res) {
 		card_btn.setAttribute("href", "javascript:;");
 		card_btn.className = "btn btn-outline-primary";
 		card_btn.id = obj.BUSINESSNAME.replace(/\s/g, '_');
-		card_btn.setAttribute("onclick", "createModal(event)");
+		card_btn.setAttribute("onclick", "createNewBusinessModal(event)");
 		card_btn.textContent = "See more";
 
 		card = document.createElement("DIV");
-		card.id = "card" + i;
+		card.id = "card_new" + i;
 		card.className = "card";
 		card.setAttribute("style", "width:16rem");
 
@@ -72,7 +72,7 @@ function createCard(count = 0, res) {
 }
 
 function display() {
-	var obj = { "res": "all" };
+	var obj = { "res": "new" };
 	var dbParam = JSON.stringify(obj);
 
 	var xmlhttp = new XMLHttpRequest();
@@ -81,13 +81,13 @@ function display() {
 
 	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
-	        createCard(obj.count, obj.res);
+	        createNewBusinessCard(obj.count, obj.res);
 	    }
 	};
 
-	xmlhttp.open("POST", "../php/getCardData.php", true);
+	xmlhttp.open("POST", "../php/getManageCardData.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }
 
-window.onload = display();
+document.getElementById("nav-new-tab").addEventListener("click", display());

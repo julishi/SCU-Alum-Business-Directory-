@@ -1,7 +1,7 @@
 var businessname = "";
 
 function verifyBusiness() {
-	
+
 	var name = document.getElementById("verify-bsn-name").value;
 
 	if(name == "") {
@@ -55,19 +55,6 @@ function openEditForm() {
 }
 
 function submitChanges() {
-	// var firstname = document.getElementById("first-name").value;
-	// var lastname = document.getElementById("last-name").value;
-	// var grad_year = document.getElementById("grad_year-select").value;
-	// var new_businessname = document.getElementById("business-name").value;
-	// var address = document.getElementById("business-address").value;
-	// var city = document.getElementById("business-city").value;
-	// var state = document.getElementById("state-select").value;
-	// var zip = document.getElementById("business-zip").value;
-	// var email = document.getElementById("business-email").value;
-	// var phone = document.getElementById("business-phone").value;
-	// var tag = document.getElementById("select-tag").value;
-	// var img = document.getElementById("business-img").value;
-	// var descrip = document.getElementById("business-descrip").value;
 
 	var firstname = document.getElementById("first-name").value;
 	var lastname = document.getElementById("last-name").value;
@@ -82,7 +69,7 @@ function submitChanges() {
 	var tag = document.getElementById("select-tag").value;
 	var descrip = document.getElementById("business-descrip").value;
 
-	if(firstname == "" || lastname == "" || grad_year == "" || new_businessname == "" || address == "" || 
+	if(firstname == "" || lastname == "" || grad_year == "" || new_businessname == "" || address == "" ||
 		city == "" || state == "" || zip == "" || email == "" || phone == "" || tag == "" || descrip == "") {
 
 		window.alert("Please fill out all fields.");
@@ -90,23 +77,6 @@ function submitChanges() {
 	} else {
 		$('#editModal').modal('hide');
 	}
-
-	// var obj = { "firstname": firstname, "lastname": lastname, "year": grad_year, "business": businessname, "new_businessname": new_businessname, "address": address, "city": city, "state": state, "zip": zip, "email": email, "phone": phone, "tag": tag, "img": img, "descrip": descrip };
-	// var dbParam = JSON.stringify(obj);
-
-	// var xmlhttp = new XMLHttpRequest();
-	// xmlhttp.onreadystatechange = function() {
-	//     if (this.readyState == 4 && this.status == 200) {
-
-	//     	obj = xmlhttp.responseText;
-	//     	console.log(obj.res);
-	//     	window.alert("You have successfully submitted your edits! Edits will be shown after approval.");
-	//     	window.location.href = "home.html";
-	//     }
-	// };
-	// xmlhttp.open("POST", "../php/editBusiness.php", true);
-	// xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	// xmlhttp.send("x=" + dbParam);
 
 	var form = document.forms.namedItem("editForm");
 	var formData = new FormData(form);
@@ -122,7 +92,6 @@ function submitChanges() {
 	    	window.location.href = "home.html";
 		}
 	};
-	//xmlhttp.setRequestHeader("Content-type", "multipart/form-data");
 	xmlhttp.send(formData);
 
 }

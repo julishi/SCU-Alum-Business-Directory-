@@ -6,7 +6,7 @@ function verifyBusiness() {
 
 	if(name == "") {
 		window.alert("Please enter your business name.");
-		exit();
+		return;
 	}
 
 	var obj = { "name": name };
@@ -99,7 +99,7 @@ function submitChanges() {
 document.getElementById("verify-business").onclick = verifyBusiness;
 document.getElementById("continue").onclick = function() {
 	if(document.getElementById("continue").classList.contains("disabled")) {
-		exit();
+		return;
 	} else {
 		openEditForm();
 	}

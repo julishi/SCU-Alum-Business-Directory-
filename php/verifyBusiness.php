@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // collect input data
     $name = $obj->name;
 
-      // Call the functions to insert the data
+    // Call the functions to insert the data
     verifyBusiness($name);
 }
 

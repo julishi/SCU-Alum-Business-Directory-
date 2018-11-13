@@ -4,38 +4,30 @@ body {
 	overflow: auto;
 }
 
-form {
-	width:93%;
-	border: 3px solid #F1F1F1;
-	text-align: center;
-	background-color: white;
-}
-
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #B22222;
-	position: fixed;
-	top: 0;
-	width: 100%;
-}
-
-li {
-	float:right;
-}
-
-li a {
+nav a, li a {
 	display: block;
 	color: white;
 	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
 }
 
-li a:hover {
+li a:hover, nav a:hover {
 	background-color: #7C1717;
+	color: white;
+}
+
+nav {
+	border-radius: 4px;
+}
+
+#nav-new-tab, #nav-edit-tab, #nav-approved-tab {
+	display: block;
+	color: black;
+	text-align: center;
+}
+
+#nav-new-tab:hover, #nav-edit-tab:hover, #nav-approved-tab:hover {
+	background-color: #7C1717;
+	color: white;
 }
 
 input[type=text] {
@@ -46,29 +38,13 @@ input[type=text] {
 
 button {
 	width: 100px;
-	border-radius: 4px;
-	color: black;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
 	font-size: 16px;
+}
+
+button:hover {
+	background-color: #EDEDED;
+}
+
+.col {
 	margin: 8px 16px;
-	padding: 6px ;
-	cursor: pointer;
-}
-
-.custom-select {
-	display: inline-block;
-	padding: 8px;
-	border: 1px solid;
-	cursor: pointer;
-	font-size: 16px
-}
-
-.custom-select select {
-	display: none;
-}
-
-.container{
-	padding: 20px;
 }

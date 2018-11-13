@@ -4,6 +4,7 @@ Drop table Business_Addresses;
 Drop table Business_Number_Email;
 Drop table Listers;
 Drop table SCU_ALUM;
+Drop table login_credentials;
 
 CREATE TABLE SCU_ALUM(
         firstname varchar(30),
@@ -66,4 +67,10 @@ CREATE TABLE Business_Edits(
         image BLOB,
         approved int,
         FOREIGN KEY (businessname) references Listers(businessname)
+);
+
+--Table to hold the username login and password the SCU Alum office will be using--
+CREATE TABLE login_credentials(
+        username varchar(30),
+        password varchar(30)
 );

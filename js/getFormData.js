@@ -25,25 +25,25 @@ function getFormData() {
 
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
+		    if (this.readyState == 4 && this.status == 200) {
 
-		    		obj = JSON.parse(xmlhttp.responseText);
-				$('#addModal').modal('hide');
-				if(obj.count > 0) {
-					$('#addModal').on('hidden.bs.modal', function (e) {
-						var x = confirm("Looks like that business is already registered in our system. Did you mean to edit an existing business?");
-						if(x == true) {
-							window.location.href = "edit_business.html";
-						} else {
-							window.alert("We seem to have a problem. Please contact the SCU Alumni Office for further assistance.")
-							window.location.href = "home.html";
-						}
-					});
-				}
-				else {
-					sendAddFormData();
-				}
-		    	}
+		    	obj = JSON.parse(xmlhttp.responseText);
+					$('#addModal').modal('hide');
+					if(obj.count > 0) {
+						$('#addModal').on('hidden.bs.modal', function (e) {
+							var x = confirm("Looks like that business is already registered in our system. Did you mean to edit an existing business?");
+							if(x == true) {
+								window.location.href = "edit_business.html";
+							} else {
+								window.alert("We seem to have a problem. Please contact the SCU Alumni Office for further assistance.")
+								window.location.href = "home.html";
+							}
+						});
+					}
+					else {
+						sendAddFormData();
+					}
+		    }
 		};
 		xmlhttp.open("POST", "../php/getBusinessCount.php", true);
 		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -62,7 +62,7 @@ function sendAddFormData() {
 
 			obj = xmlhttp.responseText;
 			window.alert("You have successfully submitted a business! Business will be displayed after approval.");
-	    		window.location.href = "home.html";
+			window.location.href = "home.html";
 		}
 	};
 	xmlhttp.send(formData);

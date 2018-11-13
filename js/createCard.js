@@ -1,6 +1,6 @@
 /* Creates the specified number of cards with data from res */
 function createCard(count = 0, res) {
-	
+
 	var card, deck, container;
 	var deck_index = 0;
 
@@ -18,7 +18,7 @@ function createCard(count = 0, res) {
 		container.id = "con" + i;
 		container.className = "col-3";
 		document.getElementById("deck" + deck_index).appendChild(container);
-		
+
 		var obj = res[i];
 		var card_img = document.createElement("IMG");
 		card_img.className = "card-img-top";
@@ -38,7 +38,7 @@ function createCard(count = 0, res) {
 		card_title.textContent =  obj.BUSINESSNAME;
 
 		var card_tag = document.createElement("H6");
-		card_tag.className = "card-subtitle mb-2 text-muted"
+		card_tag.className = "card-subtitle mb-2 text-muted";
 		card_tag.textContent = obj.TAG;
 
 		var card_descrip = document.createElement("P");
@@ -48,7 +48,7 @@ function createCard(count = 0, res) {
 		var card_btn = document.createElement("A");
 		card_btn.setAttribute("href", "javascript:;");
 		card_btn.className = "btn btn-outline-primary";
-		card_btn.id = obj.BUSINESSNAME.replace(/\s/g, '-');
+		card_btn.id = obj.BUSINESSNAME.replace(/\s/g, '_');
 		card_btn.setAttribute("onclick", "createModal(event)");
 		card_btn.textContent = "See more";
 
@@ -91,9 +91,3 @@ function display() {
 }
 
 window.onload = display();
-
-
-
-
-
-

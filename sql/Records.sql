@@ -53,7 +53,7 @@ Insert into Business_Addresses values('B09', 'A09', 'Santa Clara', 'CA', 'Z09');
 Insert into Business_Addresses values('B10', 'A10', 'Santa Clara', 'CA', 'Z10');
 
 --Insert values into Business_Descriptions
---(business name, tag)
+--(business name, tag, image)
 Insert into Business_Descriptions values('B01', 'Clothing', 'Sells clothing', '');
 Insert into Business_Descriptions values('B02', 'Cosmetics', 'Sells cosmetics', '');
 Insert into Business_Descriptions values('B03', 'Entertainment', 'Sells entertainment', '');

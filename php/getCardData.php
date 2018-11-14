@@ -3,7 +3,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$obj = json_decode($_POST["x"]);
-	
+
 	if($obj->res == "all") {
 		getCardData();
 	} else {
@@ -80,6 +80,11 @@ function getSearchData($txt, $tag, $loc) {
 	}
 
 	$nrows = oci_fetch_all($query, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
+	for($i = 0; $i < $nrows; $i++) {
+		if($res[$i]["IMAGE"] != null) {
+			$res[$i]["IMAGE"] = base64_encode($res[$i]["IMAGE"]);
+		}
+	}
 
 	$out = array('count' => $nrows, 'res' => $res);
 	echo json_encode($out);

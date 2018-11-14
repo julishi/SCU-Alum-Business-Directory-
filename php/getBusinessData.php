@@ -53,7 +53,7 @@ function getBusinessData($name){
     }
     $owner = oci_fetch_assoc($query);
 
-    $queryDescrip = "SELECT tag, comments FROM Business_Descriptions WHERE businessname = :name";
+    $queryDescrip = "SELECT tag, comments, image FROM Business_Descriptions WHERE businessname = :name";
     $query = oci_parse($conn, $queryDescrip);
     oci_bind_by_name($query, ':name', $name);
 
@@ -62,7 +62,10 @@ function getBusinessData($name){
         $e = oci_error($query);
         echo $e['message'];
     }
-    $descrip = oci_fetch_assoc($query);
+    $nrows = oci_fetch_all($query, $descrip, null, null, OCI_FETCHSTATEMENT_BY_ROW);
+    if($descrip[0]["IMAGE"] != null) {
+        $descrip[0]["IMAGE"] = base64_encode($descrip[0]["IMAGE"]);
+    }
 
     $out = array('address' => $addr, 'contact' => $contact, 'owner' => $owner, 'description' => $descrip);
     echo json_encode($out);

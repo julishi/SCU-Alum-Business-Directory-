@@ -1,5 +1,5 @@
 /* Creates the specified number of cards with data from res */
-function createEditBusinessCard(count = 0, res) {
+function createApprovedBusinessCard(count = 0, res) {
 
 	var card, deck, container;
 	var deck_index = 0;
@@ -7,17 +7,17 @@ function createEditBusinessCard(count = 0, res) {
 	for(var i = 0; i < count; i++) {
 		if(i % 4 == 0) {
 			deck = document.createElement("DIV");
-			deck.id = "deck_edit" + deck_index;
+			deck.id = "deck_approved" + deck_index;
 			deck.className = "card-deck";
 			deck.setAttribute("style", "margin-top:50px;");
 
-			document.getElementById("nav-edit").appendChild(deck);
+			document.getElementById("nav-approved").appendChild(deck);
 		}
 
 		container = document.createElement("DIV");
-		container.id = "con_edit" + i;
+		container.id = "con_approved" + i;
 		container.className = "col-3";
-		document.getElementById("deck_edit" + deck_index).appendChild(container);
+		document.getElementById("deck_approved" + deck_index).appendChild(container);
 
 		var obj = res[i];
 		var card_img = document.createElement("IMG");
@@ -49,11 +49,11 @@ function createEditBusinessCard(count = 0, res) {
 		card_btn.setAttribute("href", "javascript:;");
 		card_btn.className = "btn btn-outline-primary";
 		card_btn.id = obj.BUSINESSNAME.replace(/\s/g, '_');
-		card_btn.setAttribute("onclick", "createEditBusinessModal(event)");
-		card_btn.textContent = "Review";
+		card_btn.setAttribute("onclick", "createApprovedBusinessModal(event)");
+		card_btn.textContent = "See More";
 
 		card = document.createElement("DIV");
-		card.id = "card_edit" + i;
+		card.id = "card_approved" + i;
 		card.className = "card";
 		card.setAttribute("style", "width:16rem");
 
@@ -72,7 +72,7 @@ function createEditBusinessCard(count = 0, res) {
 }
 
 function display() {
-	var obj = { "res": "edit" };
+	var obj = { "res": "approved" };
 	var dbParam = JSON.stringify(obj);
 
 	var xmlhttp = new XMLHttpRequest();
@@ -81,7 +81,7 @@ function display() {
 
 	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
-	        createEditBusinessCard(obj.count, obj.res);
+	        createApprovedBusinessCard(obj.count, obj.res);
 	    }
 	};
 
@@ -90,4 +90,4 @@ function display() {
 	xmlhttp.send("x=" + dbParam);
 }
 
-document.getElementById("nav-edit-tab").addEventListener("click", display());
+document.getElementById("nav-approved-tab").addEventListener("click", display());

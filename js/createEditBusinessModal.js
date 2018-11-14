@@ -228,7 +228,7 @@ function createEditBusinessModal(e) {
 			body.appendChild(tags);
 			body.appendChild(descrip);
 
-			if(obj.description[0]['IMAGE'] != "") {
+			if(obj.description[0]['IMAGE'] != null) {
 				var img = document.createElement("P");
 				var img_head = document.createElement("B");
 				img_head.textContent = "Image: ";
@@ -239,9 +239,16 @@ function createEditBusinessModal(e) {
 				img_content.style.maxHeight = "300px";
 				img_content.style.maxWidth = "300px";
 				img.appendChild(img_head);
-				img.appendChild(lbr);
 				img.appendChild(img_content);
 				body.appendChild(img);
+
+				var imgs = img.getElementsByTagName("IMG");
+
+				for (var i = 0; i < imgs.length; i++)
+				{
+					var lbr = document.createElement("BR");
+					img.insertBefore(lbr, imgs[i]);
+				}
 			}
 
 			body.appendChild(new_heading);	//append new information
@@ -265,6 +272,14 @@ function createEditBusinessModal(e) {
 				new_img_content.style.maxWidth = "300px";
 				new_img.appendChild(new_img_head);
 				new_img.appendChild(lbr);
+				new_img.appendChild(new_img_content);
+				body.appendChild(new_img);
+			} else {
+				var new_img = document.createElement("P");
+				var new_img_head = document.createElement("B");
+				new_img_head.textContent = "Image: ";
+				var new_img_content = document.createTextNode("Using previous image if any.");
+				new_img.appendChild(new_img_head);
 				new_img.appendChild(new_img_content);
 				body.appendChild(new_img);
 			}

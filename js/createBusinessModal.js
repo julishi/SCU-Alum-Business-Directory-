@@ -120,17 +120,29 @@ function createModal(e) {
 			var tags = document.createElement("P");
 			var tags_head = document.createElement("B");
 			tags_head.textContent = "Tags: ";
-			var tags_text = document.createTextNode(obj.description['TAG']);
+			var tags_text = document.createTextNode(obj.description[0]['TAG']);
 			tags.appendChild(tags_head);
 			tags.appendChild(tags_text);
 
 			var descrip = document.createElement("P");
 			var descrip_head = document.createElement("B");
 			descrip_head.textContent = "Description: ";
-			var descrip_text = document.createTextNode(obj.description['COMMENTS']);
+			var descrip_text = document.createTextNode(obj.description[0]['COMMENTS']);
 			descrip.appendChild(descrip_head);
 			descrip.appendChild(lbr);
 			descrip.appendChild(descrip_text);
+
+			if(obj.description[0]['IMAGE'] != null) {
+				var img = document.createElement("P");
+				var img_content = document.createElement("IMG");
+				img_content.setAttribute("src", "data:image/png;base64," + obj.description[0]['IMAGE']);
+				img_content.style.height = "auto";
+				img_content.style.width = "auto";
+				img_content.style.maxHeight = "300px";
+				img_content.style.maxWidth = "300px";
+				img.appendChild(img_content);
+				body.appendChild(img);
+			}
 
 			body.appendChild(address);
 			body.appendChild(phone);
@@ -142,7 +154,7 @@ function createModal(e) {
 			$('#' + modalId).modal('show');
 		}
 	}
-	
+
 	xmlhttp.open("POST", "../php/getBusinessData.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);

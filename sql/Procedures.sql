@@ -1,6 +1,5 @@
 Drop type search_table;
 Drop type search_rec FORCE;
-Drop table Temp_Img;
 
 --Select data based on search filters
 Create or Replace Type search_rec as object (
@@ -189,13 +188,14 @@ AS
 l_rec Business_Edits%rowtype;
 
 BEGIN
-	Select * into l_rec FROM Business_Edits WHERE businessname = v_name;
 	IF v_status = 'approve' THEN
 		IF v_type = 'new' THEN
 			Update Listers
 			Set approved = 1
 			Where businessname = v_name;
 		ELSIF v_type = 'edit' THEN
+			Select * into l_rec FROM Business_Edits WHERE businessname = v_name;
+
 			Update Business_Addresses
 			Set businessname = NULL, address = l_rec.address, city = l_rec.city, state = l_rec.state, zipcode = l_rec.zipcode
 			Where businessname = v_name;

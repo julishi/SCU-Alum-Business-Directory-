@@ -66,7 +66,7 @@ CREATE TABLE Business_Edits(
         comments varchar(150),
         image BLOB,
         approved int,
-        FOREIGN KEY (businessname) references Listers(businessname)
+        UNIQUE (businessname)
 );
 
 --Table to hold the username login and password the SCU Alum office will be using--

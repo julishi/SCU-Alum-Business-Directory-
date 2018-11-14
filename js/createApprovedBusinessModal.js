@@ -1,5 +1,5 @@
-/* Create business information modals */
-function createModal(e) {
+/* Create business information modals for new business listings */
+function createApprovedBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";
 	var modalTitle = modalName + "-title";
@@ -55,7 +55,7 @@ function createModal(e) {
 
 	bsnModal.appendChild(dialog);
 
-	document.getElementById("modal_area").appendChild(bsnModal);
+	document.getElementById("approved_modal_area").appendChild(bsnModal);
 
 	//Request for data then show
 	var obj = { "businessname": modalName.replace(/_/g, ' ') };
@@ -73,6 +73,7 @@ function createModal(e) {
 			var address = document.createElement("P");
 			var address_head = document.createElement("B");
 			address_head.textContent = "Address: ";
+			var address_txt2 = document.createTextNode(obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE']);
 			var address_txt1 = document.createElement("SPAN");
 			address_txt1.textContent = obj.address['ADDRESS'];
 			var address_txt2 = document.createElement("SPAN");
@@ -132,7 +133,7 @@ function createModal(e) {
 			descrip.appendChild(lbr);
 			descrip.appendChild(descrip_text);
 
-			if(obj.description[0]['IMAGE'] != null) {
+      if(obj.description[0]['IMAGE'] != null) {
 				var img = document.createElement("P");
 				var img_content = document.createElement("IMG");
 				img_content.setAttribute("src", "data:image/png;base64," + obj.description[0]['IMAGE']);

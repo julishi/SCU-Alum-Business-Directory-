@@ -90,4 +90,4 @@ function display() {
 	xmlhttp.send("x=" + dbParam);
 }
 
-window.onload = display();
+document.getElementById("nav-edit-tab").addEventListener("click", display());

@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function verifyBusiness($name){
         //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
+    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;

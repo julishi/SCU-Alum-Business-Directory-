@@ -133,7 +133,7 @@ function createApprovedBusinessModal(e) {
 			descrip.appendChild(lbr);
 			descrip.appendChild(descrip_text);
 
-      if(obj.description[0]['IMAGE'] != null) {
+      if(obj.description[0]['IMAGE'] != null && obj.description[0]['IMAGE'] != "") {
 				var img = document.createElement("P");
 				var img_content = document.createElement("IMG");
 				img_content.setAttribute("src", "data:image/png;base64," + obj.description[0]['IMAGE']);

@@ -22,7 +22,7 @@ function createCard(count = 0, res) {
 		var obj = res[i];
 		var card_img = document.createElement("IMG");
 		card_img.className = "card-img-top";
-		if(obj.IMAGE == null) {
+		if(obj.IMAGE == null || obj.IMAGE == "") {
 			card_img.setAttribute("src", "../avatar.png");
 		} else {
 			card_img.setAttribute("src", "data:image/png;base64," + obj.IMAGE);

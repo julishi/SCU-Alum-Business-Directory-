@@ -35,6 +35,7 @@ function insertSCUAlum($firstname, $lastname, $gradyear){
     }
 
     $query = oci_parse($conn, "Insert Into SCU_ALUM values(:firstname, :lastname, :grad_year, 0)");
+  
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);
     oci_bind_by_name($query, ':grad_year', $gradyear);
@@ -46,4 +47,5 @@ function insertSCUAlum($firstname, $lastname, $gradyear){
     }
     OCILogoff($conn);
 }
+
 ?>

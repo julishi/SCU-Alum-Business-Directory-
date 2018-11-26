@@ -17,49 +17,27 @@ function verifyBusiness() {
 	    if (this.readyState == 4 && this.status == 200) {
 
 	    	obj = JSON.parse(xmlhttp.responseText);
-	    	// if(obj.found == 1) {
-	    	// 	var msg = document.createElement("P");
-	    	// 	msg.style.color = "limegreen";
-	    	// 	msg.textContent = "Business verified.";
-	    	// 	var message = document.getElementById("message");
-	    	// 	message.replaceChild(msg, message.childNodes[0]);
-				//
-	    	// 	var cont_btn = document.getElementById("continue");
-	    	// 	cont_btn.classList.remove("disabled");
-				//
-	    	// } else {
-	    	// 	var msg = document.createElement("P");
-	    	// 	msg.style.color = "red";
-	    	// 	msg.textContent = "Business not found.";
-	    	// 	var message = document.getElementById("message");
-	    	// 	message.replaceChild(msg, message.childNodes[0]);
-				//
-	    	// 	var cont_btn = document.getElementById("continue");
-	    	// 	if(!(cont_btn.classList.contains("disabled"))) {
-	    	// 		cont_btn.classList.add("disabled");
-	    	// 	}
-	    	// }
-				var verify_bsn = document.getElementById("verify-bsn-name");
-				if(obj.found == 1) {
-					if(verify_bsn.classList.contains("is-invalid")) {
-						verify_bsn.classList.remove("is-invalid");
-					}
-	    		verify_bsn.classList.add("is-valid");
+		var verify_bsn = document.getElementById("verify-bsn-name");
+		if(obj.found == 1) {
+			if(verify_bsn.classList.contains("is-invalid")) {
+				verify_bsn.classList.remove("is-invalid");
+			}
+			verify_bsn.classList.add("is-valid");
 
-					var msg = document.createElement("P");
-					msg.style.color = "limegreen";
-					msg.textContent = "Business verified.";
-					var message = document.getElementById("message");
-					message.replaceChild(msg, message.childNodes[0]);
+			var msg = document.createElement("P");
+			msg.style.color = "limegreen";
+			msg.textContent = "Business verified.";
+			var message = document.getElementById("message");
+			message.replaceChild(msg, message.childNodes[0]);
 
-	    		var cont_btn = document.getElementById("continue");
-	    		cont_btn.classList.remove("disabled");
+			var cont_btn = document.getElementById("continue");
+			cont_btn.classList.remove("disabled");
 
 	    	} else {
-					if(verify_bsn.classList.contains("is-valid")) {
-						verify_bsn.classList.remove("is-valid");
-					}
-					verify_bsn.classList.add("is-invalid");
+			if(verify_bsn.classList.contains("is-valid")) {
+				verify_bsn.classList.remove("is-valid");
+			}
+			verify_bsn.classList.add("is-invalid");
 
 	    		var msg = document.createElement("P");
 	    		msg.style.color = "red";

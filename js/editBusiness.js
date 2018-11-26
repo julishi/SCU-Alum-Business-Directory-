@@ -14,43 +14,43 @@ function verifyBusiness() {
 
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-	    if (this.readyState == 4 && this.status == 200) {
+		if (this.readyState == 4 && this.status == 200) {
 
-	    	obj = JSON.parse(xmlhttp.responseText);
-		var verify_bsn = document.getElementById("verify-bsn-name");
-		if(obj.found == 1) {
-			if(verify_bsn.classList.contains("is-invalid")) {
-				verify_bsn.classList.remove("is-invalid");
-			}
-			verify_bsn.classList.add("is-valid");
+	    		obj = JSON.parse(xmlhttp.responseText);
+			var verify_bsn = document.getElementById("verify-bsn-name");
+			if(obj.found == 1) {
+				if(verify_bsn.classList.contains("is-invalid")) {
+					verify_bsn.classList.remove("is-invalid");
+				}
+				verify_bsn.classList.add("is-valid");
 
-			var msg = document.createElement("P");
-			msg.style.color = "limegreen";
-			msg.textContent = "Business verified.";
-			var message = document.getElementById("message");
-			message.replaceChild(msg, message.childNodes[0]);
+				var msg = document.createElement("P");
+				msg.style.color = "limegreen";
+				msg.textContent = "Business verified.";
+				var message = document.getElementById("message");
+				message.replaceChild(msg, message.childNodes[0]);
 
-			var cont_btn = document.getElementById("continue");
-			cont_btn.classList.remove("disabled");
+				var cont_btn = document.getElementById("continue");
+				cont_btn.classList.remove("disabled");
 
-	    	} else {
-			if(verify_bsn.classList.contains("is-valid")) {
-				verify_bsn.classList.remove("is-valid");
-			}
-			verify_bsn.classList.add("is-invalid");
+	    		} else {
+				if(verify_bsn.classList.contains("is-valid")) {
+					verify_bsn.classList.remove("is-valid");
+				}
+				verify_bsn.classList.add("is-invalid");
 
-	    		var msg = document.createElement("P");
-	    		msg.style.color = "red";
-	    		msg.textContent = "Business not found.";
-	    		var message = document.getElementById("message");
-	    		message.replaceChild(msg, message.childNodes[0]);
+				var msg = document.createElement("P");
+				msg.style.color = "red";
+				msg.textContent = "Business not found.";
+				var message = document.getElementById("message");
+				message.replaceChild(msg, message.childNodes[0]);
 
-	    		var cont_btn = document.getElementById("continue");
-	    		if(!(cont_btn.classList.contains("disabled"))) {
-	    			cont_btn.classList.add("disabled");
+				var cont_btn = document.getElementById("continue");
+				if(!(cont_btn.classList.contains("disabled"))) {
+					cont_btn.classList.add("disabled");
+				}
 	    		}
 	    	}
-	    }
 	};
 	xmlhttp.open("POST", "../php/verifyBusiness.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

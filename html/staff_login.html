@@ -15,7 +15,7 @@
 
 <body>
 	<div class="container">
-		<nav class="navbar fixed-top navbar-expand-md" style="background-color:#B22222">
+		<nav class="navbar fixed-top navbar-expand-md">
 
 			<a class="navbar-brand" href="home.html">SCU Alumni Business Directory</a>
 
@@ -36,7 +36,7 @@
 	</div>
 
 	<div style="padding:20px;margin-top:100px;">
-	<form action="" method="post" id="login_form">
+	<form id="login_form">
 		<h4 style="padding-top:20px;">Welcome SCU Staff!</h4>
 		<div class="container">
 			<div class="form-group">
@@ -46,7 +46,8 @@
 				<input type="password" class="form-control" placeholder="Password" id="pwd" required>
 			</div>
 
-			<a class="login_button" type="submit" href="manage_listings.html">Login</a>
+			<button class="login_button" type="submit" onclick="location.href='manage_listings.html';">Login</button>
+			<!-- //change to function -->
 	</form>
 	</div>
 

@@ -28,15 +28,14 @@ function prepareInput($inputData){
 
 function insertSCUAlum($firstname, $lastname, $gradyear){
     //connect to your database. Type in your username, password and the DB path
-
-    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
+    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
     }
 
-    $query = oci_parse($conn, "Insert Into SCU_ALUM values(:firstname, :lastname, :grad_year, 1)");
-
+    $query = oci_parse($conn, "Insert Into SCU_ALUM values(:firstname, :lastname, :grad_year, 0)");
+  
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);
     oci_bind_by_name($query, ':grad_year', $gradyear);

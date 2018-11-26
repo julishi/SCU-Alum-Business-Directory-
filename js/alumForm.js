@@ -27,7 +27,7 @@ function getAlumFormData() {
 						});
 					}
 					else {
-						sendAlumFormData();
+						sendAlumFormData(firstname, lastname, gradyear);
 					}
 		    }
 
@@ -38,10 +38,10 @@ function getAlumFormData() {
 	}
 }
 
-function sendAlumFormData() {
+function sendAlumFormData(firstname, lastname, gradyear) {
 	var obj = { "firstname": firstname, "lastname": lastname, "year": gradyear };
 	var dbParam = JSON.stringify(obj);
-
+	console.log(dbParam);
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {

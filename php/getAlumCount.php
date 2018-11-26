@@ -20,7 +20,7 @@ function console_log($data) {
 
 function getAlumCount($firstname, $lastname, $gradyear) {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getAlumCount: connection failed:";

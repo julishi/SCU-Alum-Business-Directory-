@@ -144,6 +144,9 @@
 					<div class="modal-body">
 					    <form enctype="multipart/form-data" name="editForm">
 							<div class="form-row">
+								<div class="col-md-12">
+									<input type="text" readonly class="form-control-plaintext" id="formHelp" value="All fields below may be edited.">
+								</div>
 								<div class="form-group col-md-4">
 									<label for="first-name" class="col-form-label">First Name</label>
 									<input type="text" class="form-control" id="first-name" name="first-name" required="true">
@@ -184,7 +187,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-email" class="col-form-label">Business Email</label>
-									<input type="email" class="form-control" id="business-email" name="business-email" required="true">
+									<input type="text" class="form-control" id="business-email" name="business-email" required="true">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-phone" class="col-form-label">Business Phone Number</label>
@@ -202,7 +205,7 @@
 									<small id="imgHelp" class="form-text text-muted">Optional. A generic image will be used instead.</small>
 								</div>
 								<div class="form-group col-md-12">
-									<label for="business-descrip" class="col-form-label">Additional Comments</label>
+									<label for="business-descrip" class="col-form-label">Business Description</label>
 									<textarea maxlength="150" class="form-control" id="business-descrip" name="business-descrip" rows="3"></textarea>
 									<small id="descripHelp" class="form-text text-muted">Limit 150 characters.</small>
 								</div>
@@ -265,7 +268,7 @@
 		});
 	</script>
 
-	<script type="text/javascript" src="../js/verifyBusiness.js"></script>
+	<script type="text/javascript" src="../js/editBusiness.js"></script>
 </body>
 
 </html>

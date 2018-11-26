@@ -24,7 +24,7 @@ function console_log($data) {
 
 function getCardData() {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getCardData: connection failed:";
@@ -56,7 +56,7 @@ function getCardData() {
 
 function getSearchData($txt, $tag, $loc) {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getSearchData: connection failed:";

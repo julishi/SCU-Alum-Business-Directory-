@@ -26,7 +26,7 @@ function console_log($data) {
 
 function getNewCardData() {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getNewCardData: connection failed:";
@@ -59,7 +59,7 @@ function getNewCardData() {
 
 function getEditCardData() {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getEditCardData: connection failed:";
@@ -92,7 +92,7 @@ function getEditCardData() {
 
 function getApprovedCardData() {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "getApprovedCardData: connection failed:";

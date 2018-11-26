@@ -25,12 +25,12 @@ li a:hover, nav a:hover {
 }
 
 nav {
-	background-color: #B22222;
+	background-color: #B30738;
 }
 
 input[type=text] {
 	padding: 6px;
-	border: 1px solid;
+	/* border: 1px solid; */
 	font-size: 14px;
 }
 

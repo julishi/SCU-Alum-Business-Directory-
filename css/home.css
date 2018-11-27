@@ -20,17 +20,17 @@ nav a, li a {
 }
 
 li a:hover, nav a:hover {
-	background-color: #7C1717;
+	background-color: #7D0427;
 	color: white;
 }
 
 nav {
-	background-color: #B22222;
+	background-color: #B30738;
 }
 
 input[type=text] {
 	padding: 6px;
-	border: 1px solid;
+	/* border: 1px solid; */
 	font-size: 14px;
 }
 

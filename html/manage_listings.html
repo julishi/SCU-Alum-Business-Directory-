@@ -40,6 +40,7 @@
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true">New Listings</a>
 				<a class="nav-item nav-link" id="nav-edit-tab" data-toggle="tab" href="#nav-edit" role="tab" aria-controls="nav-edit" aria-selected="false">Edits Requested</a>
+				<a class="nav-item nav-link" id="nav-delete-tab" data-toggle="tab" href="#nav-delete" role="tab" aria-controls="nav-delete" aria-selected="false">Deletes Requested</a>
 				<a class="nav-item nav-link" id="nav-approved-tab" data-toggle="tab" href="#nav-approved" role="tab" aria-controls="nav-approved" aria-selected="false">All Approved Listings</a>
 			</div>
 		</nav>
@@ -49,6 +50,9 @@
 			</div>
 			<div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
 				<div id="edit_modal_area"></div>
+			</div>
+			<div class="tab-pane fade" id="nav-delete" role="tabpanel" aria-labelledby="nav-delete-tab">
+				<div id="delete_modal_area"></div>
 			</div>
 			<div class="tab-pane fade" id="nav-approved" role="tabpanel" aria-labelledby="nav-approved-tab">
 				<div id="approved_modal_area"></div>
@@ -61,6 +65,8 @@
 	<script type="text/javascript" src="../js/createNewBusinessModal.js"></script>
 	<script type="text/javascript" src="../js/createEditBusinessCard.js"></script>
 	<script type="text/javascript" src="../js/createEditBusinessModal.js"></script>
+	<script type="text/javascript" src="../js/createDeleteBusinessCard.js"></script>
+	<script type="text/javascript" src="../js/createDeleteBusinessModal.js"></script>
 	<script type="text/javascript" src="../js/createApprovedBusinessCard.js"></script>
 	<script type="text/javascript" src="../js/createApprovedBusinessModal.js"></script>
 	<script type="text/javascript" src="../js/updateApproval.js"></script>
@@ -73,9 +79,9 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-				localStorage.setItem('activeTab', $(e.target).attr('href'));
+				sessionStorage.setItem('activeTab', $(e.target).attr('href'));
 			});
-			var activeTab = localStorage.getItem('activeTab');
+			var activeTab = sessionStorage.getItem('activeTab');
 			if(activeTab){
 				$('#nav-tab a[href="' + activeTab + '"]').tab('show');
 			}
@@ -90,6 +96,12 @@
 
 	<script type="text/javascript">
 		document.getElementById("nav-edit-tab").onclick = function() {
+			window.location.reload(true);
+		};
+	</script>
+
+	<script type="text/javascript">
+		document.getElementById("nav-delete-tab").onclick = function() {
 			window.location.reload(true);
 		};
 	</script>

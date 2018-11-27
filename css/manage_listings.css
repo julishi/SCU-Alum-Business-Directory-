@@ -19,13 +19,13 @@ nav {
 	border-radius: 4px;
 }
 
-#nav-new-tab, #nav-edit-tab, #nav-approved-tab {
+#nav-new-tab, #nav-edit-tab, #nav-delete-tab, #nav-approved-tab {
 	display: block;
 	color: black;
 	text-align: center;
 }
 
-#nav-new-tab:hover, #nav-edit-tab:hover, #nav-approved-tab:hover {
+#nav-new-tab:hover, #nav-edit-tab:hover, #nav-delete-tab:hover, #nav-approved-tab:hover {
 	background-color: #7D0427;
 	color: white;
 }

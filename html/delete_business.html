@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>Add Business - SCU Alumni Business Directory System</title>
+<title>Edit Business - SCU Alumni Business Directory System</title>
 
 <head>
 	<!-- Meta tags !-->
@@ -28,7 +28,7 @@
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="#">Edit Business</a>
 			      	</li>
-							<li class="nav-item">
+              <li class="nav-item">
                 <a class="nav-link" href="#">Delete Business</a>
               </li>
 			      	<li class="nav-item">
@@ -40,7 +40,7 @@
 	</div>
 
 	<div style="padding:20px 40px;margin-top:45px;">
-		<form style="position:fixed;border:3px solid #F1F1F1;text-align: center;width: 95%;">
+		<form action="" style="position:fixed;border:3px solid #F1F1F1;text-align: center;width: 95%;">
 			<div class="form_container">
 				<div class="form-inline">
 					<div class="col">
@@ -81,17 +81,52 @@
 
 	<div id="modal_area">
 		<!-- Modal display area !-->
-		<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+		<div class="modal fade" id="verifyModal" tabindex="-1" role="dialog" aria-labelledby="verifyModalLabel" aria-hidden="true" data-backdrop="static">
 	  		<div class="modal-dialog modal-lg" role="document">
 	    		<div class="modal-content">
 	      			<div class="modal-header">
-	        			<h5 class="modal-title" id="addModalLabel">List Your Business</h5>
+	        			<h5 class="modal-title" id="verifyModalLabel">Verify Your Business</h5>
 	        			<a class="close" href="home.html" aria-label="Close">
 	          				<span aria-hidden="true">&times;</span>
 	        			</a>
 					</div>
 					<div class="modal-body">
-					    <form enctype="multipart/form-data" name="addForm">
+					    <form>
+							<div class="form-row align-items-center">
+								<div class="form-group col-md-6">
+									<label for="verify-bsn-name" class="col-form-label">Business Name</label>
+									<input type="text" class="form-control mb-2 mr-sm-2" id="verify-bsn-name" required="true">
+									<small id="verifyHelp" class="form-text text-muted">Enter your business name to verify it.</small>
+								</div>
+								<div class="col-auto mx-2">
+									<button type="button" class="btn btn-primary mb-2" id="verify-business">Verify Business</button>
+								</div>
+								<div class ="col-auto mx-2 mt-2" id="message">
+									<p></p>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<a href="home.html" class="btn btn-secondary">Close</a>
+						<button type="button" class="btn btn-primary disabled" id="continue">Continue</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- When continue is pressed, hide previous modal, display edit modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true" data-backdrop="static">
+	  		<div class="modal-dialog modal-lg" role="document">
+	    		<div class="modal-content">
+	      			<div class="modal-header">
+	        			<h5 class="modal-title" id="deleteModalLabel">Delete Your Business</h5>
+	        			<a class="close" href="home.html" aria-label="Close">
+	          				<span aria-hidden="true">&times;</span>
+	        			</a>
+					</div>
+					<div class="modal-body">
+					    <form enctype="multipart/form-data" name="editForm">
 							<div class="form-row">
 								<div class="form-group col-md-4">
 									<label for="first-name" class="col-form-label">First Name</label>
@@ -108,60 +143,21 @@
 								    	<option></option>
 									</select>
 								</div>
-								<div class="form-group col-md-12">
-									<label for="business-name" class="col-form-label">Name of Business</label>
-									<input type="text" class="form-control" id="business-name" name="business-name" required="true">
-								</div>
-								<div class="form-group col-md-12">
-									<label for="business-address" class="col-form-label">Address</label>
-									<input type="text" class="form-control" id="business-address" name="business-address" required="true">
-								</div>
-								<div class="form-group col-md-4">
-									<label for="business-city" class="col-form-label">City</label>
-									<input type="text" class="form-control" id="business-city" name="business-city" required="true">
-								</div>
-
-								<div class="form-group col-md-4">
-									<label for="state-select" class="col-form-label">State</label>
-									<select class="form-control" id="state-select" name="state-select" required="true">
-										<option></option>
-									</select>
-								</div>
-								<div class="form-group col-md-4">
-									<label for="business-zip" class="col-form-label">Zip / Postal Code</label>
-									<input type="text" class="form-control" id="business-zip" name="business-zip" required="true">
-								</div>
 								<div class="form-group col-md-6">
-									<label for="business-email" class="col-form-label">Business Email</label>
-									<input type="email" class="form-control" id="business-email" name="business-email" required="true">
+									<label for="contact-phone" class="col-form-label">Contact Phone Number</label>
+									<input type="text" class="form-control" id="contact-phone" name="contact-phone" required="true">
+                  <small id="phoneHelp" class="form-text text-muted">This phone number will be used to contact the requester.</small>
 								</div>
-								<div class="form-group col-md-6">
-									<label for="business-phone" class="col-form-label">Business Phone Number</label>
-									<input type="text" class="form-control" id="business-phone" name="business-phone" required="true">
-								</div>
-								<div class="form-group col-md-6">
-									<label for="select-tag" class="col-form-label">Select Business Tag</label>
-									<select class="form-control" id="select-tag" name="select-tag" required="true">
-										<option></option>
-									</select>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="business-img" class="col-form-label">Add Business Image</label>
-									<input type="hidden" name="MAX_FILE_SIZE" value="5000000">
-									<input type="file" accept=".jpg,.png" class="form-control-file" id="business-img" name="business-img">
-									<small id="imgHelp" class="form-text text-muted">Optional. A generic image will be used instead.</small>
-								</div>
-								<div class="form-group col-md-12">
-									<label for="business-descrip" class="col-form-label">Business Description</label>
-									<textarea maxlength="150" class="form-control" id="business-descrip" name="business-descrip" rows="3"></textarea>
-									<small id="descripHelp" class="form-text text-muted">Limit 150 characters.</small>
+                <div class="form-group col-md-6">
+									<label for="requester-name" class="col-form-label">Requester's Name</label>
+									<input type="text" class="form-control" id="requester-name" name="requester-name" required="true">
 								</div>
 							</div>
 						</form>
 					</div>
 					<div class="modal-footer">
 						<a href="home.html" class="btn btn-secondary">Close</a>
-						<button type="button" class="btn btn-primary" id="submit-btn">Submit Business</button>
+						<button type="button" class="btn btn-primary" id="submit-delete">Submit</button>
 					</div>
 				</div>
 			</div>
@@ -180,24 +176,6 @@
 		}
 	</script>
 
-	<script type="text/javascript">
-		var states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "DC", "FM", "GU", "MH", "MP", "PW", "PR", "VI"];
-		for(var i = 0; i < states.length; i++) {
-			var state = document.createElement("OPTION");
-			state.text = states[i];
-			document.getElementById("state-select").appendChild(state);
-		}
-	</script>
-
-	<script type="text/javascript">
-		var tags = ["Clothing", "Cosmetics", "Entertainment", "Food", "Health", "Manufacturing", "Shopping", "Tech"];
-		for(var i = 0; i < tags.length; i++) {
-			var tag = document.createElement("OPTION");
-			tag.text = tags[i];
-			document.getElementById("select-tag").appendChild(tag);
-		}
-	</script>
-
 	<!-- Bootstrap JS !-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -205,17 +183,18 @@
 
 	<script type="text/javascript">
 		$(window).on('load', function(){
-			$('#addModal').modal('show')
+			$('#verifyModal').modal('show')
+			$('#deleteModal').modal('hide');
 		});
 	</script>
 
 	<script type="text/javascript">
-		$('#addModal').modal({
-			backdrop: 'static'
+		$('#verifyModal').on('hidden.bs.modal', function (e) {
+			$('#deleteModal').modal('show');
 		});
 	</script>
 
-	<script type="text/javascript" src="../js/getFormData.js"></script>
+	<script type="text/javascript" src="../js/deleteBusiness.js"></script>
 </body>
 
 </html>

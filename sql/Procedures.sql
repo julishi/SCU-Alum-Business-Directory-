@@ -211,6 +211,21 @@ BEGIN
 			Update Listers
 			Set firstname = l_rec.firstname, lastname = l_rec.firstname, grad_year = l_rec.grad_year, businessname = l_rec.new_businessname
 			Where businessname = v_name;
+		ELSIF v_type = 'delete' THEN
+			Delete From Business_Deletions
+			Where businessname = v_name;
+
+			Delete From Business_Addresses
+			Where businessname = v_name;
+
+			Delete From Business_Number_Email
+			Where businessname = v_name;
+
+			Delete From Business_Descriptions
+			Where businessname = v_name;
+
+			Delete From Listers
+			Where businessname = v_name;
 		END IF;
 	ELSIF v_status = 'reject' THEN
 		IF v_type = 'new' THEN
@@ -227,6 +242,9 @@ BEGIN
 			Where businessname = v_name;
 		ELSIF v_type = 'edit' THEN
 			Delete From Business_Edits
+			Where businessname = v_name;
+		ELSIF v_type = 'delete' THEN
+			Delete From Business_Deletions
 			Where businessname = v_name;
 		END IF;
 	END IF;

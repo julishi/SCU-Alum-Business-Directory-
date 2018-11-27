@@ -4,6 +4,7 @@ Drop table Business_Addresses;
 Drop table Business_Number_Email;
 Drop table Listers;
 Drop table SCU_ALUM;
+Drop table Business_Deletions;
 Drop table login_credentials;
 
 CREATE TABLE SCU_ALUM(
@@ -11,6 +12,7 @@ CREATE TABLE SCU_ALUM(
         lastname varchar(30),
         grad_year int,
         approved int,
+        visits int,
         PRIMARY KEY (firstname, lastname, grad_year)
 );
 
@@ -66,6 +68,16 @@ CREATE TABLE Business_Edits(
         comments varchar(150),
         image BLOB,
         approved int,
+        UNIQUE (businessname)
+);
+
+CREATE TABLE Business_Deletions(
+        firstname varchar(30),
+        lastname varchar(30),
+        grad_year int,
+        businessname varchar(30),
+        phonenumber varchar(30),
+        requester varchar(30),
         UNIQUE (businessname)
 );
 

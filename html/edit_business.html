@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<nav class="navbar fixed-top navbar-expand-md" style="background-color:#B22222">
+		<nav class="navbar fixed-top navbar-expand-md">
 
 			<a class="navbar-brand" href="home.html">SCU Alumni Business Directory</a>
 
@@ -28,6 +28,9 @@
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="#">Edit Business</a>
 			      	</li>
+							<li class="nav-item">
+                <a class="nav-link" href="#">Delete Business</a>
+              </li>
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="staff_login.html">Staff Login</a>
 			      </li>
@@ -46,21 +49,7 @@
 
 					<div class="col">
 						<select class="custom-select" id="type1">
-							<option value="0">Select Type 1</option>
-							<option value="1">Clothing</option>
-							<option value="2">Cosmetics</option>
-							<option value="3">Entertainment</option>
-							<option value="4">Food</option>
-							<option value="5">Health</option>
-							<option value="6">Manufacturing</option>
-							<option value="7">Shopping</option>
-							<option value="8">Tech</option>
-						</select>
-					</div>
-
-					<div class="col">
-						<select class="custom-select" id="type2">
-							<option value="0">Select Type 2</option>
+							<option value="0">Select Type</option>
 							<option value="1">Clothing</option>
 							<option value="2">Cosmetics</option>
 							<option value="3">Entertainment</option>
@@ -75,11 +64,6 @@
 					<div class="col">
 						<select class="custom-select" id="location">
 							<option value="0">Location</option>
-							<option value="1">Los Angeles</option>
-							<option value="2">New York</option>
-							<option value="3">San Francisco</option>
-							<option value="4">San Jose</option>
-							<option value="5">Santa Clara</option>
 						</select>
 					</div>
 
@@ -201,6 +185,7 @@
 								</div>
 								<div class="form-group col-md-6">
 									<label for="business-img" class="col-form-label">Edit Business Image</label>
+									<input type="hidden" name="MAX_FILE_SIZE" value="5000000">
 									<input type="file" accept=".jpg,.png" class="form-control-file" id="business-img" name="business-img">
 									<small id="imgHelp" class="form-text text-muted">Optional. A generic image will be used instead.</small>
 								</div>
@@ -222,6 +207,7 @@
 	</div>
 
 	<!-- My JS !-->
+	<script type="text/javascript" src="../js/getLocations.js"></script>
 	<script type="text/javascript" src="../js/createCard.js"></script>
 
 	<script type="text/javascript">

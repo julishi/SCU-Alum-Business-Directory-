@@ -28,6 +28,9 @@
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="edit_business.html">Edit Business</a>
 			      	</li>
+							<li class="nav-item">
+                <a class="nav-link" href="delete_business.html">Delete Business</a>
+              </li>
 			      	<li class="nav-item">
 			        	<a class="nav-link" href="staff_login.html">Staff Login</a>
 			      </li>
@@ -46,21 +49,7 @@
 
 					<div class="col">
 						<select class="custom-select" id="type1">
-							<option value="0">Select Type 1</option>
-							<option value="1">Clothing</option>
-							<option value="2">Cosmetics</option>
-							<option value="3">Entertainment</option>
-							<option value="4">Food</option>
-							<option value="5">Health</option>
-							<option value="6">Manufacturing</option>
-							<option value="7">Shopping</option>
-							<option value="8">Tech</option>
-						</select>
-					</div>
-
-					<div class="col">
-						<select class="custom-select" id="type2">
-							<option value="0">Select Type 2</option>
+							<option value="0">Select Type</option>
 							<option value="1">Clothing</option>
 							<option value="2">Cosmetics</option>
 							<option value="3">Entertainment</option>
@@ -286,7 +275,7 @@
 	</script> -->
 
 	<script type="text/javascript">
-		if(checkCookie() == false) {
+		if(checkCookie() == 0) {
 			$('#areYouAnAlumModal').modal('show');
 		}
 	</script>

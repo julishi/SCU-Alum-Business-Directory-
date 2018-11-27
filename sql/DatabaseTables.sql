@@ -11,6 +11,7 @@ CREATE TABLE SCU_ALUM(
         lastname varchar(30),
         grad_year int,
         approved int,
+        visits int,
         PRIMARY KEY (firstname, lastname, grad_year)
 );
 

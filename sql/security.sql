@@ -1,6 +1,4 @@
 <!--The code used is from https://oracle-base.com/articles/9i/storing-passwords-in-the-database-9i -->
-
-
 CREATE OR REPLACE PACKAGE BODY user_security AS
 
   FUNCTION get_hash (p_username  IN  VARCHAR2,
@@ -15,7 +13,7 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
     RETURN DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(UPPER(p_username) || l_salt || UPPER(p_password)), DBMS_CRYPTO.HASH_SH1);
   END;
 
-  PROCEDURE add_staff_member (p_username  IN  VARCHAR2,
+  PROCEDURE add_staff_member (firstname in VARCHAR2, lastname in VARCHAR2, p_username  IN  VARCHAR2,
                         p_password  IN  VARCHAR2) AS
     BEGIN
       INSERT INTO login_credentials (
@@ -25,7 +23,8 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
         password
       )
       VALUES (
-        app_users_seq.NEXTVAL,
+        UPPER(firstname),
+        UPPER(lastname),
         UPPER(p_username),
         get_hash(p_username, p_password)
       );
@@ -62,3 +61,4 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
 
 END;
 /
+

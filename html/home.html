@@ -250,12 +250,14 @@
 	</div>
 
 	<!-- My JS !-->
-	<script type="text/javascript" src="../js/getLocations.js"></script>
-	<script type="text/javascript" src="../js/createBusinessModal.js"></script>
-	<script type="text/javascript" src="../js/createCard.js"></script>
-	<script type="text/javascript" src="../js/searchFilters.js"></script>
 	<script type="text/javascript" src="../js/alumForm.js"></script>
 	<script type="text/javascript" src="../js/manageCookie.js"></script>
+	<script type="text/javascript" src="../js/getLocations.js"></script>
+	<script type="text/javascript" src="../js/visits.js"></script>
+	<script type="text/javascript" src="../js/createCard.js"></script>
+	<script type="text/javascript" src="../js/createBusinessModal.js"></script>
+	<script type="text/javascript" src="../js/searchFilters.js"></script>
+
 
 	<!-- Bootstrap JS !-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -269,6 +271,13 @@
 			document.getElementById("grad-year").appendChild(year);
 		}
 	</script> -->
+
+	<script type="text/javascript">
+		if(sessionStorage.getItem('visit') == null) {
+			visits_counter();
+			sessionStorage.setItem('visit', 'active');
+		}
+	</script>
 
 	<script type="text/javascript">
 		if(checkCookie() == 0) {

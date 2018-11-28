@@ -1,14 +1,15 @@
 /* Create the alumni table */
 function createAlumniTable(count, res) {
 
-	var list_item, item_head, item_name, item_year, item_check;
-	var firstname, lastname, year;
+	var list_item, item_head, item_name, item_year, item_check, item_visits;
+	var firstname, lastname, year, visits;
 
 	for(var i = 0; i < count; i++)
 	{
 		firstname = res[i].FIRSTNAME;
 		lastname = res[i].LASTNAME;
 		year = res[i].GRAD_YEAR;
+		visits = res[i].VISITS;
 
 		list_item = document.createElement("TR");
 		list_item.id = "item" + i;
@@ -48,10 +49,14 @@ function createAlumniTable(count, res) {
 			check_input.checked = false;
 		}
 
+		item_visits = document.createElement("TD");
+		item_visits.innerHTML = visits;
+
 		list_item.appendChild(item_head);
 		list_item.appendChild(item_name);
 		list_item.appendChild(item_year);
 		list_item.appendChild(item_check);
+		list_item.appendChild(item_visits);
 	}
 }
 

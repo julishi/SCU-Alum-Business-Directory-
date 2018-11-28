@@ -1,5 +1,11 @@
-//window.addEventListener("load",nameFieldInit,false);
+/*	manageCookie.js contains the functions relating to
+	the system's usage of cookies. Cookies are used by
+	the system for the convenience of returing users
+	and logged in staff.								*/
 
+
+//Function for filling user input fields with saved data in cookies
+//Also contains disabled code for writing new cookies after fields are edited
 function nameFieldInit() {
 	var firstName = "";
 	var lastName = "";
@@ -17,11 +23,13 @@ function nameFieldInit() {
 	document.getElementById("last-name").value = lastName;
 	// document.getElementById("last-name").onblur = setCookie();
 
-	// //NEED TO UPDATE ELEMENT ID FOR GRADYEAR
 	document.getElementById("grad-year").value = gradYear;
 	// document.getElementById("grad-year").onblur = setCookie;
 }
 
+//The get functions ascertain that the cookies exist using checkCookie,
+//then returns the associated piece of data stored in cookies
+//If the cookies are missing or invalid, the functions return false.
 function getFirstName(){
 	if (checkCookie() == 1) {
 		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -62,6 +70,8 @@ function setCookie() {
 	return false;
 }
 
+//The setFlag functions set a cookie to note whether 
+//the client is an alum, non-alum, or unidentified user
 function setFlagAlum() {
 	document.cookie = "cookieFlag=Alum";
 }
@@ -70,10 +80,8 @@ function setFlagGuest() {
 	document.cookie = "cookieFlag=Guest";
 }
 
-function alertCookie() {
-  alert(document.cookie);
-}
-
+//Reads the flag tracking whether a user is an alum, non-alum, or unidentified user
+//Returns 0 for unidentified, 1 for alum, and 2 for non-alum
 function checkCookie() {
 	var cookieFlag = "";
 	if (document.cookie != "") {
@@ -89,14 +97,18 @@ function checkCookie() {
 	return 0;
 }
 
+//Sets a flag allowing the system to identify logged in users
 function setLogin() {
 	document.cookie = "loginFlag=TRUE";
 }
 
+//Removes a flag allowing the system to identify logged in users
 function setLogout() {
 	document.cookie = "loginFlag=FALSE";
 }
 
+//Checks a flag to see if the user is currently logged in
+//Logged in users are forwarded to the staff page
 function loginCheck(){
 	var loginFlag = "";
 
@@ -109,3 +121,10 @@ function loginCheck(){
 	}
 	return false;
 }
+
+//Troubleshooting tool, lists all saved cookies in the current session
+function alertCookie() {
+  alert(document.cookie);
+}
+
+//window.addEventListener("load",nameFieldInit,false);

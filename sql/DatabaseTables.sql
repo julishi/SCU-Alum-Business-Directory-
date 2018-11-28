@@ -83,6 +83,9 @@ CREATE TABLE Business_Deletions(
 
 --Table to hold the username login and password the SCU Alum office will be using--
 CREATE TABLE login_credentials(
-        username varchar(30),
-        password varchar(30)
+        firstname varchar2(30),
+        lastname varchar2(30),
+        username varchar2(30),
+        password varchar2(30),
+        UNIQUE (username)
 );

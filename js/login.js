@@ -21,6 +21,7 @@ function sendLoginData(user, pwd) {
 
         obj = JSON.parse(xmlhttp.responseText);
         if(obj.valid == 1) {
+          setLogin();
           window.location.href = "manage_listings.html";
         } else {
 					window.alert("Incorrect username/password. Please try again.");

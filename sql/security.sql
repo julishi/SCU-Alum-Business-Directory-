@@ -1,4 +1,4 @@
-<!--The code used is from https://oracle-base.com/articles/9i/storing-passwords-in-the-database-9i -->
+<!--The code used is based on https://oracle-base.com/articles/9i/storing-passwords-in-the-database-9i with minor edits to fit our system-->
 CREATE OR REPLACE PACKAGE BODY user_security AS
 
   FUNCTION get_hash (p_username  IN  VARCHAR2,

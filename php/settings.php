@@ -37,7 +37,7 @@ function changePassword($user, $old_pwd, $new_pwd) {
 	$res = oci_execute($query);
 	if(!$res) {
 		$e = oci_error($query);
-		echo $e['message';
+		echo $e['message'];
 		exit;
 	}
 

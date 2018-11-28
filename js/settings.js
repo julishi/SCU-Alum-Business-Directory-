@@ -45,11 +45,15 @@ function sendChangePasswordData(user, old_pwd, new_pwd) {
   xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
 
-        obj = JSON.parse(xmlhttp.responseText);
-        if(obj.success == 1) {
-          window.alert("Password change successful!");
-          location.reload();
-        }
+				if(xmlhttp.responseText.includes("Warning")) {
+					window.alert("Incorrect username/password. Please try again.");
+				} else {
+					obj = JSON.parse(xmlhttp.responseText);
+	        if(obj.success == 1) {
+	          window.alert("Password change successful!");
+	          location.reload();
+					}
+				}
       }
 
   };

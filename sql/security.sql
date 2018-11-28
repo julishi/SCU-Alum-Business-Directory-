@@ -7,7 +7,7 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
     --Results of function will be VARCHAR2(40))
 
   BEGIN
-    RETURN DBMS_UTILITY.GET_HASH_VALUE( upper(p_username)||'/'||upper(p_password), 1000000000, power(2,30) )
+    RETURN DBMS_UTILITY.GET_HASH_VALUE( upper(p_username)||'/'||upper(p_password), 1000000000, power(2,30) );
   END;
 
   PROCEDURE add_staff_member (firstname IN VARCHAR2, lastname IN VARCHAR2, p_username  IN  VARCHAR2,

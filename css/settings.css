@@ -1,0 +1,42 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	overflow: auto;
+}
+
+nav a, li a {
+	display: block;
+	color: white;
+	text-align: center;
+}
+
+li a:hover, nav a:hover {
+	background-color: #7D0427;
+	color: white;
+}
+
+nav {
+	background-color: #B30738;
+}
+
+form {
+	width: 40%;
+	border: 2px solid #F1F1F1;
+	margin: 0 auto;
+}
+
+input[type=text], input[type=password] {
+	padding: 6px;
+	border: 1px solid;
+	font-size: 14px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+button {
+	font-size: 16px;
+}
+
+.container{
+	padding: 25px;
+}

@@ -63,3 +63,6 @@ Insert into Business_Descriptions values('B07', 'Shopping', 'Sells stuff', '');
 Insert into Business_Descriptions values('B08', 'Tech', 'Sells tech', '');
 Insert into Business_Descriptions values('B09', 'Clothing', 'Sells clothing', '');
 Insert into Business_Descriptions values('B10', 'Food', 'Sells food', '');
+
+--Insert admin login
+exec user_security.add_staff_member('A_firstname', 'A_lastname', 'admin', 'scustaff');

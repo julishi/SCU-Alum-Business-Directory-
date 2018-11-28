@@ -1,5 +1,4 @@
 --Insert data into tables
-@DatabaseTables
 
 --(firstname, lastname, grad year, approved)
 Insert into SCU_ALUM values('John', 'Doe', 1985, 1, 0);

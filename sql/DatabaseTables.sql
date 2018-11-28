@@ -75,5 +75,5 @@ CREATE TABLE login_credentials(
         firstname varchar(30),
         lastname varchar(30),  
         username varchar(30),
-        password varchar(30)
+        password varchar(40)
 );

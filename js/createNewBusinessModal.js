@@ -85,7 +85,6 @@ function createNewBusinessModal(e) {
 			var address = document.createElement("P");
 			var address_head = document.createElement("B");
 			address_head.textContent = "Address: ";
-			var address_txt2 = document.createTextNode(obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE']);
 			var address_txt1 = document.createElement("SPAN");
 			address_txt1.textContent = obj.address['ADDRESS'];
 			var address_txt2 = document.createElement("SPAN");
@@ -145,7 +144,7 @@ function createNewBusinessModal(e) {
 			descrip.appendChild(lbr);
 			descrip.appendChild(descrip_text);
 
-			if(obj.description[0]['IMAGE'] != null) {
+			if(obj.description[0]['IMAGE'] != null && obj.description[0]['IMAGE'] != "") {
 				var img = document.createElement("P");
 				var img_content = document.createElement("IMG");
 				img_content.setAttribute("src", "data:image/png;base64," + obj.description[0]['IMAGE']);

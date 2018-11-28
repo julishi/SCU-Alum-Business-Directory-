@@ -19,21 +19,24 @@ nav {
 	background-color: #B30738;
 }
 
-input[type=text] {
+form {
+	width: 40%;
+	border: 2px solid #F1F1F1;
+	margin: 0 auto;
+}
+
+input[type=text], input[type=password] {
 	padding: 6px;
 	border: 1px solid;
 	font-size: 14px;
+  box-sizing: border-box;
+  display: inline-block;
 }
 
 button {
-	width: 100px;
 	font-size: 16px;
 }
 
-button:hover {
-	background-color: #EDEDED;
-}
-
-.col {
-	margin: 8px 16px;
+.container{
+	padding: 25px;
 }

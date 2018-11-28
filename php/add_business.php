@@ -75,7 +75,7 @@ function prepareInput($inputData){
 
 function insertListers($firstname, $lastname, $gradyear, $businessname){
     //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
@@ -93,13 +93,28 @@ function insertListers($firstname, $lastname, $gradyear, $businessname){
         $e = oci_error($query);
         echo $e['message'];
     }
+
+    $queryString = "begin insertSCUAlum(:firstname, :lastname, :grad_year); end;";
+    $query = oci_parse($conn, $queryString);
+
+    oci_bind_by_name($query, ':firstname', $firstname);
+    oci_bind_by_name($query, ':lastname', $lastname);
+    oci_bind_by_name($query, ':grad_year', $gradyear);
+
+    // Execute the query
+    $res = oci_execute($query);
+    if (!$res) {
+        $e = oci_error($query);
+        echo $e['message'];
+    }
+
     oci_free_statement($query);
     OCILogoff($conn);
 }
 
 function insertBusiness_Number_Email($businessname, $phone, $email){
         //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
@@ -122,7 +137,7 @@ function insertBusiness_Number_Email($businessname, $phone, $email){
 
 function insertBusiness_Addresses($businessname, $address, $city, $state, $zipcode){
     //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
@@ -148,7 +163,7 @@ function insertBusiness_Addresses($businessname, $address, $city, $state, $zipco
 
 function insertBusiness_Descriptions($businessname, $tag, $descrip, $img) {
 
-    $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;

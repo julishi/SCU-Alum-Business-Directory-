@@ -181,6 +181,30 @@ END;
 /
 Show errors;
 
+Create or Replace Procedure insertSCUAlum(v_first in VARCHAR, v_last in VARCHAR, v_year in int)
+AS
+Cursor Alum_cur is Select * from SCU_ALUM;
+
+l_rec Alum_cur%rowtype;
+found INTEGER := 0;
+
+BEGIN
+	For l_rec in Alum_cur
+	loop
+		IF l_rec.firstname = v_first AND l_rec.lastname = v_last AND l_rec.grad_year = v_year THEN
+			found := 1;
+			EXIT;
+		END IF;
+	END LOOP;
+
+	IF found = 0 THEN
+		Insert into SCU_ALUM values(v_first, v_last, v_year, 0, 1);
+	END IF;
+
+END;
+/
+Show errors;
+
 --Process listing approval based on new or edit and approve or reject
 Create or Replace Procedure updateApproval(v_status in VARCHAR, v_name in VARCHAR, v_type in VARCHAR)
 AS
@@ -211,6 +235,21 @@ BEGIN
 			Update Listers
 			Set firstname = l_rec.firstname, lastname = l_rec.firstname, grad_year = l_rec.grad_year, businessname = l_rec.new_businessname
 			Where businessname = v_name;
+		ELSIF v_type = 'delete' THEN
+			Delete From Business_Deletions
+			Where businessname = v_name;
+
+			Delete From Business_Addresses
+			Where businessname = v_name;
+
+			Delete From Business_Number_Email
+			Where businessname = v_name;
+
+			Delete From Business_Descriptions
+			Where businessname = v_name;
+
+			Delete From Listers
+			Where businessname = v_name;
 		END IF;
 	ELSIF v_status = 'reject' THEN
 		IF v_type = 'new' THEN
@@ -227,6 +266,9 @@ BEGIN
 			Where businessname = v_name;
 		ELSIF v_type = 'edit' THEN
 			Delete From Business_Edits
+			Where businessname = v_name;
+		ELSIF v_type = 'delete' THEN
+			Delete From Business_Deletions
 			Where businessname = v_name;
 		END IF;
 	END IF;

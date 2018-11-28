@@ -5,24 +5,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $obj = json_decode($_POST["x"]);
 
     // collect input data
-    $name = $obj->name;
+    $res = $obj->res;
 
     // Call the functions to insert the data
-    verifyBusiness($name);
+    if ($res == "location") {
+      getLocations();
+    }
 }
 
-function verifyBusiness($name){
+function getLocations(){
         //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
     }
 
-    $queryString = "SELECT businessname FROM LISTERS WHERE businessname = :name and approved = 1";
+    $queryString = "SELECT DISTINCT city FROM Business_Addresses WHERE businessname in (Select businessname From Listers Where approved = 1)";
     $query = oci_parse($conn, $queryString);
-
-    oci_bind_by_name($query, ':name', $name);
 
     // Execute the query
     $res = oci_execute($query);
@@ -33,12 +33,7 @@ function verifyBusiness($name){
 
     $nrows = oci_fetch_all($query, $res);
 
-    if($nrows == 0) {
-        $out = array('found' => 0);
-    } else {
-        $out = array('found' => 1);
-    }
-
+    $out = array('count' => $nrows, 'res' => $res);
     echo json_encode($out);
 
     OCILogoff($conn);

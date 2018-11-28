@@ -228,7 +228,7 @@ function createEditBusinessModal(e) {
 			body.appendChild(tags);
 			body.appendChild(descrip);
 
-			if(obj.description[0]['IMAGE'] != null) {
+			if(obj.description[0]['IMAGE'] != null && obj.description[0]['IMAGE'] != "") {
 				var img = document.createElement("P");
 				var img_head = document.createElement("B");
 				img_head.textContent = "Image: ";
@@ -260,7 +260,7 @@ function createEditBusinessModal(e) {
 			body.appendChild(new_tags);
 			body.appendChild(new_descrip);
 
-			if(obj.edits[0]['IMAGE'] != "") {
+			if(obj.edits[0]['IMAGE'] != "" && obj.edits[0]['IMAGE'] != null) {
 				var new_img = document.createElement("P");
 				var new_img_head = document.createElement("B");
 				new_img_head.textContent = "Image: ";

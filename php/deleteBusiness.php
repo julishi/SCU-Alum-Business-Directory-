@@ -6,7 +6,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // collect input data
     $firstname = $obj->firstname;
     $lastname = $obj->lastname;
-    $gradyear = $obj->year;
+    $gradyear = $obj->grad_year;
+    $businessname = $obj->businessname;
+    $phone = $obj->phone;
+    $requester = $obj->requester;
 
     if (!empty($firstname)){
         $firstname = prepareInput($firstname);
@@ -17,8 +20,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($gradyear)){
         $gradyear = prepareInput($gradyear);
     }
+    if (!empty($businessname)){
+        $businessname = prepareInput($businessname);
+    }
+    if (!empty($phone)){
+        $phone = prepareInput($phone);
+    }
+    if (!empty($requester)){
+        $requester = prepareInput($requester);
+    }
       // Call the functions to insert the data
-    insertSCUAlum($firstname, $lastname, $gradyear);
+    storeBusinessDeletion($firstname, $lastname, $gradyear, $businessname, $phone, $requester);
 }
 
 function prepareInput($inputData){
@@ -27,7 +39,7 @@ function prepareInput($inputData){
     return $inputData;
 }
 
-function insertSCUAlum($firstname, $lastname, $gradyear){
+function storeBusinessDeletion($firstname, $lastname, $gradyear, $businessname, $phone, $requester){
     //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
@@ -35,10 +47,14 @@ function insertSCUAlum($firstname, $lastname, $gradyear){
         exit;
     }
 
-    $query = oci_parse($conn, "Insert Into SCU_ALUM values(:firstname, :lastname, :grad_year, 0, 1)");
+    $query = oci_parse($conn, "Insert Into Business_Deletions values(:firstname, :lastname, :grad_year, :businessname, :phone, :requester)");
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);
     oci_bind_by_name($query, ':grad_year', $gradyear);
+    oci_bind_by_name($query, ':businessname', $businessname);
+    oci_bind_by_name($query, ':phone', $phone);
+    oci_bind_by_name($query, ':requester', $requester);
+    
     // Execute the query
     $res = oci_execute($query);
     if (!$res) {

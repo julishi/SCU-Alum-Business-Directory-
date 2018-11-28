@@ -7,12 +7,9 @@ function searchFilters() {
 
 	var tagList = document.getElementById("type1");
 	var sel_tag = tagList.options[tagList.selectedIndex].text;
-	if(sel_tag == "Select Type 1") {
+	if(sel_tag == "Select Type") {
 		sel_tag = null;
 	}
-
-	//var type2List = document.getElementById("type2");
-	//var sel_type2 = type2List.options[type2List.selectedIndex].text;
 
 	var locationList = document.getElementById("location");
 	var loc = locationList.options[locationList.selectedIndex].text;
@@ -21,6 +18,7 @@ function searchFilters() {
 	}
 
 	var obj = { 'text': search_txt, 'tag': sel_tag, 'loc': loc, 'res': "search"};
+	console.log(obj);
 	var dbParam = JSON.stringify(obj);
 
 	document.getElementById("card_area").innerHTML = "";
@@ -32,7 +30,6 @@ function searchFilters() {
 
 	    	//Response format: {count: #, res: []}
 	        obj = JSON.parse(xmlhttp.responseText);
-	        console.log(obj);
 	        if(obj == null) {
 	        	document.getElementById("card_area").innerHTML = "<p class=text-muted>No matching results</p>";
 	        } else {

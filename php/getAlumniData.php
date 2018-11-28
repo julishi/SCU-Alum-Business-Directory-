@@ -12,10 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function getAlumniData() {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
-		print "getCardDate: connection failed:";
+		print "getAlumniData: connection failed:";
 		print htmlentities($e['message']);
 		exit;
 	}

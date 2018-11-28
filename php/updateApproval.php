@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$status = $obj->status;
 	$name = $obj->businessname;
 	$type = $obj->type;
-	
+
 	updateApproval($status, $name, $type);
 }
 
@@ -19,7 +19,7 @@ function console_log($data) {
 
 function updateApproval($status, $name, $type) {
 
-	$conn = oci_connect('mcai', 'coen174', 'dbserver.engr.scu.edu/db11g');
+	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
 	if(!$conn) {
 		$e = oci_error();
 		print "updateApproval: connection failed:";

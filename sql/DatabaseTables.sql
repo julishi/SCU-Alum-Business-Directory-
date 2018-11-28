@@ -4,6 +4,7 @@ Drop table Business_Addresses;
 Drop table Business_Number_Email;
 Drop table Listers;
 Drop table SCU_ALUM;
+Drop table Business_Deletions;
 Drop table login_credentials;
 
 CREATE TABLE SCU_ALUM(
@@ -70,10 +71,21 @@ CREATE TABLE Business_Edits(
         UNIQUE (businessname)
 );
 
+CREATE TABLE Business_Deletions(
+        firstname varchar(30),
+        lastname varchar(30),
+        grad_year int,
+        businessname varchar(30),
+        phonenumber varchar(30),
+        requester varchar(30),
+        UNIQUE (businessname)
+);
+
 --Table to hold the username login and password the SCU Alum office will be using--
 CREATE TABLE login_credentials(
-        firstname varchar(30),
-        lastname varchar(30),  
-        username varchar(30),
-        password varchar(40)
+        firstname varchar2(30),
+        lastname varchar2(30),
+        username varchar2(30),
+        password varchar2(30),
+        UNIQUE (username)
 );

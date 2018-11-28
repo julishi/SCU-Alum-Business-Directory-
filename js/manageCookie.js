@@ -88,3 +88,21 @@ function checkCookie() {
 
 	return 0;
 }
+
+function setLogin() {
+	document.cookie = "loginFlag=TRUE";
+}
+
+function setLogout() {
+	document.cookie = "loginFlag=FALSE";
+}
+
+function loginCheck(){
+	var loginFlag = "";
+
+	if (document.cookie != "") {
+		loginFlag = document.cookie.replace(/(?:(?:^|.*;\s*)loginFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+		if (loginFlag == "TRUE")
+			window.location.replace('manage_listings.html')
+	}
+}

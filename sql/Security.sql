@@ -21,7 +21,7 @@ CREATE OR REPLACE PACKAGE user_security AS
 
   FUNCTION validate_user_account_exists(p_username  IN  VARCHAR2,
                                         p_password  IN  VARCHAR2)
-    RETURN BOOLEAN;
+    RETURN NUMBER;
 
 END;
 /
@@ -98,14 +98,14 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
 
   FUNCTION validate_user_account_exists(p_username  IN  VARCHAR2,
                  p_password  IN  VARCHAR2)
-    RETURN BOOLEAN AS
+    RETURN NUMBER AS
 
   BEGIN
     validate_user_account_exists(p_username, p_password);
-    RETURN TRUE;
+    RETURN 1;
   EXCEPTION
     WHEN OTHERS THEN
-      RETURN FALSE;
+      RETURN 0;
   END;
 
 END;

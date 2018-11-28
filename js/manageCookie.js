@@ -102,7 +102,10 @@ function loginCheck(){
 
 	if (document.cookie != "") {
 		loginFlag = document.cookie.replace(/(?:(?:^|.*;\s*)loginFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-		if (loginFlag == "TRUE")
+		if (loginFlag == "TRUE"){
 			window.location.replace('manage_listings.html')
+			return true;
+		}
 	}
+	return false;
 }

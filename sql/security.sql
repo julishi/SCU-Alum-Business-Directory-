@@ -13,7 +13,7 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
     RETURN DBMS_CRYPTO.HASH(UTL_RAW.CAST_TO_RAW(UPPER(p_username) || l_salt || UPPER(p_password)), DBMS_CRYPTO.HASH_SH1);
   END;
 
-  PROCEDURE add_staff_member (firstname in VARCHAR2, lastname in VARCHAR2, p_username  IN  VARCHAR2,
+  PROCEDURE add_staff_member (firstname IN VARCHAR2, lastname IN VARCHAR2, p_username  IN  VARCHAR2,
                         p_password  IN  VARCHAR2) AS
     BEGIN
       INSERT INTO login_credentials (

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<title>Change Password - SCU Alumni Business Directory System</title>
+
+<head>
+	<!-- Meta tags !-->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- My CSS !-->
+	<link rel="stylesheet" type="text/css" href="../css/settings.css">
+
+	<!-- Bootstrap CSS !-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar fixed-top navbar-expand-md" style="background-color:#B30738">
+
+			<a class="navbar-brand" href="home.html">SCU Alumni Business Directory</a>
+
+			<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+			    <ul class="navbar-nav">
+			    	<li class="nav-item">
+			    		<a class="nav-link" href="manage_listings.html">Manage Listings</a>
+			    	</li>
+			    	<li class="nav-item">
+			    		<a class="nav-link" href="view_alumni.html">View Alumni</a>
+			    	</li>
+            <li class="nav-item">
+                <a class="nav-link" href="settings.html">Settings</a>
+						</li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Logout</a>
+			      </li>
+			    </ul>
+			 </div>
+		</nav>
+	</div>
+
+	<div style="padding:20px 40px;margin-top:75px;">
+		<form>
+			<div class="container">
+				<h4 style="padding-top:15px;padding-bottom:10px;">Change Password</h4>
+				<div class="form-group">
+					<label for="user">Username</label>
+					<input type="text" class="form-control" id="user" required>
+				</div>
+				<div class="form-group">
+					<label for="pwd">Old Password</label>
+					<input type="password" class="form-control" id="old_pwd" required>
+				</div>
+				<div class="form-group">
+					<label for="pwd">New Password</label>
+					<input type="password" class="form-control" id="new_pwd" required>
+				</div>
+				<div class="form-group">
+					<label for="pwd">Confirm New Password</label>
+					<input type="password" class="form-control" id="confirm_new_pwd" required>
+				</div>
+
+				<button type="button" class="btn btn-primary" id="submit">Submit</button>
+			</div>
+		</form>
+	</div>
+
+	<!-- My JS !-->
+
+	<!-- Bootstrap JS !-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

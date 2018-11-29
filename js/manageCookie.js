@@ -129,3 +129,4 @@ function alertCookie() {
 }
 
 //window.addEventListener("load",nameFieldInit,false);
+

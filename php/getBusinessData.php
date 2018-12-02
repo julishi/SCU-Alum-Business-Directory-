@@ -1,6 +1,10 @@
+<!-- Author: Maggie Cai -->
+<!-- File: getBusinessData.php -->
+<!-- Description: This file contains the php for getting business data for a business from the database -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
+// Retrieve the data from the server
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $obj = json_decode($_POST["x"]);
 
@@ -10,10 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     getBusinessData($name);
 }
 
-
+// Function:  getAlumCount
+// Parameters:  $name string  business name
+// Returns:	$out	JSON	JSON encoded array containing the business data
+// Description: This function executes queries to retrieve all business data for a business from the database
 function getBusinessData($name){
     //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
@@ -42,7 +49,7 @@ function getBusinessData($name){
     }
     $contact = oci_fetch_assoc($query);
 
-    $queryOwner = "SELECT firstname, lastname FROM Listers WHERE businessname = :name";
+    $queryOwner = "SELECT firstname, lastname, grad_year FROM Listers WHERE businessname = :name";
     $query = oci_parse($conn, $queryOwner);
     oci_bind_by_name($query, ':name', $name);
 

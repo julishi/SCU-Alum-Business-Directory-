@@ -1,4 +1,12 @@
-/* Creates the specified number of cards with data from res */
+// Author:	Maggie Cai
+// File: createEditBusinessCard.js
+// File Description: This file contains the functions to create cards for business edits.
+
+// Function:	createEditBusinessCard
+// Parameters:	count	number	total number of business edits; default to 0
+//		res	object	contains business edit data
+// Returns:	Void
+// Description:	This function generates the card HTML for business edits
 function createEditBusinessCard(count = 0, res) {
 
 	var card, deck, container;
@@ -71,6 +79,10 @@ function createEditBusinessCard(count = 0, res) {
 	}
 }
 
+// Function:	display
+// Parameters:	None
+// Returns:	Void
+// Description:	This function sends a request to the server to retrieve business edit data, then calls createEditBusinessCard
 function display() {
 	var obj = { "res": "edit" };
 	var dbParam = JSON.stringify(obj);

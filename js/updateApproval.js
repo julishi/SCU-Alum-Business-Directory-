@@ -1,3 +1,13 @@
+// Author:	Maggie Cai
+// File:	updateApproval.js
+// Description:	This file contains the function to approve or reject a business based on new, edit, or delete
+
+// Function:	updateApproval
+// Parameters:	decision	string	contains the decision, either "approve" or "reject"
+//		businessname	string	constains the name of the business
+//		type	string	contains the request type, either "new", "edit", or "delete"
+// Returns:	Void
+// Description:	This function updates the approval status of a business request depending on approval decision and request type 
 function updateApproval(decision, businessname, type) {
 
 	console.log(decision);

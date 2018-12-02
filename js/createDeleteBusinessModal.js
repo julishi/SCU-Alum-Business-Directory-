@@ -1,12 +1,12 @@
 // Author:	Maggie Cai
-// File:	createEditBusinessModal.js
-// File Description: This file contains the functions to create modals for business edits.
+// File:	createDeleteBusinessModal.js
+// File Description: This file contains the functions to create modals for business deletions.
 
-// Function:	createEditBusinessModal
+// Function:	createDeleteBusinessModal
 // Parameters:	e	event	element that triggered event
 // Returns:	Void
-// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for business edits
-function createEditBusinessModal(e) {
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for businesses deletions
+function createDeleteBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";
 	var modalTitle = modalName + "-title";
@@ -52,15 +52,15 @@ function createEditBusinessModal(e) {
 	reject_btn.id = "reject";
 	reject_btn.setAttribute("type", "button");
 	reject_btn.addEventListener("click", function() {
-		updateApproval("reject", modalName, "edit");
+		updateApproval("reject", modalName, "delete");
 	});
 	reject_btn.textContent = "Reject";
 	var approve_btn = document.createElement("BUTTON");
 	approve_btn.className = "btn btn-success";
 	approve_btn.id = "approve"
 	approve_btn.setAttribute("type", "button");
-	approve_btn.addEventListener("click", function() {
-		updateApproval("approve", modalName, "edit");
+	approve_btn.addEventListener('click', function() {
+		updateApproval("approve", modalName, "delete");
 	});
 	approve_btn.textContent = "Approve";
 	footer.appendChild(reject_btn);
@@ -74,7 +74,7 @@ function createEditBusinessModal(e) {
 
 	bsnModal.appendChild(dialog);
 
-	document.getElementById("edit_modal_area").appendChild(bsnModal);
+	document.getElementById("delete_modal_area").appendChild(bsnModal);
 
 	//Request for data then show
 	var obj = { "businessname": modalName.replace(/_/g, ' ') };
@@ -89,229 +89,44 @@ function createEditBusinessModal(e) {
 
 			var lbr = document.createElement("BR");
 
-			var og_heading = document.createElement("H4");
-			og_heading.textContent = "Original Business Information";
+      var owner = document.createElement("P");
+			var owner_head = document.createElement("B");
+			owner_head.textContent = "Owner: ";
+			var owner_name = document.createTextNode(obj.res['FIRSTNAME'] + " " + obj.res['LASTNAME']);
+			owner.appendChild(owner_head);
+			owner.appendChild(owner_name);
 
-			var address = document.createElement("P");
-			var address_head = document.createElement("B");
-			address_head.textContent = "Address: ";
-			var address_txt1 = document.createElement("SPAN");
-			address_txt1.textContent = obj.address['ADDRESS'];
-			var address_txt2 = document.createElement("SPAN");
-			address_txt2.textContent = obj.address['CITY'] + ", " + obj.address['STATE'] + " " + obj.address['ZIPCODE'];
-			address.appendChild(address_head);
-			address.appendChild(address_txt1);
-			address.appendChild(address_txt2);
-
-			var spans = address.getElementsByTagName("SPAN");
-
-			for (var i = 0; i < spans.length; i++)
-			{
-				var lbr = document.createElement("BR");
-				address.insertBefore(lbr, spans[i]);
-			}
-
-			for (var i = 1; i < spans.length; i++)
-			{
-				var lbr = document.createElement("BR");
-				address.insertBefore(lbr, spans[1]);
-			}
-
+      var grad_year = document.createElement("P");
+      var grad_year_head = document.createElement("B");
+      grad_year_head.textContent = "Graduation Year: ";
+      var grad_year_txt = document.createTextNode(obj.res['GRAD_YEAR']);
+      grad_year.appendChild(grad_year_head);
+      grad_year.appendChild(grad_year_txt);
 
 			var phone = document.createElement("P");
 			var phone_head = document.createElement("B");
 			phone_head.textContent = "Phone: ";
-			var phone_num = document.createTextNode(obj.contact['PHONENUMBER']);
+			var phone_num = document.createTextNode(obj.res['PHONENUMBER']);
 			phone.appendChild(phone_head);
 			phone.appendChild(phone_num);
 
-			var email = document.createElement("P");
-			var email_head = document.createElement("B");
-			email_head.textContent = "Email: ";
-			var email_addr = document.createTextNode(obj.contact['EMAIL']);
-			email.appendChild(email_head);
-			email.appendChild(email_addr);
+			var requester = document.createElement("P");
+			var requester_head = document.createElement("B");
+			requester_head.textContent = "Requester: ";
+			var requester_txt = document.createTextNode(obj.res['REQUESTER']);
+			requester.appendChild(requester_head);
+			requester.appendChild(requester_txt);
 
-			var owner = document.createElement("P");
-			var owner_head = document.createElement("B");
-			owner_head.textContent = "Owner: ";
-			var owner_name = document.createTextNode(obj.owner['FIRSTNAME'] + " " + obj.owner['LASTNAME']);
-			owner.appendChild(owner_head);
-			owner.appendChild(owner_name);
-
-			var grad_year = document.createElement("P");
-      var grad_year_head = document.createElement("B");
-      grad_year_head.textContent = "Graduation Year: ";
-      var grad_year_txt = document.createTextNode(obj.owner['GRAD_YEAR']);
-      grad_year.appendChild(grad_year_head);
-      grad_year.appendChild(grad_year_txt);
-
-			var tags = document.createElement("P");
-			var tags_head = document.createElement("B");
-			tags_head.textContent = "Tags: ";
-			var tags_text = document.createTextNode(obj.description[0]['TAG']);
-			tags.appendChild(tags_head);
-			tags.appendChild(tags_text);
-
-			var descrip = document.createElement("P");
-			var descrip_head = document.createElement("B");
-			descrip_head.textContent = "Description: ";
-			var descrip_text = document.createTextNode(obj.description[0]['COMMENTS']);
-			descrip.appendChild(descrip_head);
-			descrip.appendChild(lbr);
-			descrip.appendChild(descrip_text);
-
-			/* New business information */
-			var new_heading = document.createElement("H4");
-			new_heading.textContent = "New Business Information";
-
-			var new_name = document.createElement("P");
-			var new_name_head = document.createElement("B");
-			new_name_head.textContent = "New Businessname: ";
-			var new_name_txt = document.createTextNode(obj.edits[0]['NEW_BUSINESSNAME']);
-			new_name.appendChild(new_name_head);
-			new_name.appendChild(new_name_txt);
-
-			var new_address = document.createElement("P");
-			var new_address_head = document.createElement("B");
-			new_address_head.textContent = "Address: ";
-			var new_address_txt1 = document.createElement("SPAN");
-			new_address_txt1.textContent = obj.edits[0]['ADDRESS'];
-			var new_address_txt2 = document.createElement("SPAN");
-			new_address_txt2.textContent = obj.edits[0]['CITY'] + ", " + obj.edits[0]['STATE'] + " " + obj.edits[0]['ZIPCODE'];
-			new_address.appendChild(new_address_head);
-			new_address.appendChild(new_address_txt1);
-			new_address.appendChild(new_address_txt2);
-
-			var spans = new_address.getElementsByTagName("SPAN");
-
-			for (var i = 0; i < spans.length; i++)
-			{
-				var lbr = document.createElement("BR");
-				new_address.insertBefore(lbr, spans[i]);
-			}
-
-			for (var i = 1; i < spans.length; i++)
-			{
-				var lbr = document.createElement("BR");
-				new_address.insertBefore(lbr, spans[1]);
-			}
-
-
-			var new_phone = document.createElement("P");
-			var new_phone_head = document.createElement("B");
-			new_phone_head.textContent = "Phone: ";
-			var new_phone_num = document.createTextNode(obj.edits[0]['PHONENUMBER']);
-			new_phone.appendChild(new_phone_head);
-			new_phone.appendChild(new_phone_num);
-
-			var new_email = document.createElement("P");
-			var new_email_head = document.createElement("B");
-			new_email_head.textContent = "Email: ";
-			var new_email_addr = document.createTextNode(obj.edits[0]['EMAIL']);
-			new_email.appendChild(new_email_head);
-			new_email.appendChild(new_email_addr);
-
-			var new_owner = document.createElement("P");
-			var new_owner_head = document.createElement("B");
-			new_owner_head.textContent = "Owner: ";
-			var new_owner_name = document.createTextNode(obj.edits[0]['FIRSTNAME'] + " " + obj.edits[0]['LASTNAME']);
-			new_owner.appendChild(new_owner_head);
-			new_owner.appendChild(new_owner_name);
-
-			var new_grad_year = document.createElement("P");
-      var new_grad_year_head = document.createElement("B");
-      new_grad_year_head.textContent = "Graduation Year: ";
-      var new_grad_year_txt = document.createTextNode(obj.edits[0]['GRAD_YEAR']);
-      new_grad_year.appendChild(new_grad_year_head);
-      new_grad_year.appendChild(new_grad_year_txt);
-
-			var new_tags = document.createElement("P");
-			var new_tags_head = document.createElement("B");
-			new_tags_head.textContent = "Tags: ";
-			var new_tags_text = document.createTextNode(obj.edits[0]['TAG']);
-			new_tags.appendChild(new_tags_head);
-			new_tags.appendChild(new_tags_text);
-
-			var new_descrip = document.createElement("P");
-			var new_descrip_head = document.createElement("B");
-			new_descrip_head.textContent = "Description: ";
-			var new_descrip_text = document.createTextNode(obj.edits[0]['COMMENTS']);
-			new_descrip.appendChild(new_descrip_head);
-			new_descrip.appendChild(lbr);
-			new_descrip.appendChild(new_descrip_text);
-
-			body.appendChild(og_heading);	//append original information
-			body.appendChild(address);
-			body.appendChild(phone);
-			body.appendChild(email);
 			body.appendChild(owner);
-			body.appendChild(grad_year);
-			body.appendChild(tags);
-			body.appendChild(descrip);
-
-			if(obj.description[0]['IMAGE'] != null && obj.description[0]['IMAGE'] != "") {
-				var img = document.createElement("P");
-				var img_head = document.createElement("B");
-				img_head.textContent = "Image: ";
-				var img_content = document.createElement("IMG");
-				img_content.setAttribute("src", "data:image/png;base64," + obj.description[0]['IMAGE']);
-				img_content.style.height = "auto";
-				img_content.style.width = "auto";
-				img_content.style.maxHeight = "300px";
-				img_content.style.maxWidth = "300px";
-				img.appendChild(img_head);
-				img.appendChild(img_content);
-				body.appendChild(img);
-
-				var imgs = img.getElementsByTagName("IMG");
-
-				for (var i = 0; i < imgs.length; i++)
-				{
-					var lbr = document.createElement("BR");
-					img.insertBefore(lbr, imgs[i]);
-				}
-			}
-
-			body.appendChild(new_heading);	//append new information
-			body.appendChild(new_name);
-			body.appendChild(new_address);
-			body.appendChild(new_phone);
-			body.appendChild(new_email);
-			body.appendChild(new_owner);
-			body.appendChild(new_grad_year);
-			body.appendChild(new_tags);
-			body.appendChild(new_descrip);
-
-			if(obj.edits[0]['IMAGE'] != "" && obj.edits[0]['IMAGE'] != null) {
-				var new_img = document.createElement("P");
-				var new_img_head = document.createElement("B");
-				new_img_head.textContent = "Image: ";
-				var new_img_content = document.createElement("IMG");
-				new_img_content.setAttribute("src", "data:image/png;base64," + obj.edits[0]['IMAGE']);
-				new_img_content.style.height = "auto";
-				new_img_content.style.width = "auto";
-				new_img_content.style.maxHeight = "300px";
-				new_img_content.style.maxWidth = "300px";
-				new_img.appendChild(new_img_head);
-				new_img.appendChild(lbr);
-				new_img.appendChild(new_img_content);
-				body.appendChild(new_img);
-			} else {
-				var new_img = document.createElement("P");
-				var new_img_head = document.createElement("B");
-				new_img_head.textContent = "Image: ";
-				var new_img_content = document.createTextNode("Using previous image if any.");
-				new_img.appendChild(new_img_head);
-				new_img.appendChild(new_img_content);
-				body.appendChild(new_img);
-			}
+      body.appendChild(grad_year);
+			body.appendChild(phone);
+      body.appendChild(requester);
 
 			$('#' + modalId).modal('show');
 		}
 	}
 
-	xmlhttp.open("POST", "../php/getEditBusinessData.php", true);
+	xmlhttp.open("POST", "../php/getDeleteBusinessData.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }

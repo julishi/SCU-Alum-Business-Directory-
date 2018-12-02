@@ -1,5 +1,9 @@
+<!-- Author: Maggie Cai -->
+<!-- File: add_business.php -->
+<!-- Description: This file contains the php for adding a business to the database -->
 <?php
 
+// Retrieve data from the server
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $data = $_POST;
@@ -30,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $gradyear = prepareInput($gradyear);
     }
     if (!empty($businessname)){
-        $businesname = prepareInput($businessname);
+        $businessname = prepareInput($businessname);
     }
     if (!empty($address)){
         $address = prepareInput($address);
@@ -54,25 +58,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descrip = prepareInput($descrip);
     }
 
-      // Call the functions to insert the data
+    // Call the functions to insert the data
     insertListers($firstname, $lastname, $gradyear, $businessname);
     insertBusiness_Number_Email($businessname, $phone, $email);
     insertBusiness_Addresses($businessname, $address, $city, $state, $zipcode);
     insertBusiness_Descriptions($businessname, $tag, $descrip, $img);
 }
 
+// Function:  console_log
+// Parameters:  $data mixed data to be dumped to console
+// Returns: Void
+// Description: This function dumps information about $data to the console.
 function console_log($data) {
     echo '<script>';
     echo 'console.log('. var_dump($data) .')';
     echo '</script>';
 }
 
+// Function:  prepareInput
+// Parameters:  $prepareInput string data to be prepared
+// Returns: Void
+// Description: This function trims the string and converts special characters to HTML entities.
 function prepareInput($inputData){
     $inputData = trim($inputData);
     $inputData  = htmlspecialchars($inputData);
     return $inputData;
 }
 
+// Function:  insertListers
+// Parameters:  $firstname string business lister's firstname
+//    $lastname string  business lister's lastname
+//    $gradyear string  business lister's grad year
+//    $businessnameame  string  business name
+// Returns: Void
+// Description: This function executes the query to store data into the Listers table.
 function insertListers($firstname, $lastname, $gradyear, $businessname){
     //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
@@ -112,8 +131,14 @@ function insertListers($firstname, $lastname, $gradyear, $businessname){
     OCILogoff($conn);
 }
 
+// Function:  insertBusiness_Number_Email
+// Parameters:  $businessname string business name
+//    $phone string  business phone number
+//    $email string  business email
+// Returns: Void
+// Description: This function executes the query to store data into the Business_Number_Email table.
 function insertBusiness_Number_Email($businessname, $phone, $email){
-        //connect to your database. Type in your username, password and the DB path
+    //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
@@ -135,6 +160,14 @@ function insertBusiness_Number_Email($businessname, $phone, $email){
     OCILogoff($conn);
 }
 
+// Function:  insertBusiness_Addresses
+// Parameters:  $businessname string business name
+//    $address  string  business address
+//    $city string  city business is located in
+//    $state  string  state business is located in
+//    $zipcode  string  zipcode business is located at
+// Returns: Void
+// Description: This function executes the query to store data into the Business_Addresses table.
 function insertBusiness_Addresses($businessname, $address, $city, $state, $zipcode){
     //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
@@ -161,6 +194,13 @@ function insertBusiness_Addresses($businessname, $address, $city, $state, $zipco
     OCILogoff($conn);
 }
 
+// Function:  insertBusiness_Descriptions
+// Parameters:  $businessname string business name
+//    $tag  string  business tag
+//    $descrip  string  business description
+//    $img  BLOB  business image
+// Returns: Void
+// Description: This function executes the query to store data into the Business_Descriptions table.
 function insertBusiness_Descriptions($businessname, $tag, $descrip, $img) {
 
     $conn = oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');

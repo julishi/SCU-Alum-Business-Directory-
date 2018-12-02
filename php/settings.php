@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: settings.php -->
+<!-- Description: This file contains the php for changing an account password -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -18,6 +21,12 @@ function console_log($data) {
     echo '</script>';
 }
 
+// Function:	changePassword
+// Parameters:	$user	string	login username
+// 		$old_pwd	string	current login password
+// 		$new_pwd	string	new login password
+// Returns:	$out	JSON	JSON encoded array containing if the change was successful or not
+// Function:	This function executes a query to change the password for an account and returns if it was successful
 function changePassword($user, $old_pwd, $new_pwd) {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

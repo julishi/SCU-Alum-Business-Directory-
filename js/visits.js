@@ -1,6 +1,5 @@
-//add function as an else statement in the home.html
-
 function visits_counter(){
+  //Call check cookie to see if there is a cookie stored or not
   check = checkCookie();
     if (check == 1){
       //Call first name

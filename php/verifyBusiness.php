@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: verifyBusiness.php -->
+<!-- Description: This file contains the php for verifying an business -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -11,9 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     verifyBusiness($name);
 }
 
+// Function:  verifyBusiness
+// Parameters:  $name string  business name
+// Returns: $out  JSON  JSON encoded array containing whether the business was found or not
+// Description: This function executes a query to check if the business exists or not 
 function verifyBusiness($name){
         //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;

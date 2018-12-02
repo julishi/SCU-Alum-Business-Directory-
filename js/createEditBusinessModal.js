@@ -1,4 +1,11 @@
-/* Create business information modals for new business listings */
+// Author:	Maggie Cai
+// File:	createEditBusinessModal.js
+// File Description: This file contains the functions to create modals for business edits.
+
+// Function:	createEditBusinessModal
+// Parameters:	e	event	element that triggered event
+// Returns:	Void
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for business edits
 function createEditBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";
@@ -132,6 +139,13 @@ function createEditBusinessModal(e) {
 			owner.appendChild(owner_head);
 			owner.appendChild(owner_name);
 
+			var grad_year = document.createElement("P");
+      var grad_year_head = document.createElement("B");
+      grad_year_head.textContent = "Graduation Year: ";
+      var grad_year_txt = document.createTextNode(obj.owner['GRAD_YEAR']);
+      grad_year.appendChild(grad_year_head);
+      grad_year.appendChild(grad_year_txt);
+
 			var tags = document.createElement("P");
 			var tags_head = document.createElement("B");
 			tags_head.textContent = "Tags: ";
@@ -205,6 +219,13 @@ function createEditBusinessModal(e) {
 			new_owner.appendChild(new_owner_head);
 			new_owner.appendChild(new_owner_name);
 
+			var new_grad_year = document.createElement("P");
+      var new_grad_year_head = document.createElement("B");
+      new_grad_year_head.textContent = "Graduation Year: ";
+      var new_grad_year_txt = document.createTextNode(obj.edits[0]['GRAD_YEAR']);
+      new_grad_year.appendChild(new_grad_year_head);
+      new_grad_year.appendChild(new_grad_year_txt);
+
 			var new_tags = document.createElement("P");
 			var new_tags_head = document.createElement("B");
 			new_tags_head.textContent = "Tags: ";
@@ -225,6 +246,7 @@ function createEditBusinessModal(e) {
 			body.appendChild(phone);
 			body.appendChild(email);
 			body.appendChild(owner);
+			body.appendChild(grad_year);
 			body.appendChild(tags);
 			body.appendChild(descrip);
 
@@ -257,6 +279,7 @@ function createEditBusinessModal(e) {
 			body.appendChild(new_phone);
 			body.appendChild(new_email);
 			body.appendChild(new_owner);
+			body.appendChild(new_grad_year);
 			body.appendChild(new_tags);
 			body.appendChild(new_descrip);
 

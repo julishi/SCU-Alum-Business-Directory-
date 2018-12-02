@@ -6,7 +6,7 @@ function visits_counter(){
     if (check == 1){
       //If the user is a Alum, we'll need their first name, last name, and grad year to update the Visits count in our SCU_Alum datatable.
       //Get first name, last name, and grad yar. All info is stored in the Cookie itself. 
-      //The functions here are implemented in 
+      //The functions here are implemented in manageCookie.js
       var firstname = getFirstName();
       var lastname = getLastName();
       var gradyear = getGradYear();

@@ -1,6 +1,10 @@
+<!-- Author: Maggie Cai -->
+<!-- File: getAlumCount.php -->
+<!-- Description: This file contains the php for getting alum name count from the database -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
+// Retrieve data from the server
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$obj = json_decode($_POST["x"]);
 
@@ -12,12 +16,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
+// Function:  console_log
+// Parameters:  $data mixed data to be dumped to console
+// Returns: Void
+// Description: This function dumps information about $data to the console.
 function console_log($data) {
     echo '<script>';
     echo 'console.log('. var_dump($data) .')';
     echo '</script>';
 }
 
+// Function:  getAlumCount
+// Parameters:  $firstname	string	first name of alum
+// 		$lastname	string	last name of alum
+// 		$gradyear	string	grad year of alum
+// Returns: $out	array	contains the number of times the alum appears in the SCU_ALUM table
+// Description: This function returns the number of times an alum appears in the SCU_ALUM table
 function getAlumCount($firstname, $lastname, $gradyear) {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

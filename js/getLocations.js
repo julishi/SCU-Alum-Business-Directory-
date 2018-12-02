@@ -1,3 +1,11 @@
+// Author:  Maggie Cai
+// File:  getLocations.js
+// File Description:  This file contains the function to retrieve a list of all existing business locations.
+
+// Function:  getLocations
+// Paramters: None
+// Returns: Void
+// Description: This function sends a request to the server to retrieve all existing business locations.
 function getLocations() {
 
   var obj = { "res": "location" };

@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: getManageCardData.php -->
+<!-- Description: This file contains the php for getting business card data for the manage listings page from the database -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -28,6 +31,10 @@ function console_log($data) {
     echo '</script>';
 }
 
+// Function:	getNewCardData
+// Parameters:	None
+// Returns:	$out	JSON	JSON encoded array containing new business card data
+// Description:	This function executes a query to retrieve new business card data.
 function getNewCardData() {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
@@ -61,6 +68,10 @@ function getNewCardData() {
 	OCILogoff($conn);
 }
 
+// Function:	getEditCardData
+// Parameters:	None
+// Returns:	$out	JSON	JSON encoded array containing edit business card data
+// Description:	This function executes a query to retrieve edit business card data.
 function getEditCardData() {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
@@ -94,6 +105,10 @@ function getEditCardData() {
 	OCILogoff($conn);
 }
 
+// Function:	getDeleteCardData
+// Parameters:	None
+// Returns:	$out	JSON	JSON encoded array containing delete business card data
+// Description:	This function executes a query to retrieve delete business card data.
 function getDeleteCardData() {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
@@ -127,6 +142,10 @@ function getDeleteCardData() {
 	OCILogoff($conn);
 }
 
+// Function:	getApprovedCardData
+// Parameters:	None
+// Returns:	$out	JSON	JSON encoded array containing approved business card data
+// Description:	This function executes a query to retrieve approved business card data.
 function getApprovedCardData() {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

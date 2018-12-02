@@ -1,8 +1,17 @@
+// Author:	Maggie Cai
+// File:	deleteBusiness.js
+// File Description:	This file contains the functions to perform the delete business functionality.
+
+// Global variable to contain the name of the business being deleted.
 var businessname = "";
 
+// Function:	verifyBusiness
+// Parameters:	None
+// Returns:	Void
+// Description: This function verifies if the business already exists
 function verifyBusiness() {
 
-	var name = document.getElementById("verify-bsn-name").value;
+	var name = document.getElementById("verify-bsn-name").value.trim();
 
 	if(name == "") {
 		window.alert("Please enter your business name.");
@@ -58,6 +67,10 @@ function verifyBusiness() {
 	xmlhttp.send("x=" + dbParam);
 }
 
+// Function:	submitDelete
+// Parameters:	None
+// Returns: Void
+// Description: This function retrieves the data from the form and sends a request to the server to store it into the database.
 function submitDelete() {
 
 	var firstname = document.getElementById("first-name").value;
@@ -92,6 +105,7 @@ function submitDelete() {
 }
 
 document.getElementById("verify-business").onclick = verifyBusiness;
+// Continue if button is not disabled
 document.getElementById("continue").onclick = function() {
 	if(document.getElementById("continue").classList.contains("disabled")) {
 		return;

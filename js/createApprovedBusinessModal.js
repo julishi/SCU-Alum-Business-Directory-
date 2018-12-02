@@ -1,5 +1,5 @@
 // Author:	Maggie Cai
-// File: createApprovedBusinessModal.js
+// File:	createApprovedBusinessModal.js
 // File Description: This file contains the functions to create modals for approved businesses.
 
 // Function:	createApprovedBusinessCard

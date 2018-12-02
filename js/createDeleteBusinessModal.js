@@ -5,7 +5,7 @@
 // Function:	createDeleteBusinessModal
 // Parameters:	e	event	element that triggered event
 // Returns:	Void
-// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for approved businesses
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for businesses deletions
 function createDeleteBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";

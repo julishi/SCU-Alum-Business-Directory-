@@ -1,4 +1,4 @@
-//window.addEventListener("load",nameFieldInit,false);
+//Author: Nathaniel Kragas
 //Ojbective of file: to store a cookie
 
 /*	manageCookie.js contains the functions relating to

@@ -7,7 +7,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $data = $_POST;
-
+   
     $firstname = $data["first-name"];
     $lastname = $data["last-name"];
     $gradyear = $data["grad_year-select"];

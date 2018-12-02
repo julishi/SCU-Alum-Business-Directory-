@@ -48,8 +48,8 @@ function getAlumFormData() {
 
 // Function:	sendAlumFormData
 // Parameters:	firstname	string	the firstname of the alum
-// 							lastname	string	the lastname of the alum
-// 							gradyear	number	the grad year of the alum
+// 		lastname	string	the lastname of the alum
+// 		gradyear	number	the grad year of the alum
 // Return:	Void
 // Description:	This function takes in the alum data and sends it to the server to be stored into the database
 function sendAlumFormData(firstname, lastname, gradyear) {

@@ -1,3 +1,11 @@
+// Author:  Maggie Cai
+// File:  verifyAlum.js
+// File Description:  This file contains the function to verify an alum.
+
+// Function:  verifyAlum
+// Parameters:  e event checkbox element that triggered the event
+// Returns: None
+// Description: This function retrieves the alum data pertaining the checkbox and approval decsision and sends a request to the server to verify or unverify the alum.
 function verifyAlum(e) {
 
   var x = "";

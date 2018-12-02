@@ -1,3 +1,4 @@
+<!-- This file contains the html for the edit business page. -->
 <!DOCTYPE html>
 <html>
 <title>Edit Business - SCU Alumni Business Directory System</title>
@@ -15,6 +16,7 @@
 
 </head>
 <body>
+	<!-- The navigation bar at the top of the page -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-md">
 
@@ -79,8 +81,9 @@
 		</div>
 	</div>
 
+	<!-- Edit business modals -->
 	<div id="modal_area">
-		<!-- Modal display area !-->
+		<!-- Verify business modal !-->
 		<div class="modal fade" id="verifyModal" tabindex="-1" role="dialog" aria-labelledby="verifyModalLabel" aria-hidden="true" data-backdrop="static">
 	  		<div class="modal-dialog modal-lg" role="document">
 	    		<div class="modal-content">
@@ -210,6 +213,7 @@
 	<script type="text/javascript" src="../js/getLocations.js"></script>
 	<script type="text/javascript" src="../js/createCard.js"></script>
 
+	<!-- JS to generate grad year select -->
 	<script type="text/javascript">
 		for(var i = 2025; i > 1939; i--) {
 			var year = document.createElement("OPTION");
@@ -218,6 +222,7 @@
 		}
 	</script>
 
+	<!-- JS to generate state select -->
 	<script type="text/javascript">
 		var states = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "AS", "DC", "FM", "GU", "MH", "MP", "PW", "PR", "VI"];
 		for(var i = 0; i < states.length; i++) {
@@ -227,6 +232,7 @@
 		}
 	</script>
 
+	<!-- JS to generate business type select -->
 	<script type="text/javascript">
 		var tags = ["Clothing", "Cosmetics", "Entertainment", "Food", "Health", "Manufacturing", "Shopping", "Tech"];
 		for(var i = 0; i < tags.length; i++) {
@@ -241,6 +247,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	<!-- JS used to display the verify modal and hide the edit modal on window load -->
 	<script type="text/javascript">
 		$(window).on('load', function(){
 			$('#verifyModal').modal('show')
@@ -248,6 +255,7 @@
 		});
 	</script>
 
+	<!-- JS used to show the edit modal when the verify modal is hidden -->
 	<script type="text/javascript">
 		$('#verifyModal').on('hidden.bs.modal', function (e) {
 			$('#editModal').modal('show');

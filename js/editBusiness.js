@@ -1,8 +1,17 @@
+// Author:	Maggie Cai
+// File:	editBusiness.js
+// File Description:	This file contains the functions to perform the edit business functionality.
+
+// Global variable to hold the name of the business being edited
 var businessname = "";
 
+// Function:	verifyBusiness
+// Parameters:	None
+// Returns:	Void
+// Description: This function verifies if the business exists
 function verifyBusiness() {
 
-	var name = document.getElementById("verify-bsn-name").value;
+	var name = document.getElementById("verify-bsn-name").value.trim();
 
 	if(name == "") {
 		window.alert("Please enter your business name.");
@@ -14,49 +23,54 @@ function verifyBusiness() {
 
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
+	    if (this.readyState == 4 && this.status == 200) {
 
-	    		obj = JSON.parse(xmlhttp.responseText);
-			var verify_bsn = document.getElementById("verify-bsn-name");
-			if(obj.found == 1) {
-				if(verify_bsn.classList.contains("is-invalid")) {
-					verify_bsn.classList.remove("is-invalid");
-				}
-				verify_bsn.classList.add("is-valid");
+	    	obj = JSON.parse(xmlhttp.responseText);
 
-				var msg = document.createElement("P");
-				msg.style.color = "limegreen";
-				msg.textContent = "Business verified.";
-				var message = document.getElementById("message");
-				message.replaceChild(msg, message.childNodes[0]);
+				var verify_bsn = document.getElementById("verify-bsn-name");
+				if(obj.found == 1) {
+					if(verify_bsn.classList.contains("is-invalid")) {
+						verify_bsn.classList.remove("is-invalid");
+					}
+	    		verify_bsn.classList.add("is-valid");
 
-				var cont_btn = document.getElementById("continue");
-				cont_btn.classList.remove("disabled");
+					var msg = document.createElement("P");
+					msg.style.color = "limegreen";
+					msg.textContent = "Business verified.";
+					var message = document.getElementById("message");
+					message.replaceChild(msg, message.childNodes[0]);
 
-	    		} else {
-				if(verify_bsn.classList.contains("is-valid")) {
-					verify_bsn.classList.remove("is-valid");
-				}
-				verify_bsn.classList.add("is-invalid");
+	    		var cont_btn = document.getElementById("continue");
+	    		cont_btn.classList.remove("disabled");
 
-				var msg = document.createElement("P");
-				msg.style.color = "red";
-				msg.textContent = "Business not found.";
-				var message = document.getElementById("message");
-				message.replaceChild(msg, message.childNodes[0]);
+	    	} else {
+					if(verify_bsn.classList.contains("is-valid")) {
+						verify_bsn.classList.remove("is-valid");
+					}
+					verify_bsn.classList.add("is-invalid");
 
-				var cont_btn = document.getElementById("continue");
-				if(!(cont_btn.classList.contains("disabled"))) {
-					cont_btn.classList.add("disabled");
-				}
+	    		var msg = document.createElement("P");
+	    		msg.style.color = "red";
+	    		msg.textContent = "Business not found.";
+	    		var message = document.getElementById("message");
+	    		message.replaceChild(msg, message.childNodes[0]);
+
+	    		var cont_btn = document.getElementById("continue");
+	    		if(!(cont_btn.classList.contains("disabled"))) {
+	    			cont_btn.classList.add("disabled");
 	    		}
 	    	}
+	    }
 	};
 	xmlhttp.open("POST", "../php/verifyBusiness.php", true);
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }
 
+// Function:	openEditForm
+// Parameters: None
+// Returns:	Void
+// Description:	This function opens the edit business form prepopulated with existing business data.
 function openEditForm() {
 	businessname = document.getElementById("verify-bsn-name").value;
 
@@ -87,6 +101,11 @@ function openEditForm() {
 	xmlhttp.send("x=" + dbParam);
 }
 
+// Function:	submitChanges
+// Parameters:	None
+// Returns:	Void
+// Description:	This function checks that all fields are filled out, retrieves the form data as a FormData object and sends it to the server to be stored in the database.
+// Notes: Data retrieved as FormData due to image BLOB data
 function submitChanges() {
 
 	var firstname = document.getElementById("first-name").value;
@@ -122,7 +141,7 @@ function submitChanges() {
 
 			obj = xmlhttp.responseText;
 			window.alert("You have successfully submitted your edits! Edits will be shown after approval.");
-	    	window.location.href = "home.html";
+	   	window.location.href = "home.html";
 		}
 	};
 	xmlhttp.send(formData);
@@ -130,6 +149,7 @@ function submitChanges() {
 }
 
 document.getElementById("verify-business").onclick = verifyBusiness;
+// Continue if button is not disabled
 document.getElementById("continue").onclick = function() {
 	if(document.getElementById("continue").classList.contains("disabled")) {
 		return;

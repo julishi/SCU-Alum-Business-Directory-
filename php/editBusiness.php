@@ -1,5 +1,9 @@
+<!-- Author: Maggie Cai -->
+<!-- File: editBusiness.php -->
+<!-- Description: This file contains the php for storing business edit data into the database -->
 <?php
 
+// Retrieve data from the server
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $data = $_POST;
@@ -62,21 +66,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     storeBusinessEdits($firstname, $lastname, $gradyear, $old_name, $new_name, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img);
 }
 
+// Function:  console_log
+// Parameters:  $data mixed data to be dumped to console
+// Returns: Void
+// Description: This function dumps information about $data to the console.
 function console_log($data) {
     echo '<script>';
     echo 'console.log('. var_dump($data) .')';
     echo '</script>';
 }
 
+// Function:  prepareInput
+// Parameters:  $prepareInput string data to be prepared
+// Returns: Void
+// Description: This function trims the string and converts special characters to HTML entities.
 function prepareInput($inputData){
     $inputData = trim($inputData);
     $inputData  = htmlspecialchars($inputData);
     return $inputData;
 }
 
+// Function:  storeBusinessDeletion
+// Parameters:  $firstname string business lister's firstname
+//    $lastname string  business lister's lastname
+//    $gradyear string  business lister's grad year
+//    $businessnameame  string  business name
+//    $old_name  string  old business name
+//    $new_name  string  new business name
+//    $address  string  business address
+//    $city string  city business is located in
+//    $state  string  state business is located in
+//    $zipcode  string  zipcode business is located at
+//    $email string  business email
+//    $phone string  business phone number
+//    $tag  string  business tag
+//    $descrip  string  business description
+//    $img  BLOB  business image
+// Returns: Void
+// Description: This function executes the query to store data into the Business_Deletions table.
 function storeBusinessEdits($firstname, $lastname, $gradyear, $old_name, $new_name, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img) {
     //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;

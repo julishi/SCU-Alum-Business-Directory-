@@ -1,4 +1,12 @@
-/* Creates the specified number of cards with data from res */
+// Author:	Maggie Cai
+// File: createApprovedBusinessCard.js
+// File Description: This file contains the functions to create cards for approved businesses.
+
+// Function:	createApprovedBusinessCard
+// Parameters:	count	number	total number of approved businesses; default to 0
+//		res	object	contains approved business data
+// Returns:	Void
+// Description:	This function generates the card HTML for approved businesses
 function createApprovedBusinessCard(count = 0, res) {
 
 	var card, deck, container;
@@ -71,6 +79,10 @@ function createApprovedBusinessCard(count = 0, res) {
 	}
 }
 
+// Function:	display
+// Parameters:	None
+// Returns:	Void
+// Description:	This function sends a request to the server to retrieve approved business data, then calls createApprovedBusinessCard
 function display() {
 	var obj = { "res": "approved" };
 	var dbParam = JSON.stringify(obj);
@@ -90,4 +102,5 @@ function display() {
 	xmlhttp.send("x=" + dbParam);
 }
 
+// Generate cards when approved tab is clicked
 document.getElementById("nav-approved-tab").addEventListener("click", display());

@@ -1,4 +1,11 @@
-/* Create business information modals for new business listings */
+// Author:	Maggie Cai
+// File:	createNewBusinessModal.js
+// File Description: This file contains the functions to create modals for new businesses.
+
+// Function:	createNewBusinessModal
+// Parameters:	e	event	element that triggered event
+// Returns:	Void
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for new businesses
 function createNewBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";
@@ -129,6 +136,13 @@ function createNewBusinessModal(e) {
 			owner.appendChild(owner_head);
 			owner.appendChild(owner_name);
 
+			var grad_year = document.createElement("P");
+      var grad_year_head = document.createElement("B");
+      grad_year_head.textContent = "Graduation Year: ";
+      var grad_year_txt = document.createTextNode(obj.owner['GRAD_YEAR']);
+      grad_year.appendChild(grad_year_head);
+      grad_year.appendChild(grad_year_txt);
+
 			var tags = document.createElement("P");
 			var tags_head = document.createElement("B");
 			tags_head.textContent = "Tags: ";
@@ -160,6 +174,7 @@ function createNewBusinessModal(e) {
 			body.appendChild(phone);
 			body.appendChild(email);
 			body.appendChild(owner);
+			body.appendChild(grad_year);
 			body.appendChild(tags);
 			body.appendChild(descrip);
 

@@ -1,6 +1,7 @@
+<!-- This file contains the html for the delete business page. -->
 <!DOCTYPE html>
 <html>
-<title>Edit Business - SCU Alumni Business Directory System</title>
+<title>Delete Business - SCU Alumni Business Directory System</title>
 
 <head>
 	<!-- Meta tags !-->
@@ -15,6 +16,7 @@
 
 </head>
 <body>
+	<!-- The navigation bar at the top of the page -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-md">
 
@@ -79,8 +81,9 @@
 		</div>
 	</div>
 
+	<!-- Delete business modals -->
 	<div id="modal_area">
-		<!-- Modal display area !-->
+		<!-- Verify business modal !-->
 		<div class="modal fade" id="verifyModal" tabindex="-1" role="dialog" aria-labelledby="verifyModalLabel" aria-hidden="true" data-backdrop="static">
 	  		<div class="modal-dialog modal-lg" role="document">
 	    		<div class="modal-content">
@@ -115,7 +118,7 @@
 			</div>
 		</div>
 
-		<!-- When continue is pressed, hide previous modal, display edit modal -->
+		<!-- When continue is pressed, hide previous modal, display delete modal -->
 		<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true" data-backdrop="static">
 	  		<div class="modal-dialog modal-lg" role="document">
 	    		<div class="modal-content">
@@ -168,6 +171,7 @@
 	<script type="text/javascript" src="../js/getLocations.js"></script>
 	<script type="text/javascript" src="../js/createCard.js"></script>
 
+	<!-- JS used to generate grad year select -->
 	<script type="text/javascript">
 		for(var i = 2025; i > 1939; i--) {
 			var year = document.createElement("OPTION");
@@ -181,6 +185,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	<!-- JS used to show the verify modal and hide the delete modal on window load -->
 	<script type="text/javascript">
 		$(window).on('load', function(){
 			$('#verifyModal').modal('show')
@@ -188,6 +193,7 @@
 		});
 	</script>
 
+	<!-- JS used to show the delete modal when the verify modal is hidden -->
 	<script type="text/javascript">
 		$('#verifyModal').on('hidden.bs.modal', function (e) {
 			$('#deleteModal').modal('show');

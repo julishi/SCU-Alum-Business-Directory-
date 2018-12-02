@@ -1,3 +1,11 @@
+// Author:	Maggie Cai
+// File:	login.js
+// File Description:	This file contains the functions to retrieve data from the login form and send it to the server
+
+// Function:	getLoginData
+// Parameters:	None
+// Returns:	None
+// Description:	This function checks that all fields are filled out and retrieves the login data from the form.
 function getLoginData() {
 	var user = document.getElementById("user").value;
 	var pwd = document.getElementById("pwd").value;
@@ -11,6 +19,11 @@ function getLoginData() {
 	}
 }
 
+// Function: sendLoginData
+// Parameters:	user	string	contains login username
+// 		pwd	string	contains login password
+// Returns:	None
+// Description:	This function sends the login data to the server and checks that it is valid.
 function sendLoginData(user, pwd) {
   var obj = { "user": user, "pwd": pwd };
   var dbParam = JSON.stringify(obj);

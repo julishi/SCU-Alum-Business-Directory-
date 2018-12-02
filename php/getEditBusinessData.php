@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: getEditBusinessData.php -->
+<!-- Description: This file contains the php for getting business edit data for a business from the database -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -10,10 +13,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     getBusinessData($name);
 }
 
-
+// Function: getBusinessData
+// Parameters:  $name string  business name
+// Returns: $out JSON JSON encoded array containing business edit data
+// Description: This function executes a query to retrieve all data for a business edit modal.
 function getBusinessData($name){
     //connect to your database. Type in your username, password and the DB path
-    $conn=oci_connect('mcai','coen174', '//dbserver.engr.scu.edu/db11g');
+    $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
@@ -42,7 +48,7 @@ function getBusinessData($name){
     }
     $contact = oci_fetch_assoc($query);
 
-    $queryOwner = "SELECT firstname, lastname FROM Listers WHERE businessname = :name";
+    $queryOwner = "SELECT firstname, lastname, grad_year FROM Listers WHERE businessname = :name";
     $query = oci_parse($conn, $queryOwner);
     oci_bind_by_name($query, ':name', $name);
 

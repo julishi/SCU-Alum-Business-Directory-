@@ -4,6 +4,8 @@
 header("Content-Type: application/json; charset=UTF-8");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    //Author for edits on these 4 lines of code during implementation: Maggie Cai 
     $obj = json_decode($_POST["x"]);
     // collect input data
     $firstname = $obj->firstname;

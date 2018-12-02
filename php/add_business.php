@@ -1,4 +1,4 @@
-<!-- Author: Maggie Cai -->
+<!-- Author: Juliana Shihadeh -->
 <!-- File: add_business.php -->
 <!-- Description: This file contains the php for adding a business to the database -->
 <?php

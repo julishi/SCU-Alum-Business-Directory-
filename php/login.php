@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: login.php -->
+<!-- Description: This file contains the php for validating if the login data exists -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -17,6 +20,11 @@ function console_log($data) {
     echo '</script>';
 }
 
+// Function:	login 
+// Parameters:	$user	string	login username
+// 		$pwd	string	login password
+// Returns: $out	JSON	JSON encoded array contaning if the login info is valid or not 
+// Description:	This function executes a query to check if the login info is valid or not 
 function login($user, $pwd) {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

@@ -1,6 +1,10 @@
+<!-- Author: Maggie Cai -->
+<!-- File: deleteBusiness.php -->
+<!-- Description: This file contains the php for storing business deletion data into the database -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
+// Retrieve data from the server
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $obj = json_decode($_POST["x"]);
     // collect input data
@@ -33,12 +37,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     storeBusinessDeletion($firstname, $lastname, $gradyear, $businessname, $phone, $requester);
 }
 
+// Function:  prepareInput
+// Parameters:  $prepareInput string data to be prepared
+// Returns: Void
+// Description: This function trims the string and converts special characters to HTML entities.
 function prepareInput($inputData){
     $inputData = trim($inputData);
     $inputData  = htmlspecialchars($inputData);
     return $inputData;
 }
 
+// Function:  storeBusinessDeletion
+// Parameters:  $firstname string business lister's firstname
+//    $lastname string  business lister's lastname
+//    $gradyear string  business lister's grad year
+//    $businessnameame  string  business name
+//    $phone  string  business phone number
+//    $requester  string  name of deletion requester
+// Returns: Void
+// Description: This function executes the query to store data into the Business_Deletions table.
 function storeBusinessDeletion($firstname, $lastname, $gradyear, $businessname, $phone, $requester){
     //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
@@ -54,7 +71,7 @@ function storeBusinessDeletion($firstname, $lastname, $gradyear, $businessname, 
     oci_bind_by_name($query, ':businessname', $businessname);
     oci_bind_by_name($query, ':phone', $phone);
     oci_bind_by_name($query, ':requester', $requester);
-    
+
     // Execute the query
     $res = oci_execute($query);
     if (!$res) {

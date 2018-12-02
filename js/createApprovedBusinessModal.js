@@ -1,4 +1,11 @@
-/* Create business information modals for new business listings */
+// Author:	Maggie Cai
+// File: createApprovedBusinessModal.js
+// File Description: This file contains the functions to create modals for approved businesses.
+
+// Function:	createApprovedBusinessCard
+// Parameters:	e	event	element that triggered event
+// Returns:	Void
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for approved businesses
 function createApprovedBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";

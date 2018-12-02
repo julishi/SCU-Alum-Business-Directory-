@@ -1,3 +1,5 @@
+--SQL Code to set up all the datatables in our database 
+
 Drop table Business_Edits;
 Drop table Business_Descriptions;
 Drop table Business_Addresses;
@@ -71,6 +73,7 @@ CREATE TABLE Business_Edits(
         UNIQUE (businessname)
 );
 
+--Table to hold all business deletion information 
 CREATE TABLE Business_Deletions(
         firstname varchar(30),
         lastname varchar(30),

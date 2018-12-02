@@ -1,3 +1,5 @@
+//window.addEventListener("load",nameFieldInit,false);
+//Ojbective of file: to store a cookie
 
 /*	manageCookie.js contains the functions relating to
 	the system's usage of cookies. Cookies are used by
@@ -8,16 +10,20 @@
 //Function for filling user input fields with saved data in cookies
 //Also contains disabled code for writing new cookies after fields are edited
 function nameFieldInit() {
+	
+	//prepare variables to hold the info needed
 	var firstName = "";
 	var lastName = "";
 	var gradYear = "";
-
+	
+	//prepare place in the cookie to store the fristname, lastname and grad year in
 	if (document.cookie != "") {
 		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		lastName = document.cookie.replace(/(?:(?:^|.*;\s*)lastName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 		gradYear = document.cookie.replace(/(?:(?:^|.*;\s*)gradYear\s*\=\s*([^;]*).*$)|^.*$/, "$1");
 	}
 
+	//get the element ids of all the variables 
 	document.getElementById("first-name").value = firstName;
 	// document.getElementById("first-name").onblur = setCookie();
 
@@ -57,9 +63,7 @@ function getGradYear(){
 
 //Reads data in text forms at time of execution and saves them into cookies
 function setCookie() {
-	// var expireDate = new Date();
-	// expireDate.setMonth(expireDate.getMonth()+6);
-
+	
 	var firstName = document.getElementById("first-name").value;
 	var lastName = document.getElementById("last-name").value;
 	var gradYear = document.getElementById("grad-year").value;
@@ -67,7 +71,6 @@ function setCookie() {
 	document.cookie = "lastName=" + lastName;
 	document.cookie = "gradYear=" + gradYear;
 
-	//document.getElementById("cookieForm").blur();
 	return false;
 }
 
@@ -81,8 +84,13 @@ function setFlagGuest() {
 	document.cookie = "cookieFlag=Guest";
 }
 
-//Reads the flag tracking whether a user is an alum, non-alum, or unidentified user
-//Returns 0 for unidentified, 1 for alum, and 2 for non-alum
+function alertCookie() {
+  alert(document.cookie);
+}
+
+//The function checks if there is a cookie and if the cookie is for an Alum user or a Guest
+//Returns 1 if it's an Alum user
+//Return 2 if it's a Guest user
 function checkCookie() {
 	var cookieFlag = "";
 	if (document.cookie != "") {
@@ -98,7 +106,9 @@ function checkCookie() {
 	return 0;
 }
 
-//Sets a flag allowing the system to identify logged in users
+
+//To set up log-in session so the user doesn't have to log in all the time set a login flage = to True
+//When set to True stays logged in
 function setLogin() {
 	document.cookie = "loginFlag=TRUE";
 }
@@ -108,8 +118,8 @@ function setLogout() {
 	document.cookie = "loginFlag=FALSE";
 }
 
-//Checks a flag to see if the user is currently logged in
-//Logged in users are forwarded to the staff page
+//Check if the user has already logged in or not so not to require the user to log-in again
+
 function loginCheck(){
 	var loginFlag = "";
 
@@ -120,13 +130,5 @@ function loginCheck(){
 			return true;
 		}
 	}
-	return false;
 }
-
-//Troubleshooting tool, lists all saved cookies in the current session
-function alertCookie() {
-  alert(document.cookie);
-}
-
-//window.addEventListener("load",nameFieldInit,false);
 

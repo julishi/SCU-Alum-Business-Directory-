@@ -1,4 +1,12 @@
-/* Creates the specified number of cards with data from res */
+// Author:	Maggie Cai
+// File: createNewBusinessCard.js
+// File Description: This file contains the functions to create cards for new businesses.
+
+// Function:	createNewBusinessCard
+// Parameters:	count	number	total number of new businesses; default to 0
+//		res	object	contains new business data
+// Returns:	Void
+// Description:	This function generates the card HTML for new businesses
 function createNewBusinessCard(count = 0, res) {
 
 	var card, deck, container;
@@ -71,6 +79,10 @@ function createNewBusinessCard(count = 0, res) {
 	}
 }
 
+// Function:	display
+// Parameters:	None
+// Returns:	Void
+// Description:	This function sends a request to the server to retrieve new business data, then calls createNewBusinessCard
 function display() {
 	var obj = { "res": "new" };
 	var dbParam = JSON.stringify(obj);

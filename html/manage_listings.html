@@ -1,3 +1,4 @@
+<!-- This file contains the html for the manage listings page. -->
 <!DOCTYPE html>
 <html>
 <title>Manage Listings - SCU Alumni Business Directory System</title>
@@ -14,6 +15,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+	<!-- The navigation bar at the top of the page -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-md" style="background-color:#B30738">
 
@@ -39,6 +41,7 @@
 	</div>
 
 	<div style="padding:20px 40px;margin-top:75px;">
+		<!-- The navigation bar for managing businesses -->
 		<nav>
 			<div class="nav nav-tabs" id="nav-tab" role="tablist">
 				<a class="nav-item nav-link active" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="true">New Listings</a>
@@ -48,15 +51,19 @@
 			</div>
 		</nav>
 		<div class="tab-content" id="nav-tabContent">
+			<!-- Content area for new businesses -->
 			<div class="tab-pane fade show active" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
 				<div id="new_modal_area"></div>
 			</div>
+			<!-- Content area for business edits -->
 			<div class="tab-pane fade" id="nav-edit" role="tabpanel" aria-labelledby="nav-edit-tab">
 				<div id="edit_modal_area"></div>
 			</div>
+			<!-- Content area for business deletions -->
 			<div class="tab-pane fade" id="nav-delete" role="tabpanel" aria-labelledby="nav-delete-tab">
 				<div id="delete_modal_area"></div>
 			</div>
+			<!-- Content area for approved businesses -->
 			<div class="tab-pane fade" id="nav-approved" role="tabpanel" aria-labelledby="nav-approved-tab">
 				<div id="approved_modal_area"></div>
 			</div>
@@ -73,12 +80,14 @@
 	<script type="text/javascript" src="../js/createApprovedBusinessCard.js"></script>
 	<script type="text/javascript" src="../js/createApprovedBusinessModal.js"></script>
 	<script type="text/javascript" src="../js/updateApproval.js"></script>
+	<script type="text/javascript" src="../js/manageCookie.js"></script>
 
 	<!-- Bootstrap JS !-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	<!-- JS to remember current active tab -->
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
@@ -91,24 +100,28 @@
 		});
 	</script>
 
+	<!-- JS to reload new tab if clicked -->
 	<script type="text/javascript">
 		document.getElementById("nav-new-tab").onclick = function() {
 			window.location.reload(true);
 		};
 	</script>
 
+	<!-- JS to reload edit tab if clicked -->
 	<script type="text/javascript">
 		document.getElementById("nav-edit-tab").onclick = function() {
 			window.location.reload(true);
 		};
 	</script>
 
+	<!-- JS to reload delete tab if clicked -->
 	<script type="text/javascript">
 		document.getElementById("nav-delete-tab").onclick = function() {
 			window.location.reload(true);
 		};
 	</script>
 
+	<!-- JS to reload approved tab if clicked -->
 	<script type="text/javascript">
 		document.getElementById("nav-approved-tab").onclick = function() {
 			window.location.reload(true);

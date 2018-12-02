@@ -1,3 +1,11 @@
+// Author: Maggie Cai
+// File: alumForm.js
+// File Description: This file contains the functions to retrieve data from the alum form and send them to the server.
+
+// Function: getAlumFormData
+// Parameters: None
+// Return: Void
+// Description: This function retireves data from the alum form and checks if the alum already exists
 function getAlumFormData() {
 	var firstname = document.getElementById("first-name").value;
 	var lastname = document.getElementById("last-name").value;
@@ -38,6 +46,12 @@ function getAlumFormData() {
 	}
 }
 
+// Function:	sendAlumFormData
+// Parameters:	firstname	string	the firstname of the alum
+// 		lastname	string	the lastname of the alum
+// 		gradyear	number	the grad year of the alum
+// Return:	Void
+// Description:	This function takes in the alum data and sends it to the server to be stored into the database
 function sendAlumFormData(firstname, lastname, gradyear) {
 	var obj = { "firstname": firstname, "lastname": lastname, "year": gradyear };
 	var dbParam = JSON.stringify(obj);
@@ -53,4 +67,5 @@ function sendAlumFormData(firstname, lastname, gradyear) {
 	xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xmlhttp.send("x=" + dbParam);
 }
+// Run getAlumFormData when the submit button is clicked
 document.getElementById("submit-alum").onclick = getAlumFormData;

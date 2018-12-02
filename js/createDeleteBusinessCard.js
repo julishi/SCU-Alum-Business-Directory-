@@ -1,4 +1,12 @@
-/* Creates the specified number of cards with data from res */
+// Author:	Maggie Cai
+// File: createDeleteBusinessCard.js
+// File Description: This file contains the functions to create cards for approved businesses.
+
+// Function:	createDeleteBusinessCard
+// Parameters:	count	number	total number of business deletions; default to 0
+//		res	object	contains business deletion data
+// Returns:	Void
+// Description:	This function generates the card HTML for businesses deletions
 function createDeleteBusinessCard(count = 0, res) {
 
 	var card, deck, container;
@@ -71,6 +79,10 @@ function createDeleteBusinessCard(count = 0, res) {
 	}
 }
 
+// Function:	display
+// Parameters:	None
+// Returns:	Void
+// Description:	This function sends a request to the server to retrieve business deletion data, then calls createDeleteBusinessCard
 function display() {
 	var obj = { "res": "delete" };
 	var dbParam = JSON.stringify(obj);
@@ -78,7 +90,7 @@ function display() {
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      
+
 	    //Response format: {count: #, res: []}
 	    obj = JSON.parse(xmlhttp.responseText);
 	    createDeleteBusinessCard(obj.count, obj.res);
@@ -90,4 +102,5 @@ function display() {
 	xmlhttp.send("x=" + dbParam);
 }
 
+// Generate cards when delete tab is clicked
 document.getElementById("nav-delete-tab").addEventListener("click", display());

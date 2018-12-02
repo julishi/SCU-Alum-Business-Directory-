@@ -1,4 +1,11 @@
-/* Create business information modals for new business listings */
+// Author:	Maggie Cai
+// File:	createDeleteBusinessModal.js
+// File Description: This file contains the functions to create modals for business deletions.
+
+// Function:	createDeleteBusinessModal
+// Parameters:	e	event	element that triggered event
+// Returns:	Void
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for businesses deletions
 function createDeleteBusinessModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";

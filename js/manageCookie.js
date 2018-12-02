@@ -1,6 +1,14 @@
 //window.addEventListener("load",nameFieldInit,false);
 //Ojbective of file: to store a cookie
 
+/*	manageCookie.js contains the functions relating to
+	the system's usage of cookies. Cookies are used by
+	the system for the convenience of returing users
+	and logged in staff.								*/
+
+
+//Function for filling user input fields with saved data in cookies
+//Also contains disabled code for writing new cookies after fields are edited
 function nameFieldInit() {
 	
 	//prepare variables to hold the info needed
@@ -22,11 +30,13 @@ function nameFieldInit() {
 	document.getElementById("last-name").value = lastName;
 	// document.getElementById("last-name").onblur = setCookie();
 
-	// //NEED TO UPDATE ELEMENT ID FOR GRADYEAR
 	document.getElementById("grad-year").value = gradYear;
 	// document.getElementById("grad-year").onblur = setCookie;
 }
 
+//The get functions ascertain that the cookies exist using checkCookie,
+//then returns the associated piece of data stored in cookies
+//If the cookies are missing or invalid, the functions return false.
 function getFirstName(){
 	if (checkCookie() == 1) {
 		firstName = document.cookie.replace(/(?:(?:^|.*;\s*)firstName\s*\=\s*([^;]*).*$)|^.*$/, "$1");
@@ -64,6 +74,8 @@ function setCookie() {
 	return false;
 }
 
+//The setFlag functions set a cookie to note whether
+//the client is an alum, non-alum, or unidentified user
 function setFlagAlum() {
 	document.cookie = "cookieFlag=Alum";
 }
@@ -94,23 +106,29 @@ function checkCookie() {
 	return 0;
 }
 
+
 //To set up log-in session so the user doesn't have to log in all the time set a login flage = to True
 //When set to True stays logged in
 function setLogin() {
 	document.cookie = "loginFlag=TRUE";
 }
 
+//Removes a flag allowing the system to identify logged in users
 function setLogout() {
 	document.cookie = "loginFlag=FALSE";
 }
 
 //Check if the user has already logged in or not so not to require the user to log-in again
+
 function loginCheck(){
 	var loginFlag = "";
 
 	if (document.cookie != "") {
 		loginFlag = document.cookie.replace(/(?:(?:^|.*;\s*)loginFlag\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-		if (loginFlag == "TRUE")
+		if (loginFlag == "TRUE"){
 			window.location.replace('manage_listings.html')
+			return true;
+		}
 	}
 }
+

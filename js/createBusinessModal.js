@@ -1,4 +1,11 @@
-/* Create business information modals */
+// Author:	Maggie Cai
+// File:	createBusinessModal.js
+// File Description: This file contains the functions to create modals for businesseses on the home page.
+
+// Function:	createBusinessModal
+// Parameters:	e	event	element that triggered event
+// Returns:	Void
+// Description:	This function sends a request to retrieve business data from the database and generates the modal HTML for businesses
 function createModal(e) {
 	var modalName = e.target.id;
 	var modalId = modalName + "-modal";

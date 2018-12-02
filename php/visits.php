@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //wraps all the input variables read in through the visit.js javascript file
     //The variables come from the data that's stored in the cookie
     $obj = json_decode($_POST["x"]);
-    // collect input data
+    // break up input data in X to collect and store in the right variable name
     $firstname = $obj->firstname;
     $lastname = $obj->lastname;
     $year = $obj->year;
@@ -30,7 +30,9 @@ function updateVisits($firstname, $lastname, $year){
                     Where firstname = :firstname and lastname = :lastname and grad_year = :year)+1)
                     Where firstname = :firstname and lastname = :lastname and grad_year = :year";
 
+    //prepares connection to pass in the variables and execute the above update
     $query = oci_parse($conn, $queryString);
+    //binds php variable to a variable the oracle database can hold and read
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);
     oci_bind_by_name($query, ':year', $year);

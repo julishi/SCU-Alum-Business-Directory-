@@ -1,3 +1,4 @@
+<!-- This file contains the html for the home page. -->
 <!DOCTYPE html>
 <html>
 <title>SCU Alumni Business Directory System</title>
@@ -15,6 +16,7 @@
 
 </head>
 <body>
+	<!-- The navigation bar at the top of the page -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-md">
 
@@ -43,10 +45,11 @@
 		<form action="" style="position:fixed;border:3px solid #F1F1F1;text-align: center;width: 95%;">
 			<div class="form_container">
 				<div class="form-inline">
+					<!-- The search box -->
 					<div class="col">
 						<input type="text" class="form-control" id="search_txt" placeholder="Search..">
 					</div>
-
+					<!-- Business type select -->
 					<div class="col">
 						<select class="custom-select" id="type1">
 							<option value="0">Select Type</option>
@@ -60,10 +63,11 @@
 							<option value="8">Tech</option>
 						</select>
 					</div>
-
+					<!-- Location select -->
 					<div class="col">
 						<select class="custom-select" id="location">
 							<option value="0">Location</option>
+							<!-- Location list generated using JS -->
 						</select>
 					</div>
 
@@ -76,13 +80,16 @@
 
 		<div id="card_area" style="margin-top:150px">
 			<!-- Card display area -->
+			<!-- Cards generated using JS -->
 		</div>
 
 	</div>
 
 	<div id="modal_area">
+		<!-- Business modals generated using JS -->
 	</div>
 
+	<!-- Welcome modal-->
 	<div class="modal fade" id="areYouAnAlumModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true" data-backdrop="static">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -96,6 +103,7 @@
 					<p> Welcome! Are you an SCU Alumni? </p>
 				</div>
 				<div class="modal-footer">
+					<!-- Set cookie flag to guest if pressed No, else open alum form modal -->
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="setFlagGuest()">No</button>
 					<button type="button" class="btn btn-primary" onclick="openAlumForm()">Yes</a>
 				</div>
@@ -103,6 +111,7 @@
 		</div>
 	</div>
 
+	<!-- Alum form modal -->
 	<div class="modal fade" id="alumFormModal" tabindex="-1" role="dialog" aria-labelledby="alumFormModalLabel" aria-hidden="true" data-backdrop="static">
     	<div class="modal-dialog" role="document">
       		<div class="modal-content">
@@ -127,7 +136,6 @@
 			              	<input type="text" class="form-control" id="last-name" placeholder="Last name">
 			            </div>
 
-			            <!--Add in the year here-->
 			            <div class="form-group">
 			            	<label class="col-form-label" for="grad-year">Graduation Year</label>
 			            	<select class="form-control" id="grad-year">
@@ -230,24 +238,25 @@
     	</div>
     </div>
 
-	<div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel" aria-hidden="true" data-backdrop="static">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title title-center" id="thankYouModalLabel">SCU Alum Business Directory</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="No">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<p> Thank You! </p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<!-- Thank you modal -->
+		<div class="modal fade" id="thankYouModal" tabindex="-1" role="dialog" aria-labelledby="thankYouModalLabel" aria-hidden="true" data-backdrop="static">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title title-center" id="thankYouModalLabel">SCU Alum Business Directory</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="No">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p> Thank You! </p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<!-- My JS !-->
 	<script type="text/javascript" src="../js/alumForm.js"></script>
@@ -264,14 +273,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-	<!-- <script type="text/javascript">
-		for(var i = 2025; i > 1939; i--) {
-			var year = document.createElement("OPTION");
-			year.text = i;
-			document.getElementById("grad-year").appendChild(year);
-		}
-	</script> -->
-
+	<!-- JS to count the number of visits for an alum -->
 	<script type="text/javascript">
 		if(sessionStorage.getItem('visit') == null) {
 			visits_counter();
@@ -279,12 +281,14 @@
 		}
 	</script>
 
+	<!-- JS to check if there is cookie -->
 	<script type="text/javascript">
 		if(checkCookie() == 0) {
 			$('#areYouAnAlumModal').modal('show');
 		}
 	</script>
 
+	<!-- JS to hide welcome modal and open alum form modal -->
 	<script type="text/javascript">
 		function openAlumForm() {
 			$('#areYouAnAlumModal').modal('hide');
@@ -294,6 +298,7 @@
 		}
 	</script>
 
+	<!-- JS to hide alum form modal and show thank you modal -->
 	<script type="text/javascript">
 		$('#alumFormModal').on('hidden.bs.modal', function (e) {
 			$('#thankYouModal').modal('show');

@@ -103,7 +103,7 @@ function prepareInput($inputData){
 //    $descrip  string  business description
 //    $img  BLOB  business image
 // Returns: Void
-// Description: This function executes the query to store data into the Business_Deletions table.
+// Description: This function executes the query to store data into the Business_Edits table.
 function storeBusinessEdits($firstname, $lastname, $gradyear, $old_name, $new_name, $address, $city, $state, $zipcode, $email, $phone, $tag, $descrip, $img) {
     //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

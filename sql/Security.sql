@@ -2,13 +2,12 @@
 --Source code for hash function: https://asktom.oracle.com/pls/asktom/f?p=100:11:::::P11_QUESTION_ID:95412348059
 --All in pl/sql
 
-
 --Goal of this file: The file here is in charge of security procol for log-in credentials. It has a function to hash a password
 --so it's stored securly in our datatable, a function to then store this hashed password along with the person's first/last name
 --and username, functions/procedures to check if a username/password exists when someone tries to log-in, and lastly 
 --a procedure to allow a password to be reset. 
 
---This part of the code written by Maggie Cai
+--This part of the code is written by Maggie Cai
 --defining the procedures and functions 
 CREATE OR REPLACE PACKAGE user_security AS
 
@@ -36,7 +35,7 @@ END;
 /
 Show errors;
 
---This part of the code written by Juliana Shihadeh, except for change_account_password - which was written by Maggie Cai 
+--This part of the code is written by Juliana Shihadeh, except for change_account_password - which was written by Maggie Cai 
 --Body of the defined functions and procedures starts here
 CREATE OR REPLACE PACKAGE BODY user_security AS
 

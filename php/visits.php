@@ -1,6 +1,9 @@
+<!--File Objective: To update the number of visits of an SCU Alum user-->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //wraps all the input variables read in through the visit.js javascript file
+    //The variables come from the data that's stored in the cookie
     $obj = json_decode($_POST["x"]);
     // collect input data
     $firstname = $obj->firstname;
@@ -10,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     updateVisits($firstname, $lastname, $year);
 }
 
+//Updates the number of visits here. Takes input parameters First/Last name, and grad year of the SCU Alum who's visiting the website. 
+//Doesn't return a value. 
+//Just increments visits column by one for that user.
 function updateVisits($firstname, $lastname, $year){
     //connect to your database. Type in your username, password and the DB path
     $conn=oci_connect('mcai','coen174', 'dbserver.engr.scu.edu/db11g');
@@ -18,6 +24,8 @@ function updateVisits($firstname, $lastname, $year){
         exit;
     }
 
+    //locate row that holds the user 
+    //sets visit to the old value of visits + 1
     $queryString = "UPDATE SCU_ALUM Set visits = ((SELECT visits FROM SCU_ALUM
                     Where firstname = :firstname and lastname = :lastname and grad_year = :year)+1)
                     Where firstname = :firstname and lastname = :lastname and grad_year = :year";

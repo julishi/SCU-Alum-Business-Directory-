@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     getBusinessData($name);
 }
 
-// Function:  getAlumCount
+// Function:  getBusinessData
 // Parameters:  $name string  business name
 // Returns:	$out	JSON	JSON encoded array containing the business data
 // Description: This function executes queries to retrieve all business data for a business from the database

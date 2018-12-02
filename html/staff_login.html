@@ -1,3 +1,4 @@
+<!-- This file contains the html for the staff login page -->
 <!DOCTYPE html>
 <html>
 <title>Staff Login - SCU Alumni Business Directory</title>
@@ -14,6 +15,7 @@
 </head>
 
 <body>
+	<!-- The navigation bar at the top of the page -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-md">
 
@@ -36,6 +38,7 @@
 	</div>
 
 	<div style="padding:20px;margin-top:100px;">
+		<!-- Login form -->
 		<form id="login_form">
 			<h4 style="padding-top:20px;">Welcome SCU Staff!</h4>
 			<div class="container">
@@ -47,10 +50,10 @@
 				</div>
 
 				<button class="login_button" type="button" id="submit-login">Login</button>
-      </div>
+			</div>
 		</form>
 	</div>
-	
+
 	<!-- My JS !-->
 	<script type="text/javascript" src="../js/manageCookie.js"></script>
 	<script type="text/javascript" src="../js/login.js"></script>
@@ -60,6 +63,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+	<!-- Checks if the user is logged in -->
 	<script type="text/javascript">
 		window.addEventListener("load", function () {
 			loginCheck();

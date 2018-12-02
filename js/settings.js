@@ -1,3 +1,11 @@
+// Author:	Maggie Cai
+// File:	settings.js
+// File Description:	This file contains the functions to perform the change password functionality
+
+// Function:	getChangePasswordData
+// Parameters:	None
+// Returns:	None
+// Description: This function retrieves the change password data from the form and checks if it is valid.
 function getChangePasswordData() {
 	var user = document.getElementById("user").value;
 	var old_pwd = document.getElementById("old_pwd").value;
@@ -37,6 +45,12 @@ function getChangePasswordData() {
 	}
 }
 
+// Function:	sendChangePasswordData
+// Parameters:	user	string	contains login username
+// 		old_pwd	string	contains old login password
+// 		new_pwd	string	contains new login password
+// Returns:	Void
+// Description:	This function sends the change password data to the server to be stored into the database.
 function sendChangePasswordData(user, old_pwd, new_pwd) {
   var obj = { "user": user, "old_pwd": old_pwd, "new_pwd": new_pwd };
   var dbParam = JSON.stringify(obj);

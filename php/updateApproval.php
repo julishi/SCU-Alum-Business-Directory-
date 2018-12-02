@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: updateApproval.php -->
+<!-- Description: This file contains the php for updating a business's approval status -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -17,6 +20,12 @@ function console_log($data) {
     echo '</script>';
 }
 
+// Function:	updateApproval
+// Parameters:	$status	string	contains approval decision, either "approve" or "reject"
+// 		$name	string	business name
+// 		$type	string	request type, either "new", "edit", "delete"
+// Returns:	None
+// Description:	This function executes a query to update the approval status of a business depending on request type 
 function updateApproval($status, $name, $type) {
 
 	$conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

@@ -1,10 +1,16 @@
 //Author: Nathaniel Kragas
 //Ojbective of file: to store a cookie
+//The author of the file Nathaniel Kragas also includes calls to functions in here in other files in the project. 
+//In any instance where there is a call to a function that's in here from another file 
+//that does not have a specific author to the file
+//is a function call that's been made by Nathaniel Kragas. 
 
-/*	manageCookie.js contains the functions relating to
+/* Description: manageCookie.js contains the functions relating to
 	the system's usage of cookies. Cookies are used by
-	the system for the convenience of returing users
-	and logged in staff.								*/
+	the system for the convenience of storing information on users and logged in staff. 
+	So in order to track the number of visits of an SCU Alum, and not have the SCU Alum need to 
+	fill in the SCU Alum form more than once.
+*/
 
 
 //Function for filling user input fields with saved data in cookies

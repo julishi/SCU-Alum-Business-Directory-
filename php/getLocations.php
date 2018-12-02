@@ -1,3 +1,6 @@
+<!-- Author: Maggie Cai -->
+<!-- File: getLocations.php -->
+<!-- Description: This file contains the php for getting all business locations from the database -->
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -13,6 +16,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
+// Function:  getLocations
+// Parameters:  None
+// Returns: $out  JSON  JSON encoded array containing number of locations and locations
+// Description: This function executes a query to retrieve distinct cities from Busienss_Addresses.
 function getLocations(){
         //connect to your database. Type in your username, password and the DB path
     $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');

@@ -1,4 +1,12 @@
-/* Create the alumni table */
+// Author:	Maggie Cai
+// File:	createAlumniTable.js
+// File Description:	This file contains the functions to generate and display the alum table
+
+// Function:	createAlumniTable
+// Parameters:	count	number	total number of alums
+// 		res		object	alum data (name, grad year, verified, number of visits)
+// Returns:	Void
+// Description:	This function generates the HTML for the view alum table
 function createAlumniTable(count, res) {
 
 	var list_item, item_head, item_name, item_year, item_check, item_visits;
@@ -60,6 +68,10 @@ function createAlumniTable(count, res) {
 	}
 }
 
+// Function:	display
+// Parameters:	None
+// Returns:	Void
+// Description:	This function sends a request to the server to retrieve alum data, then calls createAlumniTable
 function display() {
 	var obj = { "res": "all" };
 	var dbParam = JSON.stringify(obj);
@@ -69,8 +81,8 @@ function display() {
 	    if (this.readyState == 4 && this.status == 200) {
 
 	    	//Response format: {count: #, res: []}
-	        obj = JSON.parse(xmlhttp.responseText);
-	        createAlumniTable(obj.count, obj.res);
+        obj = JSON.parse(xmlhttp.responseText);
+        createAlumniTable(obj.count, obj.res);
 	    }
 	};
 
@@ -79,4 +91,5 @@ function display() {
 	xmlhttp.send("x=" + dbParam);
 }
 
+// Run display when the window loads
 window.onload = display();

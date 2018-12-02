@@ -1,3 +1,5 @@
+<!--Author: Juliana Shihadeh-->
+<!--File Objective: Take the SCU Alum modal data and store it into our SCU_Alum Datatable
 <?php
 header("Content-Type: application/json; charset=UTF-8");
 
@@ -28,13 +30,13 @@ function prepareInput($inputData){
 }
 
 function insertSCUAlum($firstname, $lastname, $gradyear){
-    //connect to your database. Type in your username, password and the DB path
+    //connect to database
     $conn = oci_connect('mcai', 'coen174', '//dbserver.engr.scu.edu/db11g');
     if(!$conn) {
         print "<br> connection failed:";
         exit;
     }
-
+    //Insert into the datatable
     $query = oci_parse($conn, "Insert Into SCU_ALUM values(:firstname, :lastname, :grad_year, 0, 1)");
     oci_bind_by_name($query, ':firstname', $firstname);
     oci_bind_by_name($query, ':lastname', $lastname);

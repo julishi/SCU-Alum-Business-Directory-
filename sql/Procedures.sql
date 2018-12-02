@@ -1,7 +1,11 @@
+-- Authors: Maggie Cai and Juliana Shihadeh
+-- This file contains all the procedures, functions, and triggers to help manipulate the database.
+
+-- Used to clear database when replacing procedures, functions, or triggers
 Drop type search_table;
 Drop type search_rec FORCE;
 
---Select data based on search filters
+-- Select data based on search filters
 Create or Replace Type search_rec as object (
 	businessname VARCHAR(30),
 	tag VARCHAR(30),
@@ -181,6 +185,7 @@ END;
 /
 Show errors;
 
+-- Insert an alum into the database
 Create or Replace Procedure insertSCUAlum(v_first in VARCHAR, v_last in VARCHAR, v_year in int)
 AS
 Cursor Alum_cur is Select * from SCU_ALUM;
@@ -205,7 +210,7 @@ END;
 /
 Show errors;
 
---Process listing approval based on new or edit and approve or reject
+--Process listing approval based on new, edit, or delete and approve or reject
 Create or Replace Procedure updateApproval(v_status in VARCHAR, v_name in VARCHAR, v_type in VARCHAR)
 AS
 

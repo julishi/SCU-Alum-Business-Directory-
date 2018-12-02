@@ -1,4 +1,11 @@
+// Author:	Maggie Cai
+// File:	searchFilters.js
+// File Description:	This file contains the function to perform the search functionality.
 
+// Function:	searchFilters
+// Parameters:	None
+// Returns:	Void
+// Description:	This function retrieves the search data, sends the data to the server, then calls createCard if there are valid results.
 function searchFilters() {
 	var search_txt = document.getElementById("search_txt").value;
 	if(search_txt == "") {

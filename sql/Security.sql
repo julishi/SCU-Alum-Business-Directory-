@@ -131,7 +131,7 @@ CREATE OR REPLACE PACKAGE BODY user_security AS
 
   --Function: Validate a user account exists by calling the procedure validate_user_account_exists to run the check 
   --calls the validate_user_account_exists procedure to check if user exists
-  --returns 1 if a value was found, otherwise if it rain into raised error returns 0
+  --returns 1 if a value was found, otherwise if it ran into raised error returns 0
   FUNCTION validate_user_account_exists(p_username  IN  VARCHAR2,
                  p_password  IN  VARCHAR2)
     RETURN NUMBER AS

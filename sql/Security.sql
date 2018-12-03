@@ -9,7 +9,6 @@
 --Separate test code was written by Juliana to test if the sequrity.sql file works correctly.
 
 --This part of the code is written by Maggie Cai
---defining the procedures and functions 
 CREATE OR REPLACE PACKAGE user_security AS
 
   FUNCTION get_hash (p_username  IN  VARCHAR2,
@@ -38,6 +37,7 @@ Show errors;
 
 --This part of the code is written by Juliana Shihadeh, except for change_account_password - which was written by Maggie Cai 
 --Body of the defined functions and procedures starts here
+--IMPORTANT NOTE: Credits goes to the source listed at the top of the file for this part of the code.  
 CREATE OR REPLACE PACKAGE BODY user_security AS
 
 --Function: Hashing a password
